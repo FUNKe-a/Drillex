@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=4 uid="uid://b8qsmh37swmbc"]
+
+[ext_resource type="PackedScene" uid="uid://bmgdx2rbgunof" path="res://Assets/Entities/Conveyor/Conveyor.tscn" id="1_dd4d0"]
+[ext_resource type="PackedScene" uid="uid://dxbnybjhhyto6" path="res://Assets/Entities/Material/Material.tscn" id="1_u8xcd"]
+
+[node name="TestingStage" type="Node2D"]
+
+[node name="Conveyor" parent="." node_paths=PackedStringArray("Holder") instance=ExtResource("1_dd4d0")]
+tile_map_data = PackedByteArray("AAAEAAIAAAABAAAAAAAEAAMAAAABAAAAAAAEAAQAAAABAAAAAAAEAAUAAAABAAAAAAAEAAYAAAABAAAAAAAEAAcAAAADAAAAAAAFAAcAAAADAAAAAAAGAAcAAAADAAAAAAAHAAcAAAADAAAAAAAIAAcAAAADAAAAAAAJAAcAAAADAAAAAAAKAAcAAAADAAAAAAALAAcAAAADAAAAAAAMAAcAAAADAAAAAAANAAcAAAADAAAAAAAOAAcAAAADAAAAAAAPAAcAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAUAAAACAAAAAAAOAAUAAAACAAAAAAANAAUAAAAAAAAAAAANAAQAAAADAAAAAAAOAAQAAAADAAAAAAAPAAQAAAABAAAAAAA=")
+Speed = 40.0
+Holder = NodePath("../MaterialHolder")
+
+[node name="MaterialHolder" type="Node2D" parent="."]
+
+[node name="Material" parent="MaterialHolder" instance=ExtResource("1_u8xcd")]
+position = Vector2(127, 84)

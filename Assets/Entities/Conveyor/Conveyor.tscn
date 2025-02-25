@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmgdx2rbgunof"]
+
+[ext_resource type="Script" path="res://Assets/Entities/Conveyor/Conveyor.cs" id="1_djn0k"]
+[ext_resource type="Texture2D" uid="uid://cjmdcxx53836k" path="res://Assets/Entities/Conveyor/Textures/tilemap.png" id="1_oht0n"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_d1wy3"]
+texture = ExtResource("1_oht0n")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+3:0/0 = 0
+2:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ig4hn"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_d1wy3")
+
+[node name="Conveyor" type="TileMapLayer"]
+tile_set = SubResource("TileSet_ig4hn")
+script = ExtResource("1_djn0k")

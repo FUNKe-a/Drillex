@@ -12,13 +12,18 @@ config_version=5
 
 config/name="drillex"
 run/main_scene="res://Stages/Menu/MainMenu/MainMenu.tscn"
-config/features=PackedStringArray("4.3", "Mobile")
+config/features=PackedStringArray("4.3", "C#", "Mobile")
 config/icon="res://icon.svg"
+
+[audio]
+
+general/size/viewport_height=216
+general/size/viewport_width=384
 
 [display]
 
-window/size/viewport_width=384
-window/size/viewport_height=216
+window/size/viewport_width=960
+window/size/viewport_height=540
 window/size/window_width_override=1920
 window/size/window_height_override=1080
 window/stretch/mode="viewport"
