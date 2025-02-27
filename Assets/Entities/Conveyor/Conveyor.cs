@@ -60,8 +60,16 @@ public partial class Conveyor : TileMapLayer
 		holder.Velocity = Vector2.Zero;
 		if (directionIndex != -1)
 		{
-			holder.Velocity = _conveyorVelocity[directionIndex];
-			holder.TargetPosition = _conveyorDirection[directionIndex] * 32 + (Vector2I)materialPosition;
+			Vector2 direction = _conveyorDirection[directionIndex];
+			Vector2I nextPos = (Vector2I)direction * 32 + (Vector2I)materialPosition;
+			var nextIndex = GetCellAtlasCoords(LocalToMap(nextPos)).X;
+			Vector2I nextDirection = _conveyorDirection[nextIndex];
+			
+			if (nextIndex != -1 && direction.Dot(nextDirection) >= -0.95f)
+			{
+				holder.Velocity = _conveyorVelocity[directionIndex];
+				holder.TargetPosition = nextPos;
+			}
 		}
 	}
 
@@ -70,7 +78,6 @@ public partial class Conveyor : TileMapLayer
 		targetReached = false;
 		if (material.Position.Snapped(TargetPrecision).IsEqualApprox(holder.TargetPosition))
 		{
-			GD.Print("reached");
 			material.Position = material.Position.Snapped(32);
 			targetReached = true;
 			holder.Velocity = Vector2.Zero;
