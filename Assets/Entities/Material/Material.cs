@@ -1,8 +1,7 @@
 using Godot;
 
-public partial class Material : Node2D
+public partial class Material : Sprite2D
 {
-    public Vector2I PreviousDirection = Vector2I.Zero;
     public override void _Ready()
     {
         Position = Position.Snapped(32f);

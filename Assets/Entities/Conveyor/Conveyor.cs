@@ -1,8 +1,12 @@
 using Godot;
 using Godot.Collections;
 
+namespace drillex.Assets.Entities.Conveyor;
+
 public partial class Conveyor : TileMapLayer
 {
+	[Export] 
+	public float TargetPrecision { get; set; } = 0.1f;
 	[Export]
 	public float Speed { get; set; }
 	[Export] 
@@ -10,6 +14,7 @@ public partial class Conveyor : TileMapLayer
 
 	private Array<Vector2> _conveyorVelocity = new Array<Vector2>();
 	private Array<Vector2I> _conveyorDirection = new Array<Vector2I>();
+	private Dictionary<Material, MaterialMovementHolder> _materialMovementHolders = new Dictionary<Material, MaterialMovementHolder>();
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -30,31 +35,45 @@ public partial class Conveyor : TileMapLayer
 		foreach (var node in Holder.GetChildren())
 		{
 			Material material = (Material)node;
-			Vector2 materialVelocity = GetMaterialVelocity(material);
-			material.Position += materialVelocity * (float)d;
+
+			if (!_materialMovementHolders.ContainsKey(material))
+			{
+				_materialMovementHolders.Add(material, new MaterialMovementHolder());
+				FindTarget(material, _materialMovementHolders[material]);
+			}
+
+			CheckMaterialVelocity(material, _materialMovementHolders[material], out bool targetReached);
+			
+			if (targetReached) 
+            	FindTarget(material, _materialMovementHolders[material]);
+			
+			material.Position += _materialMovementHolders[material].Velocity * (float)d;
 		}
 	}
 
-	private Vector2 GetMaterialVelocity(Material material)
+	private void FindTarget(Material material, MaterialMovementHolder holder)
 	{
-    	var materialPosition = ToLocal(material.GlobalPosition);
-    	var mapPosition = LocalToMap(materialPosition);
-    	
-    	int directionIndex = GetCellAtlasCoords(mapPosition).X;
-    	if (directionIndex != -1)
-    	{
-    		var conveyorVelocity = _conveyorVelocity[directionIndex];
-    		var conveyorDirection = _conveyorDirection[directionIndex];
-    		
-     		int frontDirectionIndex = GetCellAtlasCoords(mapPosition + -conveyorDirection).X;
-     		
-         	if (material.PreviousDirection != Vector2.Zero && conveyorDirection != material.PreviousDirection)
-         		material.Position = MapToLocal(mapPosition) + new Vector2(-16, -16);
-         	
-         	/*material.Position += conveyorVelocity * (float)d;*/
-         	material.PreviousDirection = _conveyorDirection[directionIndex];			
-		    return conveyorVelocity;
-	    }
-	    return Vector2.Zero;
+		var materialPosition = ToLocal(material.GlobalPosition);
+        var mapPosition = LocalToMap(materialPosition);
+        var directionIndex = GetCellAtlasCoords(mapPosition).X;
+        
+		holder.Velocity = Vector2.Zero;
+		if (directionIndex != -1)
+		{
+			holder.Velocity = _conveyorVelocity[directionIndex];
+			holder.TargetPosition = _conveyorDirection[directionIndex] * 32 + (Vector2I)materialPosition;
+		}
+	}
+
+	private void CheckMaterialVelocity(Material material, MaterialMovementHolder holder, out bool targetReached)
+	{
+		targetReached = false;
+		if (material.Position.Snapped(TargetPrecision).IsEqualApprox(holder.TargetPosition))
+		{
+			GD.Print("reached");
+			material.Position = material.Position.Snapped(32);
+			targetReached = true;
+			holder.Velocity = Vector2.Zero;
+		}
 	}
 }
