@@ -1,16 +1,20 @@
-[gd_scene load_steps=3 format=4 uid="uid://b8qsmh37swmbc"]
+[gd_scene load_steps=5 format=3 uid="uid://b8qsmh37swmbc"]
 
+[ext_resource type="Script" path="res://Stages/PlayStages/TestingStage/Gameplay.cs" id="1_7xwf1"]
 [ext_resource type="PackedScene" uid="uid://bmgdx2rbgunof" path="res://Assets/Entities/Conveyor/Conveyor.tscn" id="1_dd4d0"]
 [ext_resource type="PackedScene" uid="uid://dxbnybjhhyto6" path="res://Assets/Entities/Material/Material.tscn" id="1_u8xcd"]
+[ext_resource type="PackedScene" uid="uid://1p6i45usicmr" path="res://Assets/Entities/Dropper/Dropper.tscn" id="4_iiasd"]
 
 [node name="TestingStage" type="Node2D"]
+script = ExtResource("1_7xwf1")
 
 [node name="Conveyor" parent="." node_paths=PackedStringArray("Holder") instance=ExtResource("1_dd4d0")]
-tile_map_data = PackedByteArray("AAAEAAIAAAABAAAAAAAEAAMAAAABAAAAAAAEAAQAAAABAAAAAAAEAAUAAAABAAAAAAAEAAYAAAABAAAAAAAEAAcAAAABAAAAAAAFAAcAAAADAAAAAAAGAAcAAAADAAAAAAAHAAcAAAADAAAAAAAIAAcAAAADAAAAAAAJAAcAAAADAAAAAAAKAAcAAAADAAAAAAALAAcAAAADAAAAAAAMAAcAAAADAAAAAAANAAcAAAADAAAAAAAOAAcAAAADAAAAAAAPAAcAAAAAAAAAAAAPAAYAAAAAAAAAAAAPAAUAAAACAAAAAAAOAAUAAAACAAAAAAANAAUAAAAAAAAAAAANAAQAAAADAAAAAAAOAAQAAAADAAAAAAAPAAQAAAABAAAAAAAEAAgAAAAAAAAAAAA=")
 Speed = 40.0
 Holder = NodePath("../MaterialHolder")
 
-[node name="MaterialHolder" type="Node2D" parent="."]
+[node name="Dropper" parent="." node_paths=PackedStringArray("Holder") instance=ExtResource("4_iiasd")]
+MaterialScene = ExtResource("1_u8xcd")
+DropInterval = 2.0
+Holder = NodePath("../MaterialHolder")
 
-[node name="Material" parent="MaterialHolder" instance=ExtResource("1_u8xcd")]
-position = Vector2(127, 84)
+[node name="MaterialHolder" type="Node2D" parent="."]

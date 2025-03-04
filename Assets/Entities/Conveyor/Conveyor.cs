@@ -1,8 +1,6 @@
 using Godot;
 using Godot.Collections;
 
-namespace drillex.Assets.Entities.Conveyor;
-
 public partial class Conveyor : TileMapLayer
 {
 	[Export] 
@@ -12,22 +10,26 @@ public partial class Conveyor : TileMapLayer
 	[Export] 
 	public Node2D Holder { get; set; }
 
-	private Array<Vector2> _conveyorVelocity = new Array<Vector2>();
-	private Array<Vector2I> _conveyorDirection = new Array<Vector2I>();
-	private Dictionary<Material, MaterialMovementHolder> _materialMovementHolders = new Dictionary<Material, MaterialMovementHolder>();
+	private Array<Vector2> _conveyorVelocity;
+	private Array<Vector2I> _conveyorDirection;
+	private Dictionary<Material, MaterialMovementHolder> _materialMovementHolders;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
+		 _conveyorVelocity = new Array<Vector2>();
+		 _conveyorDirection  = new Array<Vector2I>();
+		 _materialMovementHolders = new Dictionary<Material, MaterialMovementHolder>();
+		
 		_conveyorDirection.Add(Vector2I.Up);
+		_conveyorDirection.Add(Vector2I.Right);
 		_conveyorDirection.Add(Vector2I.Down);
 		_conveyorDirection.Add(Vector2I.Left);
-		_conveyorDirection.Add(Vector2I.Right);
 		
 		_conveyorVelocity.Add(Speed * Vector2.Up); // corresponds to atlas tile 0
-		_conveyorVelocity.Add(Speed * Vector2.Down); // corresponds to atlas tile 1
-		_conveyorVelocity.Add(Speed * Vector2.Left); // corresponds to atlas tile 2
-		_conveyorVelocity.Add(Speed * Vector2.Right); // corresponds to atlas tile 3
+		_conveyorVelocity.Add(Speed * Vector2.Right); // corresponds to atlas tile 1
+		_conveyorVelocity.Add(Speed * Vector2.Down); // corresponds to atlas tile 2
+		_conveyorVelocity.Add(Speed * Vector2.Left); // corresponds to atlas tile 3
 	}
 
 	public override void _PhysicsProcess(double d)
@@ -63,12 +65,15 @@ public partial class Conveyor : TileMapLayer
 			Vector2 direction = _conveyorDirection[directionIndex];
 			Vector2I nextPos = (Vector2I)direction * 32 + (Vector2I)materialPosition;
 			var nextIndex = GetCellAtlasCoords(LocalToMap(nextPos)).X;
-			Vector2I nextDirection = _conveyorDirection[nextIndex];
 			
-			if (nextIndex != -1 && direction.Dot(nextDirection) >= -0.95f)
+			if (nextIndex != -1)
 			{
-				holder.Velocity = _conveyorVelocity[directionIndex];
-				holder.TargetPosition = nextPos;
+				Vector2I nextDirection = _conveyorDirection[nextIndex];
+				if (direction.Dot(nextDirection) >= -0.95f)
+				{
+					holder.Velocity = _conveyorVelocity[directionIndex];
+					holder.TargetPosition = nextPos;
+				}
 			}
 		}
 	}
@@ -82,5 +87,13 @@ public partial class Conveyor : TileMapLayer
 			targetReached = true;
 			holder.Velocity = Vector2.Zero;
 		}
+	}
+
+	public void AddConveyor(Vector2 globalPosition, Vector2I conveyorAtlasPosition)
+	{
+		Vector2 localPosition = ToLocal(globalPosition);
+		Vector2I tilePosition = LocalToMap(localPosition);
+		
+		SetCell(tilePosition, 0, conveyorAtlasPosition);
 	}
 }

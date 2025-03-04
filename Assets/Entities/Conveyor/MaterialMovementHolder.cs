@@ -1,7 +1,5 @@
 using Godot;
 
-namespace drillex.Assets.Entities.Conveyor;
-
 public partial class MaterialMovementHolder : GodotObject
 {
     public Vector2 Velocity { get; set; }

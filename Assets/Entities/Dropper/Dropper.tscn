@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://1p6i45usicmr"]
+
+[ext_resource type="Script" path="res://Assets/Entities/Dropper/Dropper.cs" id="1_5chb3"]
+[ext_resource type="Texture2D" uid="uid://ckstew5bho8de" path="res://Assets/Entities/Dropper/Textures/tilemap.png" id="1_y1dgc"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_l7my3"]
+texture = ExtResource("1_y1dgc")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_vurr4"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_l7my3")
+
+[node name="Dropper" type="TileMapLayer"]
+tile_set = SubResource("TileSet_vurr4")
+script = ExtResource("1_5chb3")
