@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dxbnybjhhyto6"]
 
-[ext_resource type="Script" path="res://Assets/Entities/Material/Material.cs" id="1_jgqht"]
+[ext_resource type="Script" uid="uid://c4wgkrijvsyn7" path="res://Assets/Entities/Material/Material.cs" id="1_jgqht"]
 [ext_resource type="Texture2D" uid="uid://dvo2j7bhfabga" path="res://Assets/Entities/Material/Textures/placeholder_material.png" id="1_y0sh0"]
 
 [node name="Material" type="Sprite2D"]

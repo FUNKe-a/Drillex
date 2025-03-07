@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bw1qwbul46v65"]
 
-[ext_resource type="Script" path="res://Stages/Menu/MainSettingsMenu/MainSettingsMenu.cs" id="1_jvl74"]
+[ext_resource type="Script" uid="uid://bj5ufm0c22w5f" path="res://Stages/Menu/MainSettingsMenu/MainSettingsMenu.cs" id="1_jvl74"]
 
 [node name="MainSettingsMenu" type="VBoxContainer"]
 custom_minimum_size = Vector2(300, 0)

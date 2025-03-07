@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmgdx2rbgunof"]
 
-[ext_resource type="Script" path="res://Assets/Entities/Conveyor/Conveyor.cs" id="1_djn0k"]
+[ext_resource type="Script" uid="uid://cfuknh6eb4wdp" path="res://Assets/Entities/Conveyor/Conveyor.cs" id="1_djn0k"]
 [ext_resource type="Texture2D" uid="uid://cjmdcxx53836k" path="res://Assets/Entities/Conveyor/Textures/tilemap.png" id="1_oht0n"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_vcco2"]

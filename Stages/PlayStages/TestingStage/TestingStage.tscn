@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://b8qsmh37swmbc"]
 
-[ext_resource type="Script" path="res://Stages/PlayStages/TestingStage/Gameplay.cs" id="1_7xwf1"]
+[ext_resource type="Script" uid="uid://brmn7mcalgx3t" path="res://Stages/PlayStages/TestingStage/Gameplay.cs" id="1_7xwf1"]
 [ext_resource type="PackedScene" uid="uid://bmgdx2rbgunof" path="res://Assets/Entities/Conveyor/Conveyor.tscn" id="1_dd4d0"]
 [ext_resource type="PackedScene" uid="uid://dxbnybjhhyto6" path="res://Assets/Entities/Material/Material.tscn" id="1_u8xcd"]
 [ext_resource type="PackedScene" uid="uid://1p6i45usicmr" path="res://Assets/Entities/Dropper/Dropper.tscn" id="4_iiasd"]
