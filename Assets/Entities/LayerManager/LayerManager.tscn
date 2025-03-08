@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dfq2mw3hbmp8h"]
+
+[ext_resource type="PackedScene" uid="uid://bmgdx2rbgunof" path="res://Assets/Entities/Conveyor/Conveyor.tscn" id="1_tqric"]
+[ext_resource type="PackedScene" uid="uid://1p6i45usicmr" path="res://Assets/Entities/Dropper/Dropper.tscn" id="2_wpoxt"]
+
+[node name="LayerManager" type="Node2D"]
+
+[node name="Conveyor" parent="." instance=ExtResource("1_tqric")]
+
+[node name="Dropper" parent="." instance=ExtResource("2_wpoxt")]
