@@ -1,5 +1,3 @@
-using drillex.Assets.Entities.Conveyor;
-using drillex.Assets.Entities.Dropper;
 using Godot;
 
 namespace drillex.Stages.PlayStages.TestingStage
@@ -16,12 +14,14 @@ namespace drillex.Stages.PlayStages.TestingStage
         }
 
         public override void _Input(InputEvent @event)
-        { 
+        {
             if (Input.IsActionPressed("Place"))
                 _layerManager.AddTile(GetGlobalMousePosition(), TileType.Conveyor, _conveyorAtlasPosition);
             if (Input.IsActionPressed("Place2"))
                 _layerManager.AddTile(GetGlobalMousePosition(), TileType.Dropper, _conveyorAtlasPosition);
-            
+            if (Input.IsActionPressed("Delete"))
+                _layerManager.RemoveTile(GetGlobalMousePosition());
+             
             if (Input.IsActionJustPressed("Rotate"))
             {
                 _conveyorAtlasPosition.X++;

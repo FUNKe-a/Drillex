@@ -27,7 +27,7 @@ namespace drillex.Assets.Entities.Dropper
 
 		public override void _PhysicsProcess(double d)
 		{
-			Vector2I[] newDroppers = GetUsedCells().ToArray().ExceptBy(_dropperHolders.Select(x => x.MapPosition), y => y).ToArray();
+			Vector2I[] newDroppers = GetUsedCells().ExceptBy(_dropperHolders.Select(x => x.MapPosition), y => y).ToArray();
 			foreach (var dropper in newDroppers)
 				AddDropperToHolder(dropper);
 			

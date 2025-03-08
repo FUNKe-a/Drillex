@@ -6,7 +6,6 @@ public partial class LayerManager : Node2D
 {
     [Export] public int XBoundary;
     [Export] public int YBoundary;
-
     [Export] public Vector2I TileMapPosition;
     
     bool [,] _occupiedPositions;
@@ -38,12 +37,26 @@ public partial class LayerManager : Node2D
                 case TileType.Dropper :
                     _dropperLayer.AddDropper(mapPosition, atlasPosition);
                     break;
-                case TileType.Furnace:
+                case TileType.Furnace :
                     break;
                 default :
                     return;
             }
             _occupiedPositions[mapPosition.X, mapPosition.Y] = true;
+        }
+    }
+
+    public void RemoveTile(Vector2 globalMousePosition)
+    {
+         Vector2I mapPosition = _conveyorLayer.LocalToMap(_conveyorLayer.ToLocal(globalMousePosition));
+
+        if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
+            mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
+            _occupiedPositions[mapPosition.X, mapPosition.Y])
+        {
+            _conveyorLayer.EraseCell(mapPosition);
+            _dropperLayer.EraseCell(mapPosition);
+            _occupiedPositions[mapPosition.X, mapPosition.Y] = false;
         }
     }
 }
