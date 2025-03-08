@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://ckstew5bho8de"
-path="res://.godot/imported/tilemap.png-78c243383cc11b3afa234cd050af24f7.ctex"
+uid="uid://dvmdoiurojg8j"
+path="res://.godot/imported/spawner.png-d0dbb79a568c8c3a258d3ac1c0d07438.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Dropper/Textures/tilemap.png"
-dest_files=["res://.godot/imported/tilemap.png-78c243383cc11b3afa234cd050af24f7.ctex"]
+source_file="res://Assets/Entities/Dropper/Textures/spawner.png"
+dest_files=["res://.godot/imported/spawner.png-d0dbb79a568c8c3a258d3ac1c0d07438.ctex"]
 
 [params]
 

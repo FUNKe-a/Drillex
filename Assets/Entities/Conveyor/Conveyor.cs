@@ -1,25 +1,23 @@
 using Godot;
 using Godot.Collections;
 
+namespace drillex.Assets.Entities.Conveyor;
 public partial class Conveyor : TileMapLayer
 {
-	[Export] 
-	public float TargetPrecision { get; set; } = 0.1f;
-	[Export]
-	public float Speed { get; set; }
-	[Export] 
-	public Node2D Holder { get; set; }
+	[Export] public float TargetPrecision { get; set; } = 0.1f;
+	[Export] public float Speed { get; set; }
 
+	private Node2D _holder;
 	private Array<Vector2> _conveyorVelocity;
 	private Array<Vector2I> _conveyorDirection;
 	private Dictionary<Material, MaterialMovementHolder> _materialMovementHolders;
 	
-	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		 _conveyorVelocity = new Array<Vector2>();
-		 _conveyorDirection  = new Array<Vector2I>();
-		 _materialMovementHolders = new Dictionary<Material, MaterialMovementHolder>();
+		_holder = GetNode<Node2D>("../MaterialHolder");
+		_conveyorVelocity = new Array<Vector2>();
+		_conveyorDirection  = new Array<Vector2I>();
+		_materialMovementHolders = new Dictionary<Material, MaterialMovementHolder>();
 		
 		_conveyorDirection.Add(Vector2I.Up);
 		_conveyorDirection.Add(Vector2I.Right);
@@ -34,7 +32,7 @@ public partial class Conveyor : TileMapLayer
 
 	public override void _PhysicsProcess(double d)
 	{
-		foreach (var node in Holder.GetChildren())
+		foreach (var node in _holder.GetChildren())
 		{
 			Material material = (Material)node;
 
@@ -89,11 +87,8 @@ public partial class Conveyor : TileMapLayer
 		}
 	}
 
-	public void AddConveyor(Vector2 globalPosition, Vector2I conveyorAtlasPosition)
+	public void AddConveyor(Vector2I mapPosition, Vector2I conveyorAtlasPosition)
 	{
-		Vector2 localPosition = ToLocal(globalPosition);
-		Vector2I tilePosition = LocalToMap(localPosition);
-		
-		SetCell(tilePosition, 0, conveyorAtlasPosition);
+		SetCell(mapPosition, 0, conveyorAtlasPosition);
 	}
 }

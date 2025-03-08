@@ -9,14 +9,15 @@ namespace drillex.Assets.Entities.Dropper
 	{
 		[Export] public PackedScene MaterialScene { get; set; }
 		[Export] public float DropInterval { get; set; } = 1.0f;
-		[Export] public Node2D Holder { get; set; }
-		private List<DropperHolder> _dropperHolders;
 
+		private Node2D _holder;
+		private List<DropperHolder> _dropperHolders;
 		private float _timeElapsed;
 		private Vector2I _dropDirection;
 
 		public override void _Ready()
 		{
+			_holder = GetNode<Node2D>("../MaterialHolder");
 			_dropperHolders = new List<DropperHolder>();
 			Array<Vector2I> droppers = GetUsedCells();
 			
@@ -50,9 +51,9 @@ namespace drillex.Assets.Entities.Dropper
 			Vector2I dropDirection = directionIndex switch
 			{
 				0 => Vector2I.Up,
-				1 => Vector2I.Down,
-				2 => Vector2I.Left,
-				3 => Vector2I.Right,
+				1 => Vector2I.Right,
+				2 => Vector2I.Down,
+				3 => Vector2I.Left,
 				_ => Vector2I.Zero
 			};
 					
@@ -61,23 +62,20 @@ namespace drillex.Assets.Entities.Dropper
 			_dropperHolders.Add(dropperAttributes);
 		}
 
-		public void AddDropper(Vector2 globalPosition, Vector2I dropperAtlasPosition)
+		public void AddDropper(Vector2I mapPosition, Vector2I dropperAtlasPosition)
 		{
-			Vector2 localPosition = ToLocal(globalPosition);
-			Vector2I tilePosition = LocalToMap(localPosition);
-
-			SetCell(tilePosition, 0, dropperAtlasPosition);
+			SetCell(mapPosition, 0, dropperAtlasPosition);
 		}
 
 		private void DropMaterial(Vector2I mapLocation)
 		{
-			if (MaterialScene == null || Holder == null)
+			if (MaterialScene == null || _holder == null)
 				return;
 
 			Material material = (Material)MaterialScene.Instantiate();
 
 			material.Position = MapToLocal(mapLocation) - new Vector2(16,16);
-			Holder.AddChild(material);
+			_holder.AddChild(material);
 		}
 	}
 }

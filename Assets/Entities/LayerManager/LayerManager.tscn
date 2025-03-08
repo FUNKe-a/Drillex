@@ -1,10 +1,17 @@
-[gd_scene load_steps=3 format=3 uid="uid://dfq2mw3hbmp8h"]
+[gd_scene load_steps=5 format=3 uid="uid://dfq2mw3hbmp8h"]
 
+[ext_resource type="Script" uid="uid://cgvmhu0bh2yo1" path="res://Assets/Entities/LayerManager/LayerManager.cs" id="1_m7a52"]
 [ext_resource type="PackedScene" uid="uid://bmgdx2rbgunof" path="res://Assets/Entities/Conveyor/Conveyor.tscn" id="1_tqric"]
 [ext_resource type="PackedScene" uid="uid://1p6i45usicmr" path="res://Assets/Entities/Dropper/Dropper.tscn" id="2_wpoxt"]
+[ext_resource type="PackedScene" uid="uid://dxbnybjhhyto6" path="res://Assets/Entities/Material/Material.tscn" id="3_wpoxt"]
 
 [node name="LayerManager" type="Node2D"]
+script = ExtResource("1_m7a52")
 
 [node name="Conveyor" parent="." instance=ExtResource("1_tqric")]
+Speed = 40.0
 
 [node name="Dropper" parent="." instance=ExtResource("2_wpoxt")]
+MaterialScene = ExtResource("3_wpoxt")
+
+[node name="MaterialHolder" type="Node2D" parent="."]

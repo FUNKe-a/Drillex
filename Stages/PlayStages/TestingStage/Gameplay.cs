@@ -1,3 +1,4 @@
+using drillex.Assets.Entities.Conveyor;
 using drillex.Assets.Entities.Dropper;
 using Godot;
 
@@ -5,39 +6,22 @@ namespace drillex.Stages.PlayStages.TestingStage
 {
     public partial class Gameplay : Node2D
     {
-        private bool _isMouseButtonLeftPressed;
-        private bool _isMouseButtonRightPressed;
-        private Conveyor _conveyor;
-        private Dropper _dropper;
+        Assets.Entities.LayerManager.LayerManager _layerManager;
         private Vector2I _conveyorAtlasPosition;
 
         public override void _Ready()
         {
+            _layerManager = GetNode<Assets.Entities.LayerManager.LayerManager>("LayerManager");
             _conveyorAtlasPosition = new Vector2I(0, 0);
-            _conveyor = GetNode<Conveyor>("Conveyor");
-            _dropper = GetNode<Dropper>("Dropper");
-        }
-
-        public override void _PhysicsProcess(double delta)
-        {
-            if (_isMouseButtonLeftPressed)
-            {
-                Vector2 mousePosition = GetGlobalMousePosition();
-                _conveyor.AddConveyor(mousePosition, _conveyorAtlasPosition);
-            }
-
-            if (_isMouseButtonRightPressed)
-            {
-                Vector2 mousePosition = GetGlobalMousePosition();
-                _dropper.AddDropper(mousePosition, _conveyorAtlasPosition);
-            }
         }
 
         public override void _Input(InputEvent @event)
         { 
-            _isMouseButtonLeftPressed = Input.IsActionPressed("Place"); 
-            _isMouseButtonRightPressed = Input.IsActionPressed("Place2");
-
+            if (Input.IsActionPressed("Place"))
+                _layerManager.AddTile(GetGlobalMousePosition(), TileType.Conveyor, _conveyorAtlasPosition);
+            if (Input.IsActionPressed("Place2"))
+                _layerManager.AddTile(GetGlobalMousePosition(), TileType.Dropper, _conveyorAtlasPosition);
+            
             if (Input.IsActionJustPressed("Rotate"))
             {
                 _conveyorAtlasPosition.X++;
