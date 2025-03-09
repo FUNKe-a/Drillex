@@ -27,9 +27,9 @@ namespace drillex.Assets.Entities.Dropper
 
 		public override void _PhysicsProcess(double d)
 		{
-			Vector2I[] newDroppers = GetUsedCells().ExceptBy(_dropperHolders.Select(x => x.MapPosition), y => y).ToArray();
+			/*Vector2I[] newDroppers = GetUsedCells().ExceptBy(_dropperHolders.Select(x => x.MapPosition), y => y).ToArray();
 			foreach (var dropper in newDroppers)
-				AddDropperToHolder(dropper);
+				AddDropperToHolder(dropper);*/
 			
 			foreach (DropperHolder holder in _dropperHolders)
 			{
@@ -45,7 +45,7 @@ namespace drillex.Assets.Entities.Dropper
 		private void AddDropperToHolder(Vector2I cellPosition)
 		{
 			Vector2I atlasCoordinates = GetCellAtlasCoords(cellPosition);
-			int directionIndex = atlasCoordinates.X;
+			int directionIndex = atlasCoordinates.Y;
 			int delay = 1;
 					
 			Vector2I dropDirection = directionIndex switch
@@ -65,6 +65,13 @@ namespace drillex.Assets.Entities.Dropper
 		public void AddDropper(Vector2I mapPosition, Vector2I dropperAtlasPosition)
 		{
 			SetCell(mapPosition, 0, dropperAtlasPosition);
+			AddDropperToHolder(mapPosition);
+		}
+
+		public void RemoveDropper(Vector2I mapPosition)
+		{
+			EraseCell(mapPosition);
+			_dropperHolders.RemoveAll(dropper => dropper.MapPosition == mapPosition);
 		}
 
 		private void DropMaterial(Vector2I mapLocation)

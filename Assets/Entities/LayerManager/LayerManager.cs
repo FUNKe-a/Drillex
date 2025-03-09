@@ -54,8 +54,8 @@ public partial class LayerManager : Node2D
             mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
             _occupiedPositions[mapPosition.X, mapPosition.Y])
         {
-            _conveyorLayer.EraseCell(mapPosition);
-            _dropperLayer.EraseCell(mapPosition);
+            _conveyorLayer.RemoveConveyor(mapPosition);
+            _dropperLayer.RemoveDropper(mapPosition);
             _occupiedPositions[mapPosition.X, mapPosition.Y] = false;
         }
     }

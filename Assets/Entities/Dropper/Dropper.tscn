@@ -1,19 +1,40 @@
 [gd_scene load_steps=5 format=3 uid="uid://1p6i45usicmr"]
 
 [ext_resource type="Script" uid="uid://78wsc2ggjf8m" path="res://Assets/Entities/Dropper/Dropper.cs" id="1_5chb3"]
-[ext_resource type="Texture2D" uid="uid://dvmdoiurojg8j" path="res://Assets/Entities/Dropper/Textures/spawner.png" id="1_y4feq"]
+[ext_resource type="Texture2D" uid="uid://couh325ymci1e" path="res://Assets/Entities/Dropper/Textures/animated dropper.png" id="2_dwfi7"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_dwfi7"]
-texture = ExtResource("1_y4feq")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6if4t"]
+texture = ExtResource("2_dwfi7")
 texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 4
+0:0/animation_speed = 3.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
 0:0/0 = 0
-1:0/0 = 0
-2:0/0 = 0
-3:0/0 = 0
+0:1/animation_columns = 4
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 1.0
+0:1/0 = 0
+0:2/animation_columns = 4
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/animation_frame_2/duration = 1.0
+0:2/animation_frame_3/duration = 1.0
+0:2/0 = 0
+0:3/animation_columns = 4
+0:3/animation_frame_0/duration = 1.0
+0:3/animation_frame_1/duration = 1.0
+0:3/animation_frame_2/duration = 1.0
+0:3/animation_frame_3/duration = 1.0
+0:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_vurr4"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_dwfi7")
+sources/0 = SubResource("TileSetAtlasSource_6if4t")
 
 [node name="Dropper" type="TileMapLayer"]
 tile_set = SubResource("TileSet_vurr4")

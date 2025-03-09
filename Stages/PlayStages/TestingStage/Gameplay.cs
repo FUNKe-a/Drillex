@@ -24,9 +24,9 @@ namespace drillex.Stages.PlayStages.TestingStage
              
             if (Input.IsActionJustPressed("Rotate"))
             {
-                _conveyorAtlasPosition.X++;
-                if (_conveyorAtlasPosition.X == 4)
-                    _conveyorAtlasPosition.X = 0;
+                _conveyorAtlasPosition.Y++;
+                if (_conveyorAtlasPosition.Y == 4)
+                    _conveyorAtlasPosition.Y = 0;
             }
         }
     }

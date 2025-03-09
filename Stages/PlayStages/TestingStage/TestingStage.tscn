@@ -7,5 +7,5 @@
 script = ExtResource("1_7xwf1")
 
 [node name="LayerManager" parent="." instance=ExtResource("2_3kaay")]
-XBoundary = 5
-YBoundary = 5
+XBoundary = 60
+YBoundary = 34

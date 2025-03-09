@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvmdoiurojg8j"
-path="res://.godot/imported/spawner.png-d0dbb79a568c8c3a258d3ac1c0d07438.ctex"
+uid="uid://couh325ymci1e"
+path="res://.godot/imported/animated dropper.png-1bbd739771696c3b5e3aae24cfe28505.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Dropper/Textures/spawner.png"
-dest_files=["res://.godot/imported/spawner.png-d0dbb79a568c8c3a258d3ac1c0d07438.ctex"]
+source_file="res://Assets/Entities/Dropper/Textures/animated dropper.png"
+dest_files=["res://.godot/imported/animated dropper.png-1bbd739771696c3b5e3aae24cfe28505.ctex"]
 
 [params]
 

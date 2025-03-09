@@ -9,6 +9,7 @@
 script = ExtResource("1_m7a52")
 
 [node name="Conveyor" parent="." instance=ExtResource("1_tqric")]
+tile_map_data = PackedByteArray()
 Speed = 40.0
 
 [node name="Dropper" parent="." instance=ExtResource("2_wpoxt")]

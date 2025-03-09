@@ -55,14 +55,14 @@ public partial class Conveyor : TileMapLayer
 	{
 		var materialPosition = ToLocal(material.GlobalPosition);
         var mapPosition = LocalToMap(materialPosition);
-        var directionIndex = GetCellAtlasCoords(mapPosition).X;
+        var directionIndex = GetCellAtlasCoords(mapPosition).Y;
         
 		holder.Velocity = Vector2.Zero;
 		if (directionIndex != -1)
 		{
 			Vector2 direction = _conveyorDirection[directionIndex];
 			Vector2I nextPos = (Vector2I)direction * 32 + (Vector2I)materialPosition;
-			var nextIndex = GetCellAtlasCoords(LocalToMap(nextPos)).X;
+			var nextIndex = GetCellAtlasCoords(LocalToMap(nextPos)).Y;
 			
 			if (nextIndex != -1)
 			{
@@ -90,5 +90,10 @@ public partial class Conveyor : TileMapLayer
 	public void AddConveyor(Vector2I mapPosition, Vector2I conveyorAtlasPosition)
 	{
 		SetCell(mapPosition, 0, conveyorAtlasPosition);
+	}
+
+	public void RemoveConveyor(Vector2I mapPosition)
+	{
+		EraseCell(mapPosition);
 	}
 }
