@@ -9,10 +9,10 @@ public partial class MainSettingsMenu : VBoxContainer
         switch (index)
         {
             case 0 :
-                GetWindow().Size = new Vector2I(960, 544);
+                GetWindow().Size = new Vector2I(960, 540);
                 break;
             case 1 :
-                GetWindow().Size = new Vector2I(1920, 1088);
+                GetWindow().Size = new Vector2I(1920, 1080);
                 break;
         }
     }
