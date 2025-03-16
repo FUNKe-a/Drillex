@@ -11,14 +11,14 @@ namespace drillex.Assets.Entities.Dropper
 		[Export] public float DropInterval { get; set; } = 1.0f;
 
 		private Node2D _materialHolder;
-		private List<DropperHolder> _dropperHolders;
+		private System.Collections.Generic.Dictionary<Vector2I, DropperHolder> _dropperHolders;
 		private float _timeElapsed;
 		private Vector2I _dropDirection;
 
 		public override void _Ready()
 		{
 			_materialHolder = GetNode<Node2D>("../MaterialHolder");
-			_dropperHolders = new List<DropperHolder>();
+			_dropperHolders = new System.Collections.Generic.Dictionary<Vector2I, DropperHolder>();
 			Array<Vector2I> droppers = GetUsedCells();
 			
 			foreach (var cellPosition in droppers)
@@ -31,8 +31,10 @@ namespace drillex.Assets.Entities.Dropper
 			foreach (var dropper in newDroppers)
 				AddDropperToHolder(dropper);*/
 			
-			foreach (DropperHolder holder in _dropperHolders)
+			foreach (var kvp in _dropperHolders)
 			{
+				var holder = kvp.Value;
+				
 				holder.TimeElapsed += (float)d;
 				if (!holder.IsBlocked)
 				{
@@ -61,21 +63,33 @@ namespace drillex.Assets.Entities.Dropper
 			};
 					
 			Vector2I spawnPosition = cellPosition + dropDirection;
-			bool isBlocked = GetCellTileData(spawnPosition) != null;
-			DropperHolder dropperAttributes = new DropperHolder(spawnPosition, cellPosition, delay,  isBlocked);
-			_dropperHolders.Add(dropperAttributes);
+			bool isBlocked = _dropperHolders.ContainsKey(spawnPosition);
+			DropperHolder dropperAttributes = new DropperHolder(spawnPosition, delay, isBlocked);
+			_dropperHolders.Add(cellPosition, dropperAttributes);
+		}
+
+		private void UpdateNeighborCellBlockState(Vector2I cellPosition)
+		{
+			Array<Vector2I> neighborCells = GetSurroundingCells(cellPosition);
+
+			foreach (var neighborPosition in neighborCells)
+			{
+				if (_dropperHolders.TryGetValue(neighborPosition, out var holder))
+					holder.IsBlocked = _dropperHolders.ContainsKey(neighborPosition);
+			}
 		}
 
 		public void AddDropper(Vector2I mapPosition, Vector2I dropperAtlasPosition)
 		{
 			SetCell(mapPosition, 0, dropperAtlasPosition);
+			UpdateNeighborCellBlockState(mapPosition);
 			AddDropperToHolder(mapPosition);
 		}
 
 		public void RemoveDropper(Vector2I mapPosition)
 		{
 			EraseCell(mapPosition);
-			_dropperHolders.RemoveAll(dropper => dropper.MapPosition == mapPosition);
+			_dropperHolders.Remove(mapPosition);
 		}
 
 		private void DropMaterial(Vector2I mapLocation)
