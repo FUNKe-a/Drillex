@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=4 uid="uid://bmgdx2rbgunof"]
+[gd_scene load_steps=5 format=3 uid="uid://bmgdx2rbgunof"]
 
 [ext_resource type="Script" uid="uid://cfuknh6eb4wdp" path="res://Assets/Entities/Conveyor/Conveyor.cs" id="1_djn0k"]
 [ext_resource type="Texture2D" uid="uid://cnb35pqv804rk" path="res://Assets/Entities/Conveyor/Textures/animated conveyor.png" id="2_264qs"]
@@ -39,6 +39,5 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_unjeq")
 
 [node name="Conveyor" type="TileMapLayer"]
-tile_map_data = PackedByteArray("AAAEAAkAAQAAAAEAAAAFAAkAAQAAAAEAAAAGAAkAAQAAAAEAAAAHAAkAAQAAAAEAAAAJAAkAAQAAAAIAAAAKAAkAAQAAAAIAAAALAAkAAQAAAAIAAAAMAAkAAQAAAAIAAAANAAkAAQAAAAIAAAAOAAkAAQAAAAIAAAAPAAkAAQAAAAIAAAAQAAkAAQAAAAIAAAA=")
 tile_set = SubResource("TileSet_ig4hn")
 script = ExtResource("1_djn0k")

@@ -10,14 +10,14 @@ namespace drillex.Assets.Entities.Dropper
 		[Export] public PackedScene MaterialScene { get; set; }
 		[Export] public float DropInterval { get; set; } = 1.0f;
 
-		private Node2D _holder;
+		private Node2D _materialHolder;
 		private List<DropperHolder> _dropperHolders;
 		private float _timeElapsed;
 		private Vector2I _dropDirection;
 
 		public override void _Ready()
 		{
-			_holder = GetNode<Node2D>("../MaterialHolder");
+			_materialHolder = GetNode<Node2D>("../MaterialHolder");
 			_dropperHolders = new List<DropperHolder>();
 			Array<Vector2I> droppers = GetUsedCells();
 			
@@ -34,10 +34,13 @@ namespace drillex.Assets.Entities.Dropper
 			foreach (DropperHolder holder in _dropperHolders)
 			{
 				holder.TimeElapsed += (float)d;
-				if (holder.TimeElapsed >= holder.Delay)
+				if (!holder.IsBlocked)
 				{
-					holder.TimeElapsed = 0f;
-					DropMaterial(holder.SpawnPosition);
+					if (holder.TimeElapsed >= holder.Delay)
+					{
+						holder.TimeElapsed = 0f;
+						DropMaterial(holder.SpawnPosition);
+					}
 				}
 			}
 		}
@@ -58,7 +61,8 @@ namespace drillex.Assets.Entities.Dropper
 			};
 					
 			Vector2I spawnPosition = cellPosition + dropDirection;
-			DropperHolder dropperAttributes = new DropperHolder(spawnPosition, cellPosition, delay);
+			bool isBlocked = GetCellTileData(spawnPosition) != null;
+			DropperHolder dropperAttributes = new DropperHolder(spawnPosition, cellPosition, delay,  isBlocked);
 			_dropperHolders.Add(dropperAttributes);
 		}
 
@@ -76,13 +80,13 @@ namespace drillex.Assets.Entities.Dropper
 
 		private void DropMaterial(Vector2I mapLocation)
 		{
-			if (MaterialScene == null || _holder == null)
+			if (MaterialScene == null || _materialHolder == null)
 				return;
 
 			Material material = (Material)MaterialScene.Instantiate();
 
 			material.Position = MapToLocal(mapLocation) - new Vector2(16,16);
-			_holder.AddChild(material);
+			_materialHolder.AddChild(material);
 		}
 	}
 }
