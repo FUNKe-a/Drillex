@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bw1qwbul46v65"]
+
+[ext_resource type="Script" uid="uid://bj5ufm0c22w5f" path="res://Stages/Menu/MainSettingsMenu/MainSettingsMenu.cs" id="1_jvl74"]
+
+[node name="MainSettingsMenu" type="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -57.0
+offset_top = -66.0
+offset_right = 57.0
+offset_bottom = 66.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 70
+script = ExtResource("1_jvl74")
+MainMenuScene = "res://Stages/Menu/MainMenu/MainMenu.tscn"
+
+[node name="ResolutionButton" type="OptionButton" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+alignment = 1
+selected = 1
+item_count = 2
+popup/item_0/text = "960x540"
+popup/item_0/id = 0
+popup/item_1/text = "1920x1080"
+popup/item_1/id = 1
+
+[node name="BackButton" type="Button" parent="."]
+layout_mode = 2
+text = "Back"
+
+[connection signal="item_selected" from="ResolutionButton" to="." method="OnResolutionButtonItemSelected"]
+[connection signal="button_up" from="BackButton" to="." method="OnBackButtonUp"]

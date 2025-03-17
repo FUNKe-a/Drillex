@@ -1,0 +1,43 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmgdx2rbgunof"]
+
+[ext_resource type="Script" uid="uid://cfuknh6eb4wdp" path="res://Assets/Entities/Conveyor/Conveyor.cs" id="1_djn0k"]
+[ext_resource type="Texture2D" uid="uid://cnb35pqv804rk" path="res://Assets/Entities/Conveyor/Textures/animated conveyor.png" id="2_264qs"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_unjeq"]
+texture = ExtResource("2_264qs")
+texture_region_size = Vector2i(32, 32)
+0:0/animation_columns = 4
+0:0/animation_speed = 10.0
+0:0/animation_frame_0/duration = 1.0
+0:0/animation_frame_1/duration = 1.0
+0:0/animation_frame_2/duration = 1.0
+0:0/animation_frame_3/duration = 1.0
+0:0/0 = 0
+0:1/animation_columns = 4
+0:1/animation_speed = 10.0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 1.0
+0:1/0 = 0
+0:2/animation_speed = 10.0
+0:2/animation_frame_0/duration = 1.0
+0:2/animation_frame_1/duration = 1.0
+0:2/animation_frame_2/duration = 1.0
+0:2/animation_frame_3/duration = 1.0
+0:2/0 = 0
+0:3/animation_columns = 4
+0:3/animation_speed = 10.0
+0:3/animation_frame_0/duration = 1.0
+0:3/animation_frame_1/duration = 1.0
+0:3/animation_frame_2/duration = 1.0
+0:3/animation_frame_3/duration = 1.0
+0:3/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_ig4hn"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_unjeq")
+
+[node name="Conveyor" type="TileMapLayer"]
+tile_set = SubResource("TileSet_ig4hn")
+script = ExtResource("1_djn0k")
