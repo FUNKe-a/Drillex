@@ -6,6 +6,7 @@ namespace drillex.Stages.PlayStages.TestingStage
     {
         Assets.Entities.LayerManager.LayerManager _layerManager;
         private Vector2I _conveyorAtlasPosition;
+        private TileType _selectedTileType;
 
         public override void _Ready()
         {
@@ -16,9 +17,7 @@ namespace drillex.Stages.PlayStages.TestingStage
         public override void _Input(InputEvent @event)
         {
             if (Input.IsActionPressed("Place"))
-                _layerManager.AddTile(GetGlobalMousePosition(), TileType.Conveyor, _conveyorAtlasPosition);
-            if (Input.IsActionPressed("Place2"))
-                _layerManager.AddTile(GetGlobalMousePosition(), TileType.Dropper, _conveyorAtlasPosition);
+                _layerManager.AddTile(GetGlobalMousePosition(), _selectedTileType, _conveyorAtlasPosition);
             if (Input.IsActionPressed("Delete"))
                 _layerManager.RemoveTile(GetGlobalMousePosition());
              
@@ -28,6 +27,26 @@ namespace drillex.Stages.PlayStages.TestingStage
                 if (_conveyorAtlasPosition.Y == 4)
                     _conveyorAtlasPosition.Y = 0;
             }
+        }
+
+        private void TileSelectionButtonPressed(BaseButton pressedButton)
+        {
+            if (pressedButton != null)
+            {
+                switch (pressedButton.Name)
+                {
+                    case "MiningDrillButton":
+                        _selectedTileType = TileType.Dropper;
+                        break;
+                    case "ConveyorButton":
+                        _selectedTileType = TileType.Conveyor;
+                        break;
+                    default:
+                        _selectedTileType = TileType.NotSelected;
+                        break;
+                }
+            }
+            else _selectedTileType = TileType.NotSelected;
         }
     }
 }
