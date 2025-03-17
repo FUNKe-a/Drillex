@@ -73,23 +73,22 @@ namespace drillex.Assets.Entities.Dropper
 			Array<Vector2I> neighborCells = GetSurroundingCells(cellPosition);
 
 			foreach (var neighborPosition in neighborCells)
-			{
 				if (_dropperHolders.TryGetValue(neighborPosition, out var holder))
-					holder.IsBlocked = _dropperHolders.ContainsKey(neighborPosition);
-			}
+					holder.IsBlocked = _dropperHolders.ContainsKey(holder.SpawnPosition);
 		}
 
 		public void AddDropper(Vector2I mapPosition, Vector2I dropperAtlasPosition)
 		{
 			SetCell(mapPosition, 0, dropperAtlasPosition);
-			UpdateNeighborCellBlockState(mapPosition);
 			AddDropperToHolder(mapPosition);
+			UpdateNeighborCellBlockState(mapPosition);
 		}
 
 		public void RemoveDropper(Vector2I mapPosition)
 		{
 			EraseCell(mapPosition);
 			_dropperHolders.Remove(mapPosition);
+			UpdateNeighborCellBlockState(mapPosition);
 		}
 
 		private void DropMaterial(Vector2I mapLocation)
