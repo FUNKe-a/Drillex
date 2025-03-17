@@ -8,7 +8,7 @@ script = ExtResource("1_ejhe8")
 TileSelectionButtons = ExtResource("1_8tlbi")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
-anchors_preset = -1
+anchors_preset = 10
 anchor_right = 1.0
 offset_left = 100.0
 offset_top = 10.0

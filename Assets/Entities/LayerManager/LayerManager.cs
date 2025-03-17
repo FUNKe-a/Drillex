@@ -12,6 +12,11 @@ public partial class LayerManager : Node2D
     Conveyor.Conveyor _conveyorLayer;
     Dropper.Dropper _dropperLayer;
     
+    TileType _selectedTileType;
+    private Vector2I _conveyorAtlasPosition;
+
+    private string Action;
+    
     public override void _Ready()
     {
         _occupiedPositions = new bool[XBoundary, YBoundary];
@@ -19,15 +24,54 @@ public partial class LayerManager : Node2D
         _dropperLayer = GetNode<Dropper.Dropper>("Dropper");
         _conveyorLayer.Position = TileMapPosition;
         _dropperLayer.Position = TileMapPosition;
+        _conveyorAtlasPosition = Vector2I.Zero;
+        Action = "Idle";
+    }
+
+    public override void _Process(double delta)
+    {
+        switch (Action)
+        {
+            case "Place" :
+                AddTile(GetGlobalMousePosition(), _selectedTileType, _conveyorAtlasPosition);
+                break;
+            case "Delete" :
+                RemoveTile(GetGlobalMousePosition());
+                break;
+            case "Idle" :
+                return;
+        }
+    }
+
+    public override void _UnhandledInput(InputEvent @event)
+    {
+        if (@event.IsActionPressed("Place"))
+            Action = "Place";
+        if (@event.IsActionReleased("Place"))
+            Action = "Idle";
+        if (@event.IsActionPressed("Delete"))
+            Action = "Delete";
+        if (@event.IsActionReleased("Delete"))
+            Action = "Idle";
+    }
+
+    public override void _UnhandledKeyInput(InputEvent @event)
+    {
+        if (@event.IsActionReleased("Rotate"))
+        {
+            _conveyorAtlasPosition.Y++;
+            if (_conveyorAtlasPosition.Y == 4)
+                _conveyorAtlasPosition.Y = 0;
+        }
     }
 
     public void AddTile(Vector2 globalMousePosition, TileType tileType, Vector2I atlasPosition)
     {
         Vector2I mapPosition = _conveyorLayer.LocalToMap(_conveyorLayer.ToLocal(globalMousePosition));
         
-        if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
-            mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
-            !_occupiedPositions[mapPosition.X, mapPosition.Y])
+        if (!_occupiedPositions[mapPosition.X, mapPosition.Y] &&
+            mapPosition.X < XBoundary && mapPosition.X >= 0 && 
+            mapPosition.Y < YBoundary && mapPosition.Y >= 0)
         {
             switch (tileType)
             {
@@ -59,4 +103,6 @@ public partial class LayerManager : Node2D
             _occupiedPositions[mapPosition.X, mapPosition.Y] = false;
         }
     }
+    
+    private void TileSelectionButtonPressed(int typeOfTile) => _selectedTileType = (TileType)typeOfTile;
 }
