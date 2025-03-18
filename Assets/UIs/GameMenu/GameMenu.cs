@@ -1,39 +1,26 @@
 using Godot;
 using System;
-using Godot.NativeInterop;
 
 public partial class GameMenu : CanvasLayer
 {
-    [Export] 
-    public ButtonGroup TileSelectionButtons { get; set; }
-    [Signal]
-    public delegate void TileSelectionButtonPressedEventHandler(int selectedButton);
-
+	[Export(PropertyHint.File, "*.tscn")] public string MainMenuScene;
+    
+    public static TileType SelectedTileType { get; private set; } = 0;
+    
+    private OptionButton  _tileSelectionButton;
+    
     public override void _Ready()
     {
-        foreach (BaseButton tempButton in TileSelectionButtons.GetButtons())
-            tempButton.Pressed += SelectionButtonPressed;
+        _tileSelectionButton = (OptionButton)GetNode("TopContainer/TileSelectionButton");
     }
 
-    private void SelectionButtonPressed()
+    private void OnMainMenuButtonPressed()
     {
-        BaseButton pressedButton = TileSelectionButtons.GetPressedButton();
-        TileType selectedTileType = TileType.NotSelected;
-        if (pressedButton != null)
-        {
-            switch (pressedButton.Name)
-            {
-                case "MiningDrillButton":
-                    selectedTileType = TileType.Dropper;
-                    break;
-                case "ConveyorButton":
-                    selectedTileType = TileType.Conveyor;
-                    break;
-                default:
-                    selectedTileType = TileType.NotSelected;
-                    break;
-            }
-        }
-        EmitSignal(SignalName.TileSelectionButtonPressed, (int)selectedTileType);
+        GetTree().ChangeSceneToFile(MainMenuScene);
+    }
+    
+    private void OnTileSelectionButtonItemSelected(int index)
+    {
+        SelectedTileType = (TileType)index;
     }
 }

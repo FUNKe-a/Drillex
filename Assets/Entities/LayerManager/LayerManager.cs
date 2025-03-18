@@ -12,7 +12,6 @@ public partial class LayerManager : Node2D
     Conveyor.Conveyor _conveyorLayer;
     Dropper.Dropper _dropperLayer;
     
-    TileType _selectedTileType;
     private Vector2I _conveyorAtlasPosition;
 
     private string Action;
@@ -33,7 +32,7 @@ public partial class LayerManager : Node2D
         switch (Action)
         {
             case "Place" :
-                AddTile(GetGlobalMousePosition(), _selectedTileType, _conveyorAtlasPosition);
+                AddTile(GetGlobalMousePosition(), GameMenu.SelectedTileType, _conveyorAtlasPosition);
                 break;
             case "Delete" :
                 RemoveTile(GetGlobalMousePosition());
@@ -103,6 +102,4 @@ public partial class LayerManager : Node2D
             _occupiedPositions[mapPosition.X, mapPosition.Y] = false;
         }
     }
-    
-    private void TileSelectionButtonPressed(int typeOfTile) => _selectedTileType = (TileType)typeOfTile;
 }

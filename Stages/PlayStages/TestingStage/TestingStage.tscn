@@ -1,18 +1,13 @@
-[gd_scene load_steps=4 format=3 uid="uid://b8qsmh37swmbc"]
+[gd_scene load_steps=3 format=3 uid="uid://b8qsmh37swmbc"]
 
 [ext_resource type="PackedScene" uid="uid://dfq2mw3hbmp8h" path="res://Assets/Entities/LayerManager/LayerManager.tscn" id="2_3kaay"]
 [ext_resource type="PackedScene" uid="uid://b86hxsqegyxqm" path="res://Assets/UIs/GameMenu/GameMenu.tscn" id="2_h3622"]
 
-[sub_resource type="ButtonGroup" id="ButtonGroup_egnq0"]
-allow_unpress = true
-
 [node name="TestingStage" type="Node2D"]
 
 [node name="GameMenu" parent="." instance=ExtResource("2_h3622")]
-TileSelectionButtons = SubResource("ButtonGroup_egnq0")
+MainMenuScene = "uid://72x0n8fx0bai"
 
 [node name="LayerManager" parent="." instance=ExtResource("2_3kaay")]
 XBoundary = 60
 YBoundary = 34
-
-[connection signal="TileSelectionButtonPressed" from="GameMenu" to="LayerManager" method="TileSelectionButtonPressed"]
