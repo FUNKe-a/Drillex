@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2vha32nwg7wj"]
+
+[ext_resource type="Script" uid="uid://x0t3xjwxv4ls" path="res://Assets/Entities/MoveableCamera/CameraControls.gd" id="1_klh2j"]
+
+[node name="MoveableCamera" type="Camera2D"]
+anchor_mode = 0
+ignore_rotation = false
+script = ExtResource("1_klh2j")
