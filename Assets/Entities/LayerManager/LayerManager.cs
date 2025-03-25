@@ -25,6 +25,8 @@ public partial class LayerManager : Node2D
         _dropperLayer.Position = TileMapPosition;
         _conveyorAtlasPosition = Vector2I.Zero;
         Action = "Idle";
+        
+        var Wallet = GD.Load<CSharpScript>("res://Common/Wallet.cs");
     }
 
     public override void _Process(double delta)
