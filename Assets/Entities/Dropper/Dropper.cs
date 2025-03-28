@@ -84,6 +84,7 @@ namespace drillex.Assets.Entities.Dropper
 		{
 			EraseCell(mapPosition);
 			_dropperHolders.Remove(mapPosition);
+			_dropperHolders.TryGetValue(mapPosition, out var holder);
 			UpdateNeighborCellBlockState(mapPosition);
 		}
 

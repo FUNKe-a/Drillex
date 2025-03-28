@@ -7,14 +7,14 @@ public partial class LayerManager : Node2D
     [Export] public int XBoundary;
     [Export] public int YBoundary;
     [Export] public Vector2I TileMapPosition;
+    [Export] public Wallet Wallet { get; private set; }
     
     bool [,] _occupiedPositions;
-    Conveyor.Conveyor _conveyorLayer;
+    Conveyor.Conveyor _conveyorLayer; 
     Dropper.Dropper _dropperLayer;
     
-    private Vector2I _conveyorAtlasPosition;
-
-    private string Action;
+    Vector2I _conveyorAtlasPosition;
+    string _action;
     
     public override void _Ready()
     {
@@ -24,16 +24,12 @@ public partial class LayerManager : Node2D
         _conveyorLayer.Position = TileMapPosition;
         _dropperLayer.Position = TileMapPosition;
         _conveyorAtlasPosition = Vector2I.Zero;
-        Action = "Idle";
-        
-        GD.Load<CSharpScript>("res://Common/Wallet.cs");
-        
-        GD.Print(Wallet.Money); // for testing
+        _action = "Idle";
     }
 
     public override void _Process(double delta)
     {
-        switch (Action)
+        switch (_action)
         {
             case "Place" :
                 AddTile(GetGlobalMousePosition(), GameMenu.SelectedTileType, _conveyorAtlasPosition);
@@ -49,13 +45,13 @@ public partial class LayerManager : Node2D
     public override void _UnhandledInput(InputEvent @event)
     {
         if (@event.IsActionPressed("Place"))
-            Action = "Place";
+            _action = "Place";
         if (@event.IsActionReleased("Place"))
-            Action = "Idle";
+            _action = "Idle";
         if (@event.IsActionPressed("Delete"))
-            Action = "Delete";
+            _action = "Delete";
         if (@event.IsActionReleased("Delete"))
-            Action = "Idle";
+            _action = "Idle";
     }
 
     public override void _UnhandledKeyInput(InputEvent @event)

@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class MaterialMovementHolder : GodotObject
+public partial class MaterialMovementHolder : RefCounted
 {
     public Vector2 Velocity { get; set; }
     public Vector2I TargetPosition { get; set; }

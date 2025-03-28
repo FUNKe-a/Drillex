@@ -2,7 +2,7 @@ using Godot;
 using System;
 namespace drillex.Assets.Entities.Dropper
 {	
-	public partial class DropperHolder : GodotObject
+	public partial class DropperHolder : RefCounted
 	{
 		public Vector2I SpawnPosition;
 		public float Delay;
