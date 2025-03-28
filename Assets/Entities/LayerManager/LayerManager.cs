@@ -26,7 +26,9 @@ public partial class LayerManager : Node2D
         _conveyorAtlasPosition = Vector2I.Zero;
         Action = "Idle";
         
-        var Wallet = GD.Load<CSharpScript>("res://Common/Wallet.cs");
+        GD.Load<CSharpScript>("res://Common/Wallet.cs");
+        
+        GD.Print(Wallet.Money); // for testing
     }
 
     public override void _Process(double delta)
