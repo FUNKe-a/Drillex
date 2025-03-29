@@ -1,9 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dxbnybjhhyto6"]
+[gd_scene load_steps=4 format=3 uid="uid://dxbnybjhhyto6"]
 
 [ext_resource type="Script" uid="uid://c4wgkrijvsyn7" path="res://Assets/Entities/Material/Material.cs" id="1_jgqht"]
 [ext_resource type="Texture2D" uid="uid://dvo2j7bhfabga" path="res://Assets/Entities/Material/Textures/placeholder_material.png" id="1_y0sh0"]
 
-[node name="Material" type="Sprite2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_syeey"]
+size = Vector2(32, 32)
+
+[node name="Material" type="StaticBody2D"]
+script = ExtResource("1_jgqht")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_y0sh0")
 centered = false
-script = ExtResource("1_jgqht")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(16, 16)
+shape = SubResource("RectangleShape2D_syeey")

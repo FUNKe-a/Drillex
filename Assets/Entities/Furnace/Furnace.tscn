@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://db2dw6qpllits"]
+
+[ext_resource type="Script" uid="uid://cevpdk88pd1pq" path="res://Assets/Entities/Furnace/Furnace.cs" id="1_id6sb"]
+
+[sub_resource type="TileSet" id="TileSet_af4sd"]
+tile_size = Vector2i(32, 32)
+
+[node name="Furnace" type="TileMapLayer"]
+tile_set = SubResource("TileSet_af4sd")
+script = ExtResource("1_id6sb")
