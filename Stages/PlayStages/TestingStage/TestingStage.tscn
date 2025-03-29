@@ -10,8 +10,6 @@
 MainMenuScene = "uid://72x0n8fx0bai"
 
 [node name="LayerManager" parent="." instance=ExtResource("2_3kaay")]
-XBoundary = 60
-YBoundary = 34
 
 [node name="MoveableCamera" parent="." instance=ExtResource("3_h3622")]
 ZoomSpeed = 40.0

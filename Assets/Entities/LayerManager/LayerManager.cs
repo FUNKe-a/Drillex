@@ -1,3 +1,4 @@
+using System;
 using Godot;
 
 namespace drillex.Assets.Entities.LayerManager;
@@ -6,7 +7,6 @@ public partial class LayerManager : Node2D
 {
     [Export] public int XBoundary;
     [Export] public int YBoundary;
-    [Export] public Vector2I TileMapPosition;
     [Export] public Wallet Wallet { get; private set; }
     
     bool [,] _occupiedPositions;
@@ -18,11 +18,13 @@ public partial class LayerManager : Node2D
     
     public override void _Ready()
     {
+        if (XBoundary == 0)
+            XBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.X / 32f);
+        if (YBoundary == 0)
+            YBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.Y / 32f);
         _occupiedPositions = new bool[XBoundary, YBoundary];
         _conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
         _dropperLayer = GetNode<Dropper.Dropper>("Dropper");
-        _conveyorLayer.Position = TileMapPosition;
-        _dropperLayer.Position = TileMapPosition;
         _conveyorAtlasPosition = Vector2I.Zero;
         _action = "Idle";
     }
@@ -66,11 +68,11 @@ public partial class LayerManager : Node2D
 
     public void AddTile(Vector2 globalMousePosition, TileType tileType, Vector2I atlasPosition)
     {
-        Vector2I mapPosition = _conveyorLayer.LocalToMap(_conveyorLayer.ToLocal(globalMousePosition));
+        Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
         
-        if (!_occupiedPositions[mapPosition.X, mapPosition.Y] &&
-            mapPosition.X < XBoundary && mapPosition.X >= 0 && 
-            mapPosition.Y < YBoundary && mapPosition.Y >= 0)
+        if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
+            mapPosition.Y < YBoundary && mapPosition.Y >= 0 && 
+            !_occupiedPositions[mapPosition.X, mapPosition.Y])
         {
             switch (tileType)
             {
@@ -91,7 +93,7 @@ public partial class LayerManager : Node2D
 
     public void RemoveTile(Vector2 globalMousePosition)
     {
-         Vector2I mapPosition = _conveyorLayer.LocalToMap(_conveyorLayer.ToLocal(globalMousePosition));
+        Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
 
         if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
             mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&

@@ -58,6 +58,7 @@ public partial class Conveyor : TileMapLayer
         var directionIndex = GetCellAtlasCoords(mapPosition).Y;
         
 		holder.Velocity = Vector2.Zero;
+		holder.TargetPosition = (Vector2I)materialPosition.Snapped(32f);
 		if (directionIndex != -1)
 		{
 			Vector2 direction = _conveyorDirection[directionIndex];
