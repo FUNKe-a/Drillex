@@ -12,6 +12,7 @@ public partial class LayerManager : Node2D
     bool [,] _occupiedPositions;
     Conveyor.Conveyor _conveyorLayer; 
     Dropper.Dropper _dropperLayer;
+    Furnace.Furnace _furnaceLayer;
     
     Vector2I _conveyorAtlasPosition;
     string _action;
@@ -22,9 +23,11 @@ public partial class LayerManager : Node2D
             XBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.X / 32f);
         if (YBoundary == 0)
             YBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.Y / 32f);
+        
         _occupiedPositions = new bool[XBoundary, YBoundary];
         _conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
         _dropperLayer = GetNode<Dropper.Dropper>("Dropper");
+        _furnaceLayer = GetNode<Furnace.Furnace>("Furnace");
         _conveyorAtlasPosition = Vector2I.Zero;
         _action = "Idle";
     }
@@ -34,10 +37,10 @@ public partial class LayerManager : Node2D
         switch (_action)
         {
             case "Place" :
-                AddTile(GetGlobalMousePosition(), GameMenu.SelectedTileType, _conveyorAtlasPosition);
+                AddTile(GameMenu.SelectedTileType, _conveyorAtlasPosition);
                 break;
             case "Delete" :
-                RemoveTile(GetGlobalMousePosition());
+                RemoveTile();
                 break;
             case "Idle" :
                 return;
@@ -66,7 +69,7 @@ public partial class LayerManager : Node2D
         }
     }
 
-    public void AddTile(Vector2 globalMousePosition, TileType tileType, Vector2I atlasPosition)
+    public void AddTile(TileType tileType, Vector2I atlasPosition)
     {
         Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
         
@@ -91,7 +94,7 @@ public partial class LayerManager : Node2D
         }
     }
 
-    public void RemoveTile(Vector2 globalMousePosition)
+    public void RemoveTile()
     {
         Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
 

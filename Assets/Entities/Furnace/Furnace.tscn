@@ -1,9 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://db2dw6qpllits"]
+[gd_scene load_steps=5 format=3 uid="uid://db2dw6qpllits"]
 
+[ext_resource type="Texture2D" uid="uid://dvrfof6g0j3fb" path="res://Assets/Entities/Furnace/Textures/Furnace.png" id="1_af4sd"]
 [ext_resource type="Script" uid="uid://cevpdk88pd1pq" path="res://Assets/Entities/Furnace/Furnace.cs" id="1_id6sb"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1s7jo"]
+texture = ExtResource("1_af4sd")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:1/0 = 0
+0:2/0 = 0
+0:3/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_af4sd"]
 tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_1s7jo")
 
 [node name="Furnace" type="TileMapLayer"]
 tile_set = SubResource("TileSet_af4sd")

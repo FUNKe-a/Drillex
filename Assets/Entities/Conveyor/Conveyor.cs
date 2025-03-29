@@ -7,14 +7,14 @@ public partial class Conveyor : TileMapLayer
 	[Export] public float TargetPrecision { get; set; } = 0.1f;
 	[Export] public float Speed { get; set; }
 
-	private Node2D _holder;
+	private Node2D _materialHolder;
 	private Array<Vector2> _conveyorVelocity;
 	private Array<Vector2I> _conveyorDirection;
 	private Dictionary<Material, MaterialMovementHolder> _materialMovementHolders;
 	
 	public override void _Ready()
 	{
-		_holder = GetNode<Node2D>("../MaterialHolder");
+		_materialHolder = GetNode<Node2D>("../MaterialHolder");
 		_conveyorVelocity = new Array<Vector2>();
 		_conveyorDirection  = new Array<Vector2I>();
 		_materialMovementHolders = new Dictionary<Material, MaterialMovementHolder>();
@@ -32,7 +32,7 @@ public partial class Conveyor : TileMapLayer
 
 	public override void _PhysicsProcess(double d)
 	{
-		foreach (var node in _holder.GetChildren())
+		foreach (var node in _materialHolder.GetChildren())
 		{
 			Material material = (Material)node;
 
