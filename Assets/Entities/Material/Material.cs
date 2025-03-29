@@ -2,6 +2,8 @@ using Godot;
 
 public partial class Material : StaticBody2D
 {
+    [Export] public int MonetaryValue { get; set; }
+    
     public override void _Ready()
     {
         Position = Position.Snapped(32f);
