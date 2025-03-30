@@ -10,7 +10,6 @@ public partial class Furnace : TileMapLayer
 	[Export] private Wallet _wallet;
 	
 	Node2D _materialHolder;
-	Array<Vector2I> _furnaceDirection;
 	
 	//Location of furnaces
 	HashSet<Vector2> _furnaces;
@@ -19,12 +18,6 @@ public partial class Furnace : TileMapLayer
 	{
 		_materialHolder = GetNode<Node2D>("../MaterialHolder");
 		_furnaces = new HashSet<Vector2>();
-		_furnaceDirection = new Array<Vector2I>();
-
-		_furnaceDirection.Add(Vector2I.Up);
-		_furnaceDirection.Add(Vector2I.Right);
-		_furnaceDirection.Add(Vector2I.Down);
-		_furnaceDirection.Add(Vector2I.Left);
 	}
 
 	public override void _PhysicsProcess(double delta)

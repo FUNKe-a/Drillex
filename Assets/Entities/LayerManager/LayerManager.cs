@@ -7,7 +7,6 @@ public partial class LayerManager : Node2D
 {
     [Export] public int XBoundary;
     [Export] public int YBoundary;
-    [Export] public Wallet Wallet { get; private set; }
     
     bool [,] _occupiedPositions;
     Conveyor.Conveyor _conveyorLayer; 
