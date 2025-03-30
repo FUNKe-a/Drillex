@@ -62,9 +62,7 @@ public partial class LayerManager : Node2D
     public override void _UnhandledKeyInput(InputEvent @event)
     {
         if (@event.IsActionReleased("Rotate"))
-        {
             _rotationID = TileRotation(_rotationID, 1);
-        }
     }
 
     public void AddTile(TileType tileType)
@@ -84,8 +82,8 @@ public partial class LayerManager : Node2D
                     _dropperLayer.AddDropper(mapPosition, _rotationID);
                     break;
                 case TileType.Furnace :
-                    _conveyorLayer.AddConveyor(mapPosition, _rotationID);
-                    _furnaceLayer.AddFurnace(mapPosition, _rotationID);
+                    _conveyorLayer.AddConveyor(mapPosition, _rotationID, true);
+                    _furnaceLayer.AddFurnace(mapPosition);
                     break;
                 default :
                     return;

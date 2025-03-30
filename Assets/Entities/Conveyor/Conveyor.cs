@@ -49,15 +49,24 @@ public partial class Conveyor : TileMapLayer
 		{
 			Vector2 direction = currentTile.GetCustomData("Direction").AsVector2I();
 			Vector2 nextPos = direction * 32 + materialPosition;
+			var frontCellAtlas = GetCellAtlasCoords(LocalToMap(nextPos));
 			var frontCell = GetCellTileData(LocalToMap(nextPos));
 			
 			if (frontCell != null)
 			{
-				Vector2 frontCellDirection = frontCell.GetCustomData("Direction").AsVector2I();
-				if (direction.Dot(frontCellDirection) >= -0.95f)
+				if (frontCellAtlas == Vector2.Zero) // if conveyor has a direction
+				{
+					Vector2 frontCellDirection = frontCell.GetCustomData("Direction").AsVector2I();
+					if (direction.Dot(frontCellDirection) >= -0.95f) // if direction is not opposite
+					{
+						holder.Velocity = direction * Speed;
+						holder.TargetPosition = (Vector2I)nextPos;
+					}
+				}
+				else if (frontCellAtlas == Vector2.Down) // if a conveyor doesn't have a direction. Used for furnace
 				{
 					holder.Velocity = direction * Speed;
-					holder.TargetPosition = (Vector2I)nextPos;
+    				holder.TargetPosition = (Vector2I)nextPos;				
 				}
 			}
 		}
@@ -74,9 +83,10 @@ public partial class Conveyor : TileMapLayer
 		}
 	}
 
-	public void AddConveyor(Vector2I mapPosition, int alternativeTile)
+	public void AddConveyor(Vector2I mapPosition, int alternativeTile, bool noDirection = false)
 	{
-		SetCell(mapPosition, 0, new Vector2I(0, 0), alternativeTile);
+		Vector2I atlasPos = noDirection == false ? Vector2I.Zero : Vector2I.Down;
+		SetCell(mapPosition, 0, atlasPos, alternativeTile);
 	}
 
 	public void RemoveConveyor(Vector2I mapPosition)

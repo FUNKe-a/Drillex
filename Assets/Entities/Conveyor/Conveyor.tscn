@@ -1,10 +1,10 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmgdx2rbgunof"]
 
 [ext_resource type="Script" uid="uid://cfuknh6eb4wdp" path="res://Assets/Entities/Conveyor/Conveyor.cs" id="1_djn0k"]
-[ext_resource type="Texture2D" uid="uid://cyuc0q6771q08" path="res://Assets/Entities/Conveyor/Textures/ConveyorSheet.png" id="2_unjeq"]
+[ext_resource type="Texture2D" uid="uid://dt5ahr8m7f85r" path="res://Assets/Entities/Conveyor/Textures/ConveyorSheet.png" id="2_264qs"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f5cjk"]
-texture = ExtResource("2_unjeq")
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_unjeq"]
+texture = ExtResource("2_264qs")
 texture_region_size = Vector2i(32, 32)
 0:0/next_alternative_id = 4
 0:0/animation_columns = 4
@@ -25,12 +25,19 @@ texture_region_size = Vector2i(32, 32)
 0:0/3 = 3
 0:0/3/transpose = true
 0:0/3/custom_data_0 = Vector2i(-1, 0)
+0:1/animation_columns = 4
+0:1/animation_speed = 10.0
+0:1/animation_frame_0/duration = 1.0
+0:1/animation_frame_1/duration = 1.0
+0:1/animation_frame_2/duration = 1.0
+0:1/animation_frame_3/duration = 1.0
+0:1/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_ig4hn"]
 tile_size = Vector2i(32, 32)
 custom_data_layer_0/name = "Direction"
 custom_data_layer_0/type = 6
-sources/0 = SubResource("TileSetAtlasSource_f5cjk")
+sources/0 = SubResource("TileSetAtlasSource_unjeq")
 
 [node name="Conveyor" type="TileMapLayer"]
 tile_set = SubResource("TileSet_ig4hn")
