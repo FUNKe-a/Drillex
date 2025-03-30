@@ -84,7 +84,7 @@ public partial class LayerManager : Node2D
                     _dropperLayer.AddDropper(mapPosition, _rotationID);
                     break;
                 case TileType.Furnace :
-                    _conveyorLayer.AddConveyor(mapPosition, TileRotation(_rotationID, 2));
+                    _conveyorLayer.AddConveyor(mapPosition, _rotationID);
                     _furnaceLayer.AddFurnace(mapPosition, _rotationID);
                     break;
                 default :
