@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://1p6i45usicmr"]
 
 [ext_resource type="Script" uid="uid://78wsc2ggjf8m" path="res://Assets/Entities/Dropper/Dropper.cs" id="1_5chb3"]
-[ext_resource type="Texture2D" uid="uid://dcpj44hc3521a" path="res://Assets/Entities/Dropper/Textures/animated_dropper_alt.png" id="1_y4feq"]
+[ext_resource type="Texture2D" uid="uid://dcpj44hc3521a" path="res://Assets/Entities/Dropper/Textures/DropperSheet.png" id="1_y4feq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y4feq"]
 texture = ExtResource("1_y4feq")

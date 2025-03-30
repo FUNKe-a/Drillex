@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cqef7i5r70e62"
-path="res://.godot/imported/conveyor_with_corners_alt.png-bf03fffb66d51ed44d28997167da4961.ctex"
+uid="uid://dcpj44hc3521a"
+path="res://.godot/imported/DropperSheet.png-74a51471910a9cefecf6bab1bfd70dcb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Conveyor/Textures/conveyor_with_corners_alt.png"
-dest_files=["res://.godot/imported/conveyor_with_corners_alt.png-bf03fffb66d51ed44d28997167da4961.ctex"]
+source_file="res://Assets/Entities/Dropper/Textures/DropperSheet.png"
+dest_files=["res://.godot/imported/DropperSheet.png-74a51471910a9cefecf6bab1bfd70dcb.ctex"]
 
 [params]
 

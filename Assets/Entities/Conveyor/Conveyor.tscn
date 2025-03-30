@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bmgdx2rbgunof"]
 
 [ext_resource type="Script" uid="uid://cfuknh6eb4wdp" path="res://Assets/Entities/Conveyor/Conveyor.cs" id="1_djn0k"]
-[ext_resource type="Texture2D" uid="uid://cyuc0q6771q08" path="res://Assets/Entities/Conveyor/Textures/animated_conveyor_alt_tiles.png" id="2_unjeq"]
+[ext_resource type="Texture2D" uid="uid://cyuc0q6771q08" path="res://Assets/Entities/Conveyor/Textures/ConveyorSheet.png" id="2_unjeq"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_f5cjk"]
 texture = ExtResource("2_unjeq")
