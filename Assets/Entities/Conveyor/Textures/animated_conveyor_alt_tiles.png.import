@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dvrfof6g0j3fb"
-path="res://.godot/imported/Furnace.png-73f131c0c1de07537496694bedcf3e00.ctex"
+uid="uid://cyuc0q6771q08"
+path="res://.godot/imported/animated_conveyor_alt_tiles.png-35835b6facbd6c6ed8114cd6145ce117.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Furnace/Textures/Furnace.png"
-dest_files=["res://.godot/imported/Furnace.png-73f131c0c1de07537496694bedcf3e00.ctex"]
+source_file="res://Assets/Entities/Conveyor/Textures/animated_conveyor_alt_tiles.png"
+dest_files=["res://.godot/imported/animated_conveyor_alt_tiles.png-35835b6facbd6c6ed8114cd6145ce117.ctex"]
 
 [params]
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://couh325ymci1e"
-path="res://.godot/imported/animated dropper.png-1bbd739771696c3b5e3aae24cfe28505.ctex"
+uid="uid://ic50a0it47kv"
+path="res://.godot/imported/animated_dropper_alt.png-2d24eaefb9295ea82da01d623d480b89.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Dropper/Textures/animated dropper.png"
-dest_files=["res://.godot/imported/animated dropper.png-1bbd739771696c3b5e3aae24cfe28505.ctex"]
+source_file="res://Assets/Entities/Dropper/Scripts/animated_dropper_alt.png"
+dest_files=["res://.godot/imported/animated_dropper_alt.png-2d24eaefb9295ea82da01d623d480b89.ctex"]
 
 [params]
 

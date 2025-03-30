@@ -8,26 +8,12 @@ public partial class Conveyor : TileMapLayer
 	[Export] public float Speed { get; set; }
 
 	private Node2D _materialHolder;
-	private Array<Vector2> _conveyorVelocity;
-	private Array<Vector2I> _conveyorDirection;
 	private Dictionary<Material, MaterialMovementHolder> _materialMovementHolders;
 	
 	public override void _Ready()
 	{
 		_materialHolder = GetNode<Node2D>("../MaterialHolder");
-		_conveyorVelocity = new Array<Vector2>();
-		_conveyorDirection  = new Array<Vector2I>();
 		_materialMovementHolders = new Dictionary<Material, MaterialMovementHolder>();
-		
-		_conveyorDirection.Add(Vector2I.Up);
-		_conveyorDirection.Add(Vector2I.Right);
-		_conveyorDirection.Add(Vector2I.Down);
-		_conveyorDirection.Add(Vector2I.Left);
-		
-		_conveyorVelocity.Add(Speed * Vector2.Up); // corresponds to atlas tile 0
-		_conveyorVelocity.Add(Speed * Vector2.Right); // corresponds to atlas tile 1
-		_conveyorVelocity.Add(Speed * Vector2.Down); // corresponds to atlas tile 2
-		_conveyorVelocity.Add(Speed * Vector2.Left); // corresponds to atlas tile 3
 	}
 
 	public override void _PhysicsProcess(double d)
@@ -55,23 +41,23 @@ public partial class Conveyor : TileMapLayer
 	{
 		var materialPosition = ToLocal(material.GlobalPosition);
         var mapPosition = LocalToMap(materialPosition);
-        var directionIndex = GetCellAtlasCoords(mapPosition).Y;
+        var currentTile = GetCellTileData(mapPosition);
         
 		holder.Velocity = Vector2.Zero;
 		holder.TargetPosition = (Vector2I)materialPosition.Snapped(32f);
-		if (directionIndex != -1)
+		if (currentTile != null)
 		{
-			Vector2 direction = _conveyorDirection[directionIndex];
-			Vector2I nextPos = (Vector2I)direction * 32 + (Vector2I)materialPosition;
-			var nextIndex = GetCellAtlasCoords(LocalToMap(nextPos)).Y;
+			Vector2 direction = currentTile.GetCustomData("Direction").AsVector2I();
+			Vector2 nextPos = direction * 32 + materialPosition;
+			var frontCell = GetCellTileData(LocalToMap(nextPos));
 			
-			if (nextIndex != -1)
+			if (frontCell != null)
 			{
-				Vector2I nextDirection = _conveyorDirection[nextIndex];
-				if (direction.Dot(nextDirection) >= -0.95f)
+				Vector2 frontCellDirection = frontCell.GetCustomData("Direction").AsVector2I();
+				if (direction.Dot(frontCellDirection) >= -0.95f)
 				{
-					holder.Velocity = _conveyorVelocity[directionIndex];
-					holder.TargetPosition = nextPos;
+					holder.Velocity = direction * Speed;
+					holder.TargetPosition = (Vector2I)nextPos;
 				}
 			}
 		}
@@ -88,9 +74,9 @@ public partial class Conveyor : TileMapLayer
 		}
 	}
 
-	public void AddConveyor(Vector2I mapPosition, Vector2I conveyorAtlasPosition)
+	public void AddConveyor(Vector2I mapPosition, int alternativeTile)
 	{
-		SetCell(mapPosition, 0, conveyorAtlasPosition);
+		SetCell(mapPosition, 0, new Vector2I(0, 0), alternativeTile);
 	}
 
 	public void RemoveConveyor(Vector2I mapPosition)

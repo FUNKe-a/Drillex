@@ -7,10 +7,9 @@ public partial class Dropper : TileMapLayer
 {
 	[Export] public PackedScene MaterialScene { get; set; }
 	[Export] public float DropInterval { get; set; } = 1.0f;
-
+	
 	private Node2D _materialHolder;
 	private System.Collections.Generic.Dictionary<Vector2I, DropperHolder> _droppers;
-	private float _timeElapsed;
 	private Vector2I _dropDirection;
 
 	public override void _Ready()
@@ -43,22 +42,11 @@ public partial class Dropper : TileMapLayer
 
 	private void AddDropperToHolder(Vector2I cellPosition)
 	{
-		Vector2I atlasCoordinates = GetCellAtlasCoords(cellPosition);
-		int directionIndex = atlasCoordinates.Y;
-		int delay = 1;
-				
-		Vector2I dropDirection = directionIndex switch
-		{
-			0 => Vector2I.Up,
-			1 => Vector2I.Right,
-			2 => Vector2I.Down,
-			3 => Vector2I.Left,
-			_ => Vector2I.Zero
-		};
-				
+		TileData tile = GetCellTileData(cellPosition);
+		Vector2I dropDirection = tile.GetCustomData("Direction").AsVector2I();
 		Vector2I spawnPosition = cellPosition + dropDirection;
 		bool isBlocked = _droppers.ContainsKey(spawnPosition);
-		DropperHolder dropperAttributes = new DropperHolder(spawnPosition, delay, isBlocked);
+		DropperHolder dropperAttributes = new DropperHolder(spawnPosition, DropInterval, isBlocked);
 		_droppers.Add(cellPosition, dropperAttributes);
 	}
 
@@ -71,9 +59,9 @@ public partial class Dropper : TileMapLayer
 				holder.IsBlocked = _droppers.ContainsKey(holder.SpawnPosition);
 	}
 
-	public void AddDropper(Vector2I mapPosition, Vector2I dropperAtlasPosition)
+	public void AddDropper(Vector2I mapPosition, int rotationID)
 	{
-		SetCell(mapPosition, 0, dropperAtlasPosition);
+		SetCell(mapPosition, 0, new Vector2I(0, 0), rotationID);
 		AddDropperToHolder(mapPosition);
 		UpdateNeighborCellBlockState(mapPosition);
 	}

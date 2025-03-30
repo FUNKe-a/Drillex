@@ -42,9 +42,9 @@ public partial class Furnace : TileMapLayer
 	}
 
 
-	public void AddFurnace(Vector2I mapPosition, Vector2I dropperAtlasPosition)
+	public void AddFurnace(Vector2I mapPosition, int rotationID)
 	{
-		SetCell(mapPosition, 0, dropperAtlasPosition);
+		SetCell(mapPosition, 0, new Vector2I(0, 0), rotationID);
 		_furnaces.Add(MapToLocal(mapPosition) - new Vector2I(16, 16));
 	}
 

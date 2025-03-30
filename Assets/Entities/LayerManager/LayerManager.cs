@@ -13,8 +13,8 @@ public partial class LayerManager : Node2D
     Conveyor.Conveyor _conveyorLayer; 
     Dropper.Dropper _dropperLayer;
     Furnace.Furnace _furnaceLayer;
-    
-    Vector2I _conveyorAtlasPosition;
+
+    private int _rotationID;
     string _action;
     
     public override void _Ready()
@@ -28,7 +28,7 @@ public partial class LayerManager : Node2D
         _conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
         _dropperLayer = GetNode<Dropper.Dropper>("Dropper");
         _furnaceLayer = GetNode<Furnace.Furnace>("Furnace");
-        _conveyorAtlasPosition = Vector2I.Zero;
+        _rotationID = 0;
         _action = "Idle";
     }
 
@@ -37,7 +37,7 @@ public partial class LayerManager : Node2D
         switch (_action)
         {
             case "Place" :
-                AddTile(GameMenu.SelectedTileType, _conveyorAtlasPosition);
+                AddTile(GameMenu.SelectedTileType);
                 break;
             case "Delete" :
                 RemoveTile();
@@ -63,13 +63,11 @@ public partial class LayerManager : Node2D
     {
         if (@event.IsActionReleased("Rotate"))
         {
-            _conveyorAtlasPosition.Y++;
-            if (_conveyorAtlasPosition.Y == 4)
-                _conveyorAtlasPosition.Y = 0;
+            _rotationID = TileRotation(_rotationID, 1);
         }
     }
 
-    public void AddTile(TileType tileType, Vector2I atlasPosition)
+    public void AddTile(TileType tileType)
     {
         Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
         
@@ -80,14 +78,14 @@ public partial class LayerManager : Node2D
             switch (tileType)
             {
                 case TileType.Conveyor :
-                    _conveyorLayer.AddConveyor(mapPosition, atlasPosition);
+                    _conveyorLayer.AddConveyor(mapPosition, _rotationID);
                     break;
                 case TileType.Dropper :
-                    _dropperLayer.AddDropper(mapPosition, atlasPosition);
+                    _dropperLayer.AddDropper(mapPosition, _rotationID);
                     break;
                 case TileType.Furnace :
-                    _conveyorLayer.AddConveyor(mapPosition, IncrementAtlasPosition(atlasPosition, 2));
-                    _furnaceLayer.AddFurnace(mapPosition, atlasPosition);
+                    _conveyorLayer.AddConveyor(mapPosition, TileRotation(_rotationID, 2));
+                    _furnaceLayer.AddFurnace(mapPosition, _rotationID);
                     break;
                 default :
                     return;
@@ -111,17 +109,17 @@ public partial class LayerManager : Node2D
         }
     }
 
-    private Vector2I IncrementAtlasPosition(Vector2I atlasPosition, int value)
+    private int TileRotation(int rotationID, int value)
     {
-        Vector2I returnPos = atlasPosition;
+        int returnID = rotationID;
         
         for (int i = 0; i < value; i++)
         {
-            returnPos.Y++;
-            if (returnPos.Y == 4)
-                returnPos.Y = 0;
+            returnID++;
+            if (returnID == 4)
+                returnID = 0;
         }
 
-        return returnPos;
+        return returnID;
     }
 }
