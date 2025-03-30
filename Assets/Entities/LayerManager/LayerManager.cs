@@ -99,7 +99,6 @@ public partial class LayerManager : Node2D
     public void RemoveTile()
     {
         Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
-        GD.Print(Wallet.Money);
         
         if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
             mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
