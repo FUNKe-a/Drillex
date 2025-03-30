@@ -67,6 +67,11 @@ Camera_zoom_out={
 ]
 }
 
+[layer_names]
+
+2d_physics/layer_1="Material"
+2d_physics/layer_2="Furnaces"
+
 [rendering]
 
 renderer/rendering_method="mobile"

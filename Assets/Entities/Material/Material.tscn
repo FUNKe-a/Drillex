@@ -7,6 +7,7 @@
 size = Vector2(32, 32)
 
 [node name="Material" type="StaticBody2D"]
+collision_mask = 2
 script = ExtResource("1_jgqht")
 
 [node name="Texture" type="Sprite2D" parent="."]

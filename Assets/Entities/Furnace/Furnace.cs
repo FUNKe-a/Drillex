@@ -8,13 +8,15 @@ public partial class Furnace : TileMapLayer
 {
 	Node2D _materialHolder;
 	Array<Vector2I> _furnaceDirection;
-	Dictionary<Vector2I, MaterialMovementHolder> _materialMovementHolders;
 	
+	//the key is the block in front of the furnace, and the value is the location of the furnace
+	Dictionary<Vector2I, Vector2I> _furnaces;
+
 	public override void _Ready()
 	{
-		_materialHolder = GetNode<Node2D>("../MaterialHolder");	
+		_materialHolder = GetNode<Node2D>("../MaterialHolder");
 		_furnaceDirection = new Array<Vector2I>();
-		
+
 		_furnaceDirection.Add(Vector2I.Up);
 		_furnaceDirection.Add(Vector2I.Right);
 		_furnaceDirection.Add(Vector2I.Down);
@@ -23,6 +25,22 @@ public partial class Furnace : TileMapLayer
 
 	public override void _PhysicsProcess(double delta)
 	{
-		
+		foreach (var node in _materialHolder.GetChildren())
+		{
+			Material material = (Material)node;
+			
+			
+		}
+	}
+
+
+	public void AddFurnace(Vector2I mapPosition, Vector2I dropperAtlasPosition)
+	{
+		SetCell(mapPosition, 0, dropperAtlasPosition);
+	}
+
+	public void RemoveFurnace(Vector2I mapPosition)
+	{
+		EraseCell(mapPosition);
 	}
 }

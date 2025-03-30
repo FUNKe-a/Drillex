@@ -86,6 +86,7 @@ public partial class LayerManager : Node2D
                     _dropperLayer.AddDropper(mapPosition, atlasPosition);
                     break;
                 case TileType.Furnace :
+                    _furnaceLayer.AddFurnace(mapPosition, atlasPosition);
                     break;
                 default :
                     return;
@@ -104,6 +105,7 @@ public partial class LayerManager : Node2D
         {
             _conveyorLayer.RemoveConveyor(mapPosition);
             _dropperLayer.RemoveDropper(mapPosition);
+            _furnaceLayer.RemoveFurnace(mapPosition);
             _occupiedPositions[mapPosition.X, mapPosition.Y] = false;
         }
     }
