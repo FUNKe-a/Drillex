@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Material : StaticBody2D
+public partial class Material : Sprite2D
 {
     [Export] public ulong MonetaryValue { get; set; }
     
