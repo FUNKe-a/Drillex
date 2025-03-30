@@ -20,3 +20,4 @@ MaterialScene = ExtResource("3_wpoxt")
 [node name="MaterialHolder" type="Node2D" parent="."]
 
 [node name="Furnace" parent="." instance=ExtResource("6_r74lc")]
+_wallet = ExtResource("2_7kq2u")

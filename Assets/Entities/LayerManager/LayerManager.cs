@@ -86,6 +86,7 @@ public partial class LayerManager : Node2D
                     _dropperLayer.AddDropper(mapPosition, atlasPosition);
                     break;
                 case TileType.Furnace :
+                    _conveyorLayer.AddConveyor(mapPosition, IncrementAtlasPosition(atlasPosition, 2));
                     _furnaceLayer.AddFurnace(mapPosition, atlasPosition);
                     break;
                 default :
@@ -98,7 +99,8 @@ public partial class LayerManager : Node2D
     public void RemoveTile()
     {
         Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
-
+        GD.Print(Wallet.Money);
+        
         if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
             mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
             _occupiedPositions[mapPosition.X, mapPosition.Y])
@@ -108,5 +110,19 @@ public partial class LayerManager : Node2D
             _furnaceLayer.RemoveFurnace(mapPosition);
             _occupiedPositions[mapPosition.X, mapPosition.Y] = false;
         }
+    }
+
+    private Vector2I IncrementAtlasPosition(Vector2I atlasPosition, int value)
+    {
+        Vector2I returnPos = atlasPosition;
+        
+        for (int i = 0; i < value; i++)
+        {
+            returnPos.Y++;
+            if (returnPos.Y == 4)
+                returnPos.Y = 0;
+        }
+
+        return returnPos;
     }
 }

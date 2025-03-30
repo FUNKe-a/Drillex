@@ -1,20 +1,24 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using Godot.Collections;
 
 namespace drillex.Assets.Entities.Furnace;
 
 public partial class Furnace : TileMapLayer
 {
+	[Export] private Wallet _wallet;
+	
 	Node2D _materialHolder;
 	Array<Vector2I> _furnaceDirection;
 	
-	//the key is the block in front of the furnace, and the value is the location of the furnace
-	Dictionary<Vector2I, Vector2I> _furnaces;
+	//Location of furnaces
+	HashSet<Vector2> _furnaces;
 
 	public override void _Ready()
 	{
 		_materialHolder = GetNode<Node2D>("../MaterialHolder");
+		_furnaces = new HashSet<Vector2>();
 		_furnaceDirection = new Array<Vector2I>();
 
 		_furnaceDirection.Add(Vector2I.Up);
@@ -28,8 +32,12 @@ public partial class Furnace : TileMapLayer
 		foreach (var node in _materialHolder.GetChildren())
 		{
 			Material material = (Material)node;
-			
-			
+
+			if (_furnaces.Contains(material.Position))
+			{
+				material.QueueFree();
+				_wallet.Money += material.MonetaryValue;
+			}
 		}
 	}
 
@@ -37,10 +45,12 @@ public partial class Furnace : TileMapLayer
 	public void AddFurnace(Vector2I mapPosition, Vector2I dropperAtlasPosition)
 	{
 		SetCell(mapPosition, 0, dropperAtlasPosition);
+		_furnaces.Add(MapToLocal(mapPosition) - new Vector2I(16, 16));
 	}
 
 	public void RemoveFurnace(Vector2I mapPosition)
 	{
 		EraseCell(mapPosition);
+		_furnaces.Remove(MapToLocal(mapPosition) - new Vector2I(16, 16));
 	}
 }

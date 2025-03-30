@@ -2,7 +2,7 @@ using Godot;
 
 public partial class Material : StaticBody2D
 {
-    [Export] public int MonetaryValue { get; set; }
+    [Export] public ulong MonetaryValue { get; set; }
     
     public override void _Ready()
     {

@@ -9,6 +9,7 @@ size = Vector2(32, 32)
 [node name="Material" type="StaticBody2D"]
 collision_mask = 2
 script = ExtResource("1_jgqht")
+MonetaryValue = 50
 
 [node name="Texture" type="Sprite2D" parent="."]
 texture = ExtResource("1_y0sh0")
