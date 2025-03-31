@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://b86hxsqegyxqm"]
+[gd_scene load_steps=4 format=3 uid="uid://b86hxsqegyxqm"]
 
 [ext_resource type="Script" uid="uid://bfhjitoti0weu" path="res://Assets/UIs/GameMenu/GameMenu.cs" id="1_ejhe8"]
+[ext_resource type="Script" uid="uid://c6fipeiy0xdyg" path="res://Assets/UIs/GameMenu/MoneyLabel.cs" id="2_ejhe8"]
+[ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="3_sooxj"]
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
@@ -33,6 +35,11 @@ popup/item_3/id = 3
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Main menu"
+
+[node name="MoneyLabel" type="Label" parent="TopContainer"]
+layout_mode = 2
+script = ExtResource("2_ejhe8")
+WalletResource = ExtResource("3_sooxj")
 
 [connection signal="item_selected" from="TopContainer/TileSelectionButton" to="." method="OnTileSelectionButtonItemSelected"]
 [connection signal="mouse_entered" from="TopContainer/MainMenuButton" to="." method="OnButtonMouseEntered"]
