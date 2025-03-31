@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://b86hxsqegyxqm"]
+[gd_scene load_steps=13 format=3 uid="uid://b86hxsqegyxqm"]
 
 [ext_resource type="Script" uid="uid://bfhjitoti0weu" path="res://Assets/UIs/GameMenu/GameMenu.cs" id="1_ejhe8"]
 [ext_resource type="Script" uid="uid://c6fipeiy0xdyg" path="res://Assets/UIs/GameMenu/MoneyLabel.cs" id="2_ejhe8"]
@@ -20,6 +20,8 @@ region = Rect2(0, 0, 32, 32)
 [sub_resource type="AtlasTexture" id="AtlasTexture_kkpti"]
 atlas = ExtResource("4_cqg2g")
 region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="LabelSettings" id="LabelSettings_58dmn"]
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
@@ -50,6 +52,12 @@ popup/item_2/id = 2
 popup/item_3/text = "Furnace 60₿"
 popup/item_3/icon = SubResource("AtlasTexture_kkpti")
 popup/item_3/id = 3
+
+[node name="Label" type="Label" parent="TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Rotation (R)"
+label_settings = SubResource("LabelSettings_58dmn")
 
 [node name="DirectionArrow" type="TextureRect" parent="TopContainer"]
 layout_mode = 2
