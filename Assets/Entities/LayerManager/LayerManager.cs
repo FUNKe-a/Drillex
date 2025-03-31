@@ -5,6 +5,9 @@ namespace drillex.Assets.Entities.LayerManager;
 
 public partial class LayerManager : Node2D
 {
+    [Signal]
+    public delegate void RotationChangedEventHandler(int rotationID);
+    
     [Export] public int XBoundary;
     [Export] public int YBoundary;
     [Export] public Wallet WalletResource { get; set; }
@@ -62,7 +65,10 @@ public partial class LayerManager : Node2D
     public override void _UnhandledKeyInput(InputEvent @event)
     {
         if (@event.IsActionReleased("Rotate"))
+        {
             _rotationID = TileRotation(_rotationID, 1);
+            EmitSignal(SignalName.RotationChanged, _rotationID);
+        }
     }
 
     public void AddTile(TileType tileType)
@@ -92,7 +98,7 @@ public partial class LayerManager : Node2D
                 case TileType.Furnace :
                     if (BuyTile(60))
                     {
-                        _conveyorLayer.AddConveyor(mapPosition, _rotationID, true);
+                        _conveyorLayer.AddConveyor(mapPosition, 0, true);
                         _furnaceLayer.AddFurnace(mapPosition);
                         _occupiedPositions[mapPosition.X, mapPosition.Y].Item2 = TileType.Furnace;
                     }

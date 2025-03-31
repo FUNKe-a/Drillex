@@ -1,8 +1,25 @@
-[gd_scene load_steps=4 format=3 uid="uid://b86hxsqegyxqm"]
+[gd_scene load_steps=12 format=3 uid="uid://b86hxsqegyxqm"]
 
 [ext_resource type="Script" uid="uid://bfhjitoti0weu" path="res://Assets/UIs/GameMenu/GameMenu.cs" id="1_ejhe8"]
 [ext_resource type="Script" uid="uid://c6fipeiy0xdyg" path="res://Assets/UIs/GameMenu/MoneyLabel.cs" id="2_ejhe8"]
+[ext_resource type="Texture2D" uid="uid://ic50a0it47kv" path="res://Assets/Entities/Dropper/Scripts/animated_dropper_alt.png" id="2_hlpfk"]
+[ext_resource type="Texture2D" uid="uid://dt5ahr8m7f85r" path="res://Assets/Entities/Conveyor/Textures/ConveyorSheet.png" id="2_w5phq"]
 [ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="3_sooxj"]
+[ext_resource type="Texture2D" uid="uid://gcqpb3mgegh0" path="res://Assets/Entities/Furnace/Textures/FurnaceSheet.png" id="4_cqg2g"]
+[ext_resource type="Texture2D" uid="uid://q0bb7ij48l2k" path="res://Assets/UIs/GameMenu/DirectionArrow.png" id="5_58dmn"]
+[ext_resource type="Script" uid="uid://y38rmk8bfhwo" path="res://Assets/UIs/GameMenu/DirectionArrow.cs" id="6_1dasx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58dmn"]
+atlas = ExtResource("2_w5phq")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1dasx"]
+atlas = ExtResource("2_hlpfk")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kkpti"]
+atlas = ExtResource("4_cqg2g")
+region = Rect2(0, 0, 32, 32)
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
@@ -24,22 +41,34 @@ selected = 0
 item_count = 4
 popup/item_0/text = "No Selection"
 popup/item_0/id = 0
-popup/item_1/text = "Conveyor"
+popup/item_1/text = "Conveyor 20₿"
+popup/item_1/icon = SubResource("AtlasTexture_58dmn")
 popup/item_1/id = 1
-popup/item_2/text = "Mining rig"
+popup/item_2/text = "Mining rig 60₿"
+popup/item_2/icon = SubResource("AtlasTexture_1dasx")
 popup/item_2/id = 2
-popup/item_3/text = "Furnace"
+popup/item_3/text = "Furnace 60₿"
+popup/item_3/icon = SubResource("AtlasTexture_kkpti")
 popup/item_3/id = 3
+
+[node name="DirectionArrow" type="TextureRect" parent="TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 2
+texture = ExtResource("5_58dmn")
+expand_mode = 3
+stretch_mode = 3
+script = ExtResource("6_1dasx")
+
+[node name="MoneyLabel" type="Label" parent="TopContainer"]
+layout_mode = 2
+size_flags_horizontal = 6
+script = ExtResource("2_ejhe8")
+WalletResource = ExtResource("3_sooxj")
 
 [node name="MainMenuButton" type="Button" parent="TopContainer"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Main menu"
-
-[node name="MoneyLabel" type="Label" parent="TopContainer"]
-layout_mode = 2
-script = ExtResource("2_ejhe8")
-WalletResource = ExtResource("3_sooxj")
 
 [connection signal="item_selected" from="TopContainer/TileSelectionButton" to="." method="OnTileSelectionButtonItemSelected"]
 [connection signal="mouse_entered" from="TopContainer/MainMenuButton" to="." method="OnButtonMouseEntered"]
