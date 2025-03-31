@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://d1cktl8dxs61a"]
+
+[ext_resource type="Texture2D" uid="uid://b65nxgsssjbmg" path="res://Assets/Entities/Upgrader/Textures/Upgrader.png" id="1_c3jga"]
+[ext_resource type="Script" uid="uid://qery2doy4my2" path="res://Assets/Entities/Upgrader/Upgrader.cs" id="1_p7oqv"]
+
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3jga"]
+texture = ExtResource("1_c3jga")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+1:0/0 = 0
+2:0/0 = 0
+3:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_p7oqv"]
+tile_size = Vector2i(32, 32)
+sources/0 = SubResource("TileSetAtlasSource_c3jga")
+
+[node name="Upgrader" type="TileMapLayer"]
+tile_set = SubResource("TileSet_p7oqv")
+script = ExtResource("1_p7oqv")

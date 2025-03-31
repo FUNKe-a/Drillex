@@ -12,6 +12,7 @@ public partial class LayerManager : Node2D
     Conveyor.Conveyor _conveyorLayer; 
     Dropper.Dropper _dropperLayer;
     Furnace.Furnace _furnaceLayer;
+    Upgrader.Upgrader _upgraderLayer;
 
     private int _rotationID;
     string _action;
@@ -27,6 +28,7 @@ public partial class LayerManager : Node2D
         _conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
         _dropperLayer = GetNode<Dropper.Dropper>("Dropper");
         _furnaceLayer = GetNode<Furnace.Furnace>("Furnace");
+        _upgraderLayer = GetNode<Upgrader.Upgrader>("Upgrade");
         _rotationID = 0;
         _action = "Idle";
     }
@@ -81,8 +83,12 @@ public partial class LayerManager : Node2D
                     _dropperLayer.AddDropper(mapPosition, _rotationID);
                     break;
                 case TileType.Furnace :
-                    _conveyorLayer.AddConveyor(mapPosition, _rotationID, true);
+                    _conveyorLayer.AddConveyor(mapPosition, 0, true);
                     _furnaceLayer.AddFurnace(mapPosition);
+                    break;
+                case TileType.Upgrader :
+                    _conveyorLayer.AddConveyor(mapPosition, _rotationID);
+                    _upgraderLayer.AddUpgrader(mapPosition);
                     break;
                 default :
                     return;
@@ -102,6 +108,7 @@ public partial class LayerManager : Node2D
             _conveyorLayer.RemoveConveyor(mapPosition);
             _dropperLayer.RemoveDropper(mapPosition);
             _furnaceLayer.RemoveFurnace(mapPosition);
+            _upgraderLayer.RemoveUpgrader(mapPosition);
             _occupiedPositions[mapPosition.X, mapPosition.Y] = false;
         }
     }

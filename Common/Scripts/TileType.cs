@@ -3,5 +3,6 @@ public enum TileType
     NotSelected,
     Conveyor,
     Dropper,
-    Furnace
+    Furnace,
+    Upgrader
 }
