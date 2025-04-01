@@ -57,7 +57,7 @@ popup/item_2/id = 2
 popup/item_3/text = "Furnace 60₿"
 popup/item_3/icon = SubResource("AtlasTexture_kkpti")
 popup/item_3/id = 3
-popup/item_4/text = "Refiner"
+popup/item_4/text = "Refiner 50₿"
 popup/item_4/icon = SubResource("AtlasTexture_apqww")
 popup/item_4/id = 4
 

@@ -117,7 +117,7 @@ public partial class LayerManager : Node2D
                     {
                         _conveyorLayer.AddConveyor(mapPosition, _rotationID);
                         _upgraderLayer.AddUpgrader(mapPosition, _rotationID);
-                        _occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Furnace;
+                        _occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Upgrader;
                     }
                     break;
                 default :
@@ -156,6 +156,7 @@ public partial class LayerManager : Node2D
                     WalletResource.Money += 20;
                     break;
             }
+            _occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.NotSelected;
             _occupiedPositions[mapPosition.X, mapPosition.Y].First = false;
         }
     }
