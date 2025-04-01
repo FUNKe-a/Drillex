@@ -88,7 +88,7 @@ public partial class LayerManager : Node2D
                     break;
                 case TileType.Upgrader :
                     _conveyorLayer.AddConveyor(mapPosition, _rotationID);
-                    _upgraderLayer.AddUpgrader(mapPosition);
+                    _upgraderLayer.AddUpgrader(mapPosition, _rotationID);
                     break;
                 default :
                     return;
