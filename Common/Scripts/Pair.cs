@@ -10,4 +10,10 @@ public partial class Pair<T1, T2> : RefCounted
         First = first;
         Second = second;
     }
+
+    public Pair()
+    {
+        First = default(T1);
+        Second = default(T2);
+    }
 }

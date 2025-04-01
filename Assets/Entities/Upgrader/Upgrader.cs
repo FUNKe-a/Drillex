@@ -26,8 +26,6 @@ public partial class Upgrader : TileMapLayer
             if (!_vectorPos.TryAdd(material, new Pair<Vector2, bool>(materialPos, true)))
                 CheckLastMatLocation(material);
             
-            GD.Print(materialPos);
-
             if (_upgradeCounter.TryGetValue(materialPos, out var counter) && 
                 _vectorPos[material].Second)
             {

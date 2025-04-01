@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using Godot;
 
 namespace drillex.Assets.Entities.LayerManager;
@@ -12,7 +13,7 @@ public partial class LayerManager : Node2D
     [Export] public int YBoundary;
     [Export] public Wallet WalletResource { get; set; }
 
-    (bool, TileType) [,] _occupiedPositions;
+    Pair<bool, TileType> [,] _occupiedPositions;
     Conveyor.Conveyor _conveyorLayer; 
     Dropper.Dropper _dropperLayer;
     Furnace.Furnace _furnaceLayer;
@@ -28,7 +29,13 @@ public partial class LayerManager : Node2D
         if (YBoundary == 0)
             YBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.Y / 32f);
         
-        _occupiedPositions = new (bool,TileType)[XBoundary, YBoundary];
+        _occupiedPositions = new Pair<bool, TileType>[XBoundary, YBoundary];
+        Enumerable.Range(0, XBoundary).ToList().ForEach(x =>
+            Enumerable.Range(0, YBoundary).ToList().ForEach(y =>
+                _occupiedPositions[x, y] = new Pair<bool, TileType>(false, default(TileType))
+            )
+        );
+        
         _conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
         _dropperLayer = GetNode<Dropper.Dropper>("Dropper");
         _furnaceLayer = GetNode<Furnace.Furnace>("Furnace");
@@ -79,7 +86,7 @@ public partial class LayerManager : Node2D
         
         if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
             mapPosition.Y < YBoundary && mapPosition.Y >= 0 && 
-            !_occupiedPositions[mapPosition.X, mapPosition.Y].Item1)
+            !_occupiedPositions[mapPosition.X, mapPosition.Y].First)
         {
             switch (tileType)
             {
@@ -87,14 +94,14 @@ public partial class LayerManager : Node2D
                     if (BuyTile(20))
                     {
                         _conveyorLayer.AddConveyor(mapPosition, _rotationID);
-                        _occupiedPositions[mapPosition.X, mapPosition.Y].Item2 = TileType.Conveyor;
+                        _occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Conveyor;
                     }
                     break;
                 case TileType.Dropper :
                     if (BuyTile(60))
                     {
                         _dropperLayer.AddDropper(mapPosition, _rotationID);
-                        _occupiedPositions[mapPosition.X, mapPosition.Y].Item2 = TileType.Dropper;
+                        _occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Dropper;
                     }
                     break;
                 case TileType.Furnace :
@@ -102,17 +109,21 @@ public partial class LayerManager : Node2D
                     {
                         _conveyorLayer.AddConveyor(mapPosition, 0, true);
                         _furnaceLayer.AddFurnace(mapPosition);
-                        _occupiedPositions[mapPosition.X, mapPosition.Y].Item2 = TileType.Furnace;
+                        _occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Furnace;
                     }
                     break;
                 case TileType.Upgrader :
-                    _conveyorLayer.AddConveyor(mapPosition, _rotationID);
-                    _upgraderLayer.AddUpgrader(mapPosition, _rotationID);
+                    if (BuyTile(50))
+                    {
+                        _conveyorLayer.AddConveyor(mapPosition, _rotationID);
+                        _upgraderLayer.AddUpgrader(mapPosition, _rotationID);
+                        _occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Furnace;
+                    }
                     break;
                 default :
                     return;
             }
-            _occupiedPositions[mapPosition.X, mapPosition.Y].Item1 = true;
+            _occupiedPositions[mapPosition.X, mapPosition.Y].First = true;
         }
     }
 
@@ -122,9 +133,9 @@ public partial class LayerManager : Node2D
         
         if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
             mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
-            _occupiedPositions[mapPosition.X, mapPosition.Y].Item1)
+            _occupiedPositions[mapPosition.X, mapPosition.Y].First)
         {
-            switch (_occupiedPositions[mapPosition.X, mapPosition.Y].Item2)
+            switch (_occupiedPositions[mapPosition.X, mapPosition.Y].Second)
             {
                 case TileType.Conveyor:
                     _conveyorLayer.RemoveConveyor(mapPosition);
@@ -139,9 +150,13 @@ public partial class LayerManager : Node2D
                     _conveyorLayer.RemoveConveyor(mapPosition);
                     WalletResource.Money += 30;
                     break;
+                case TileType.Upgrader :
+                    _upgraderLayer.RemoveUpgrader(mapPosition);
+                    _conveyorLayer.RemoveConveyor(mapPosition);
+                    WalletResource.Money += 20;
+                    break;
             }
-
-            _occupiedPositions[mapPosition.X, mapPosition.Y].Item1 = false;
+            _occupiedPositions[mapPosition.X, mapPosition.Y].First = false;
         }
     }
 

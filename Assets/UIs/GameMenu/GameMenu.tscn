@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b86hxsqegyxqm"]
+[gd_scene load_steps=15 format=3 uid="uid://b86hxsqegyxqm"]
 
 [ext_resource type="Script" uid="uid://bfhjitoti0weu" path="res://Assets/UIs/GameMenu/GameMenu.cs" id="1_ejhe8"]
 [ext_resource type="Script" uid="uid://c6fipeiy0xdyg" path="res://Assets/UIs/GameMenu/MoneyLabel.cs" id="2_ejhe8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dt5ahr8m7f85r" path="res://Assets/Entities/Conveyor/Textures/ConveyorSheet.png" id="2_w5phq"]
 [ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="3_sooxj"]
 [ext_resource type="Texture2D" uid="uid://gcqpb3mgegh0" path="res://Assets/Entities/Furnace/Textures/FurnaceSheet.png" id="4_cqg2g"]
+[ext_resource type="Texture2D" uid="uid://b65nxgsssjbmg" path="res://Assets/Entities/Upgrader/Textures/Upgrader.png" id="5_1dasx"]
 [ext_resource type="Texture2D" uid="uid://q0bb7ij48l2k" path="res://Assets/UIs/GameMenu/DirectionArrow.png" id="5_58dmn"]
 [ext_resource type="Script" uid="uid://y38rmk8bfhwo" path="res://Assets/UIs/GameMenu/DirectionArrow.cs" id="6_1dasx"]
 
@@ -19,6 +20,10 @@ region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_kkpti"]
 atlas = ExtResource("4_cqg2g")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_apqww"]
+atlas = ExtResource("5_1dasx")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_58dmn"]
@@ -53,6 +58,7 @@ popup/item_3/text = "Furnace 60₿"
 popup/item_3/icon = SubResource("AtlasTexture_kkpti")
 popup/item_3/id = 3
 popup/item_4/text = "Refiner"
+popup/item_4/icon = SubResource("AtlasTexture_apqww")
 popup/item_4/id = 4
 
 [node name="Label" type="Label" parent="TopContainer"]
