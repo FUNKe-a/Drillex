@@ -21,7 +21,7 @@ public partial class Upgrader : TileMapLayer
         foreach (var node in _materialHolder.GetChildren())
         {
             Material material = (Material)node;
-            Vector2 materialPos = CeilBy32(material.Position);
+            Vector2 materialPos = FloorBy32(material.Position);
             
             if (!_vectorPos.TryAdd(material, new Pair<Vector2, bool>(materialPos, true)))
                 CheckLastMatLocation(material);
@@ -57,12 +57,12 @@ public partial class Upgrader : TileMapLayer
                 lastPos.First.Y + 32 < material.Position.Y || material.Position.Y < lastPos.First.Y)
             {
                 lastPos.Second = true;
-                lastPos.First = CeilBy32(material.Position);
+                lastPos.First = FloorBy32(material.Position);
             }
         }
     }
 
-    private Vector2 CeilBy32(Vector2 vector)
+    private Vector2 FloorBy32(Vector2 vector)
     {
         Vector2 returnVector = new Vector2();
         returnVector.X = (int)(vector.X / 32) * 32;
