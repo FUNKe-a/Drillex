@@ -1,3 +1,4 @@
+using drillex.Common.Scripts;
 using Godot;
 using Godot.Collections;
 
@@ -6,11 +7,12 @@ namespace drillex.Assets.Entities.Dropper;
 public partial class Dropper : TileMapLayer
 {
 	[Export] public PackedScene MaterialScene { get; set; }
-	[Export] public float DropInterval { get; set; } = 1.0f;
+	[Export] public float DropInterval { get; set; } = 4.0f;
 	
 	private Node2D _materialHolder;
 	private System.Collections.Generic.Dictionary<Vector2I, DropperHolder> _droppers;
 	private Vector2I _dropDirection;
+	private int level;
 
 	public override void _Ready()
 	{
@@ -73,6 +75,11 @@ public partial class Dropper : TileMapLayer
 		UpdateNeighborCellBlockState(mapPosition);
 	}
 
+	public void UpgradeDropper(Vector2I mapPosition)
+	{
+		_droppers[mapPosition].Upgrade();
+	}
+
 	private void DropMaterial(Vector2I mapLocation)
 	{
 		if (MaterialScene == null || _materialHolder == null)
@@ -82,5 +89,10 @@ public partial class Dropper : TileMapLayer
 
 		material.Position = MapToLocal(mapLocation) - new Vector2(16,16);
 		_materialHolder.AddChild(material);
+	}
+
+	public DropperHolder GetDropper(Vector2I mapPos)
+	{
+		return _droppers[mapPos];
 	}
 }

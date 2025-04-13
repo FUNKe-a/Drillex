@@ -31,7 +31,7 @@ public partial class Conveyor : TileMapLayer
 			CheckMaterialVelocity(material, _materialMovementHolders[material], out bool targetReached);
 			
 			if (targetReached) 
-            	FindTarget(material, _materialMovementHolders[material]);
+				FindTarget(material, _materialMovementHolders[material]);
 			
 			material.Position += _materialMovementHolders[material].Velocity * (float)d;
 		}
@@ -40,9 +40,9 @@ public partial class Conveyor : TileMapLayer
 	private void FindTarget(Material material, MaterialMovementHolder holder)
 	{
 		var materialPosition = ToLocal(material.GlobalPosition);
-        var mapPosition = LocalToMap(materialPosition);
-        var currentTile = GetCellTileData(mapPosition);
-        
+		var mapPosition = LocalToMap(materialPosition);
+		var currentTile = GetCellTileData(mapPosition);
+		
 		holder.Velocity = Vector2.Zero;
 		holder.TargetPosition = (Vector2I)materialPosition.Snapped(32f);
 		if (currentTile != null)
@@ -66,7 +66,7 @@ public partial class Conveyor : TileMapLayer
 				else if (frontCellAtlas == Vector2.Down) // if a conveyor doesn't have a direction. Used for furnace
 				{
 					holder.Velocity = direction * Speed;
-    				holder.TargetPosition = (Vector2I)nextPos;				
+					holder.TargetPosition = (Vector2I)nextPos;				
 				}
 			}
 		}

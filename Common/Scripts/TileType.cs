@@ -1,8 +1,8 @@
 public enum TileType
 {
-    NotSelected,
-    Conveyor,
-    Dropper,
-    Furnace,
-    Upgrader
+	NotSelected,
+	Conveyor,
+	Dropper,
+	Furnace,
+	Upgrader
 }

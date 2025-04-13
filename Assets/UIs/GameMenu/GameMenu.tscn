@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b86hxsqegyxqm"]
+[gd_scene load_steps=22 format=3 uid="uid://b86hxsqegyxqm"]
 
 [ext_resource type="Script" uid="uid://bfhjitoti0weu" path="res://Assets/UIs/GameMenu/GameMenu.cs" id="1_ejhe8"]
 [ext_resource type="Script" uid="uid://c6fipeiy0xdyg" path="res://Assets/UIs/GameMenu/MoneyLabel.cs" id="2_ejhe8"]
@@ -9,6 +9,8 @@
 [ext_resource type="Texture2D" uid="uid://b65nxgsssjbmg" path="res://Assets/Entities/Upgrader/Textures/Upgrader.png" id="5_1dasx"]
 [ext_resource type="Texture2D" uid="uid://q0bb7ij48l2k" path="res://Assets/UIs/GameMenu/DirectionArrow.png" id="5_58dmn"]
 [ext_resource type="Script" uid="uid://y38rmk8bfhwo" path="res://Assets/UIs/GameMenu/DirectionArrow.cs" id="6_1dasx"]
+[ext_resource type="Texture2D" uid="uid://b41g1dh5wketq" path="res://Assets/UIs/GameMenu/Textures/UpgradeBack.png" id="10_kkpti"]
+[ext_resource type="Texture2D" uid="uid://iv5cgjjinywg" path="res://Assets/UIs/GameMenu/Textures/x button.png" id="11_apqww"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_58dmn"]
 atlas = ExtResource("2_w5phq")
@@ -27,6 +29,98 @@ atlas = ExtResource("5_1dasx")
 region = Rect2(0, 0, 32, 32)
 
 [sub_resource type="LabelSettings" id="LabelSettings_58dmn"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_apqww"]
+
+[sub_resource type="Animation" id="Animation_miyuk"]
+resource_name = "CloseUpgradeMenu"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpgradeMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(2.37841),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpgradeMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(760, 120), Vector2(960, 120)]
+}
+
+[sub_resource type="Animation" id="Animation_kkpti"]
+resource_name = "OpenUpgradeMenu"
+length = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpgradeMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpgradeMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(960, 120), Vector2(760, 120)]
+}
+
+[sub_resource type="Animation" id="Animation_apqww"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("UpgradeMenu:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("UpgradeMenu:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(960, 120)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cr5rp"]
+_data = {
+&"CloseUpgradeMenu": SubResource("Animation_miyuk"),
+&"OpenUpgradeMenu": SubResource("Animation_kkpti"),
+&"RESET": SubResource("Animation_apqww")
+}
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
@@ -86,6 +180,94 @@ layout_mode = 2
 size_flags_horizontal = 10
 text = "Main menu"
 
+[node name="UpgradeMenu" type="VBoxContainer" parent="."]
+material = SubResource("CanvasItemMaterial_apqww")
+custom_minimum_size = Vector2(200, 300)
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 0
+grow_vertical = 2
+size_flags_horizontal = 8
+
+[node name="NinePatchRect" type="NinePatchRect" parent="UpgradeMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+texture = ExtResource("10_kkpti")
+
+[node name="BoxContainer" type="BoxContainer" parent="UpgradeMenu/NinePatchRect"]
+custom_minimum_size = Vector2(0, 30)
+layout_mode = 2
+offset_top = 4.0
+offset_right = 200.0
+offset_bottom = 34.0
+
+[node name="Label" type="Label" parent="UpgradeMenu/NinePatchRect"]
+custom_minimum_size = Vector2(120, 200)
+layout_mode = 2
+offset_left = 20.0
+offset_top = 20.705
+offset_right = 180.0
+offset_bottom = 220.705
+size_flags_horizontal = 4
+size_flags_vertical = 8
+text = "This is debug text lorem whatever"
+autowrap_mode = 2
+
+[node name="PriceTag" type="Label" parent="UpgradeMenu/NinePatchRect"]
+custom_minimum_size = Vector2(50, 30)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -49.0
+offset_top = 30.0
+offset_right = 49.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Price: "
+
+[node name="Button" type="Button" parent="UpgradeMenu/NinePatchRect"]
+modulate = Color(0.496397, 0.799698, 0.403628, 1)
+custom_minimum_size = Vector2(120, 50)
+layout_mode = 2
+offset_left = 40.0
+offset_top = 216.0
+offset_right = 160.0
+offset_bottom = 266.0
+size_flags_horizontal = 4
+size_flags_vertical = 10
+text = "Upgrade"
+
+[node name="CloseUpgrade" type="Button" parent="UpgradeMenu/NinePatchRect"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -58.0
+offset_bottom = 58.0
+grow_horizontal = 0
+scale = Vector2(0.44, 0.44)
+pivot_offset = Vector2(60, 0)
+icon = ExtResource("11_apqww")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="UpgradeMenu"]
+root_node = NodePath("../..")
+libraries = {
+&"": SubResource("AnimationLibrary_cr5rp")
+}
+
 [connection signal="item_selected" from="TopContainer/TileSelectionButton" to="." method="OnTileSelectionButtonItemSelected"]
 [connection signal="mouse_entered" from="TopContainer/MainMenuButton" to="." method="OnButtonMouseEntered"]
 [connection signal="pressed" from="TopContainer/MainMenuButton" to="." method="OnMainMenuButtonPressed"]
+[connection signal="pressed" from="UpgradeMenu/NinePatchRect/Button" to="." method="UpgradeButtonPressed"]
+[connection signal="pressed" from="UpgradeMenu/NinePatchRect/CloseUpgrade" to="." method="CloseUpgradePressed"]
