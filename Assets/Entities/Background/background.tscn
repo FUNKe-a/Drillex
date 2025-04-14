@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://dfyy7bo6gxuao"]
+
+[ext_resource type="Script" uid="uid://3kbh4w8nndy4" path="res://Assets/Entities/Background/Background.cs" id="1_tjv68"]
+
+[node name="Background" type="TileMapLayer"]
+script = ExtResource("1_tjv68")
