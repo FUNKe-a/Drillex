@@ -14,7 +14,7 @@ public partial class UpgradeMenu : VBoxContainer
 	private IUpgradable _heldItem;
 	private AnimationPlayer _animPlayer;
 
-	
+
 	public override void _Ready()
 	{
 		_upgradeButton = (Button)GetNode("NinePatchRect/Button");
@@ -60,6 +60,11 @@ public partial class UpgradeMenu : VBoxContainer
 	private void CloseUpgradePressed()
 	{
 		_animPlayer.Play("CloseUpgradeMenu");
+	}
+
+	public override void _ExitTree()
+	{
+		Wallet.MoneyChanged -= OnWalletMoneyChanged;
 	}
 
 }
