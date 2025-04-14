@@ -3,6 +3,7 @@ using System.Linq;
 using System.Reflection.Metadata.Ecma335;
 using drillex.Common.Scripts;
 using Godot;
+using Range = Godot.Range;
 
 namespace drillex.Assets.Entities.LayerManager;
 

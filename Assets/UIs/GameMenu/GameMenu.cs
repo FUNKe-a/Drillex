@@ -1,7 +1,6 @@
 using drillex.Common.Scripts;
 using Godot;
 using System;
-using System.Collections;
 using System.Collections.Generic;
 
 public partial class GameMenu : CanvasLayer
@@ -15,16 +14,15 @@ public partial class GameMenu : CanvasLayer
 	private UpgradeMenu _upgradeMenu;
 	private VBoxContainer _tileButtonContainer;
 	private Panel _tileShopPanel;
-	private Button _OpenShopButton;
+	private Button _openShopButton;
 
 	public override void _Ready()
 	{
-		_tileSelectionButton = (OptionButton)GetNode("TopMenu/TileSelectionButton");
 		_upgradeMenu = (UpgradeMenu)GetNode("UpgradeMenu");
 		_tileButtonContainer = (VBoxContainer)GetNode("TileShopPanel/ScrollContainer/TileButtonContainer");
 		_tileShopPanel = GetNode<Panel>("TileShopPanel");
-		_OpenShopButton = (Button)GetNode("TopMenu/OpenShopButton");
-		_OpenShopButton.Pressed += OnOpenShopButtonPressed;
+		_openShopButton = (Button)GetNode("TopMenu/OpenShopButton");
+		_openShopButton.Pressed += OnOpenShopButtonPressed;
 		
 		
 		foreach (TileType tileType in Enum.GetValues(typeof(TileType)))
