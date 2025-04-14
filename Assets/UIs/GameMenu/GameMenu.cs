@@ -30,7 +30,7 @@ public partial class GameMenu : CanvasLayer
 
 	public void UpgradeItemScreen<T>(T item) where T : IUpgradable
 	{
-		_upgradeMenu.UpgradeItemScreen(item);
+		_upgradeMenu.UpdateUpgradeItemScreen(item);
 	}
 
 

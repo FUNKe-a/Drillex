@@ -262,6 +262,7 @@ root_node = NodePath("../..")
 libraries = {
 &"": SubResource("AnimationLibrary_cr5rp")
 }
+autoplay = "RESET"
 
 [connection signal="item_selected" from="TopMenu/TileSelectionButton" to="." method="OnTileSelectionButtonItemSelected"]
 [connection signal="mouse_entered" from="TopMenu/MainMenuButton" to="." method="OnButtonMouseEntered"]

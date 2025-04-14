@@ -52,10 +52,9 @@ public partial class LayerManager : Node2D
 
 	public override void _Process(double delta)
 	{
-			switch (_action)
+		switch (_action)
 		{
 			case "Place" :
-				UpgradeTile();
 				AddTile(GameMenu.SelectedTileType);
 				break;
 			case "Delete" :
@@ -113,8 +112,6 @@ public partial class LayerManager : Node2D
 					break;
 				case TileType.Upgrader:
 					break;
-				case TileType.NotSelected:
-					break;
 			}
 		}
 	}
@@ -123,10 +120,10 @@ public partial class LayerManager : Node2D
 	{
 		Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
 		
-		if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
+		if (tileType is not TileType.NotSelected &&
+			mapPosition.X < XBoundary && mapPosition.X >= 0 && 
 			mapPosition.Y < YBoundary && mapPosition.Y >= 0 && 
-			!_occupiedPositions[mapPosition.X, mapPosition.Y].First && 
-			tileType is not TileType.NotSelected)
+			!_occupiedPositions[mapPosition.X, mapPosition.Y].First)
 		{
 			switch (tileType)
 			{

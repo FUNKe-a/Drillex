@@ -26,7 +26,7 @@ public partial class UpgradeMenu : VBoxContainer
 		Wallet.MoneyChanged += OnWalletMoneyChanged;
 	}
 
-	public void UpgradeItemScreen<T>(T item) where T : IUpgradable
+	public void UpdateUpgradeItemScreen<T>(T item) where T : IUpgradable
 	{
 		if (item.SufficientFunds())
 			_priceText.AddThemeColorOverride("font_color", new Color("00ff00"));
@@ -45,7 +45,7 @@ public partial class UpgradeMenu : VBoxContainer
 	private void OnWalletMoneyChanged()
 	{
 		if (_upgradeMenu.Visible)
-			UpgradeItemScreen(_heldItem);
+			UpdateUpgradeItemScreen(_heldItem);
 	}
 
 	private void UpgradeButtonPressed()
@@ -53,7 +53,7 @@ public partial class UpgradeMenu : VBoxContainer
 		if (_heldItem.SufficientFunds())
 		{
 			_heldItem.Upgrade();
-			UpgradeItemScreen(_heldItem);
+			UpdateUpgradeItemScreen(_heldItem);
 		}
 	}
 
