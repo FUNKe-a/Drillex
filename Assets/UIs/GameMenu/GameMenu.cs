@@ -7,7 +7,7 @@ public partial class GameMenu : CanvasLayer
 {
 	[Export(PropertyHint.File, "*.tscn")] public string MainMenuScene;
 	[Export(PropertyHint.File, "*.tres")] public Wallet Wallet { get; set; }
-	
+
 	public static TileType SelectedTileType { get; private set; } = 0;
 	
 	private static VBoxContainer _upgradeMenu; 
@@ -27,6 +27,7 @@ public partial class GameMenu : CanvasLayer
 		_priceText = (Label)GetNode("UpgradeMenu/NinePatchRect/PriceTag");
 		_upgradeMenu.Visible = false;
 		_animPlayer = (AnimationPlayer)GetNode("UpgradeMenu/AnimationPlayer");
+		Wallet = GD.Load<Wallet>("res://Assets/Resources/Wallet.tres");
 		Wallet.MoneyChanged += OnWalletMoneyChanged;
 	}
 

@@ -125,7 +125,6 @@ _data = {
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
 MainMenuScene = "uid://72x0n8fx0bai"
-Wallet = ExtResource("3_sooxj")
 
 [node name="TopMenu" type="HBoxContainer" parent="."]
 anchors_preset = 10
@@ -190,8 +189,8 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
-offset_left = -200.0
 offset_top = -150.0
+offset_right = 200.0
 offset_bottom = 150.0
 grow_horizontal = 0
 grow_vertical = 2

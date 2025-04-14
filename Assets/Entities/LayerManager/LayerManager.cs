@@ -52,15 +52,22 @@ public partial class LayerManager : Node2D
 
 	public override void _Process(double delta)
 	{
-		switch (_action)
+		Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
+
+			switch (_action)
 		{
 			case "Place" :
-				AddTile(GameMenu.SelectedTileType);
+				if (!_occupiedPositions[mapPosition.X, mapPosition.Y].First)
+				{
+					AddTile(GameMenu.SelectedTileType);
+					_action = "Idle";
+				}
+				else UpgradeTile();
 				break;
 			case "Delete" :
 				RemoveTile();
 				break;
-			case "Upgrade" :
+			case "Upgrade":
 				UpgradeTile();
 				break;
 			case "Idle" :
@@ -95,24 +102,27 @@ public partial class LayerManager : Node2D
 	
 	public void UpgradeTile(){
 		Vector2I mapPosition = _conveyorLayer.LocalToMap(GetLocalMousePosition());
-		var item = _occupiedPositions[mapPosition.X, mapPosition.Y].Second;
-		switch (item)
+		if (mapPosition.X < XBoundary && mapPosition.X >= 0 &&
+			mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
+			_occupiedPositions[mapPosition.X, mapPosition.Y].First)
+		{
+			var item = _occupiedPositions[mapPosition.X, mapPosition.Y].Second;
+
+			switch (item)
 			{
 				case TileType.Conveyor:
 					break;
 				case TileType.Dropper:
-				//GD.Print(_dropperLayer.GetDropper(mapPosition).ToString());
-				_gameMenu.UpgradeItemScreen(_dropperLayer.GetDropper(mapPosition));
-					//GD.Print("upgradin'u dropperi xd");
-				//_dropperLayer.UpgradeDropper(mapPosition);
+					_gameMenu.UpgradeItemScreen(_dropperLayer.GetDropper(mapPosition));
 					break;
 				case TileType.Furnace:
 					break;
-				case TileType.Upgrader :
+				case TileType.Upgrader:
 					break;
 				case TileType.NotSelected:
 					break;
 			}
+		}
 	}
 
 	public void AddTile(TileType tileType)
