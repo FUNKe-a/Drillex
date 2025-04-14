@@ -124,8 +124,10 @@ _data = {
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
+MainMenuScene = "uid://72x0n8fx0bai"
+Wallet = ExtResource("3_sooxj")
 
-[node name="TopContainer" type="HBoxContainer" parent="."]
+[node name="TopMenu" type="HBoxContainer" parent="."]
 anchors_preset = 10
 anchor_right = 1.0
 offset_left = 30.0
@@ -135,7 +137,7 @@ offset_bottom = 8.0
 grow_horizontal = 2
 size_flags_horizontal = 3
 
-[node name="TileSelectionButton" type="OptionButton" parent="TopContainer"]
+[node name="TileSelectionButton" type="OptionButton" parent="TopMenu"]
 layout_mode = 2
 size_flags_horizontal = 2
 selected = 0
@@ -155,13 +157,13 @@ popup/item_4/text = "Refiner 50₿"
 popup/item_4/icon = SubResource("AtlasTexture_apqww")
 popup/item_4/id = 4
 
-[node name="Label" type="Label" parent="TopContainer"]
+[node name="Label" type="Label" parent="TopMenu"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Rotation (R)"
 label_settings = SubResource("LabelSettings_58dmn")
 
-[node name="DirectionArrow" type="TextureRect" parent="TopContainer"]
+[node name="DirectionArrow" type="TextureRect" parent="TopMenu"]
 layout_mode = 2
 size_flags_horizontal = 2
 texture = ExtResource("5_58dmn")
@@ -169,13 +171,13 @@ expand_mode = 3
 stretch_mode = 3
 script = ExtResource("6_1dasx")
 
-[node name="MoneyLabel" type="Label" parent="TopContainer"]
+[node name="MoneyLabel" type="Label" parent="TopMenu"]
 layout_mode = 2
 size_flags_horizontal = 6
 script = ExtResource("2_ejhe8")
 WalletResource = ExtResource("3_sooxj")
 
-[node name="MainMenuButton" type="Button" parent="TopContainer"]
+[node name="MainMenuButton" type="Button" parent="TopMenu"]
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Main menu"
@@ -188,8 +190,8 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = -200.0
 offset_top = -150.0
-offset_right = 200.0
 offset_bottom = 150.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -199,13 +201,6 @@ size_flags_horizontal = 8
 layout_mode = 2
 size_flags_vertical = 3
 texture = ExtResource("10_kkpti")
-
-[node name="BoxContainer" type="BoxContainer" parent="UpgradeMenu/NinePatchRect"]
-custom_minimum_size = Vector2(0, 30)
-layout_mode = 2
-offset_top = 4.0
-offset_right = 200.0
-offset_bottom = 34.0
 
 [node name="Label" type="Label" parent="UpgradeMenu/NinePatchRect"]
 custom_minimum_size = Vector2(120, 200)
@@ -266,8 +261,8 @@ libraries = {
 &"": SubResource("AnimationLibrary_cr5rp")
 }
 
-[connection signal="item_selected" from="TopContainer/TileSelectionButton" to="." method="OnTileSelectionButtonItemSelected"]
-[connection signal="mouse_entered" from="TopContainer/MainMenuButton" to="." method="OnButtonMouseEntered"]
-[connection signal="pressed" from="TopContainer/MainMenuButton" to="." method="OnMainMenuButtonPressed"]
+[connection signal="item_selected" from="TopMenu/TileSelectionButton" to="." method="OnTileSelectionButtonItemSelected"]
+[connection signal="mouse_entered" from="TopMenu/MainMenuButton" to="." method="OnButtonMouseEntered"]
+[connection signal="pressed" from="TopMenu/MainMenuButton" to="." method="OnMainMenuButtonPressed"]
 [connection signal="pressed" from="UpgradeMenu/NinePatchRect/Button" to="." method="UpgradeButtonPressed"]
 [connection signal="pressed" from="UpgradeMenu/NinePatchRect/CloseUpgrade" to="." method="CloseUpgradePressed"]

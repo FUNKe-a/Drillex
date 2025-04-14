@@ -1,4 +1,3 @@
-using drillex.Common.Scripts;
 using Godot;
 using Godot.Collections;
 
@@ -12,8 +11,7 @@ public partial class Dropper : TileMapLayer
 	private Node2D _materialHolder;
 	private System.Collections.Generic.Dictionary<Vector2I, DropperHolder> _droppers;
 	private Vector2I _dropDirection;
-	private int level;
-
+	
 	public override void _Ready()
 	{
 		_materialHolder = GetNode<Node2D>("../MaterialHolder");

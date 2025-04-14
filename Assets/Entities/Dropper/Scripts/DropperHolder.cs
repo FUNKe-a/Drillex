@@ -9,9 +9,8 @@ namespace drillex.Assets.Entities.Dropper
 		public float Delay;
 		public float TimeElapsed;
 		public bool IsBlocked;
-		public int level;
+		public int Level;
 		public ulong UpgradePrice;
-		//[Export] public Wallet WalletResource { get; set; }
 		private Wallet Wallet = ResourceLoader.Load<Wallet>("res://Assets/Resources/Wallet.tres");
 
 		public DropperHolder(Vector2I spawnPosition, float delay, bool isBlocked)
@@ -20,7 +19,7 @@ namespace drillex.Assets.Entities.Dropper
 			Delay = delay;
 			TimeElapsed = 0f;
 			IsBlocked = isBlocked;
-			level = 1;
+			Level = 1;
 			UpgradePrice = 200;
 		}
 		
@@ -35,19 +34,17 @@ namespace drillex.Assets.Entities.Dropper
 		public string GetPrice()
 		{
 			if (UpgradePrice == 0)
-			{
 				return ("level MAX");
-			}
-			else return String.Format("Price: {0}\u20bf", UpgradePrice);
+			return String.Format("Price: {0}\u20bf", UpgradePrice);
 			
 		}
 
 		public void Upgrade()
 		{
-			if (level < 3)
+			if (Level < 3)
 			{
-				level++;
-				switch (level)
+				Level++;
+				switch (Level)
 				{
 					case 2:
 						Wallet.Money -= 200;
@@ -65,8 +62,7 @@ namespace drillex.Assets.Entities.Dropper
 
 		public string UpgradeText()
 		{
-			return String.Format("Type: {0}\nSpeed: {1}\n Level: {2}", "Dropper", (100/Delay).ToString(), level.ToString());
-			throw new NotImplementedException();
+			return String.Format("Type: {0}\nSpeed: {1}\n Level: {2}", "Dropper", (100/Delay).ToString(), Level.ToString());
 		}
 
 		public bool SufficientFunds()

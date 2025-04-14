@@ -6,28 +6,27 @@ using System.Collections;
 public partial class GameMenu : CanvasLayer
 {
 	[Export(PropertyHint.File, "*.tscn")] public string MainMenuScene;
+	[Export(PropertyHint.File, "*.tres")] public Wallet Wallet { get; set; }
 	
 	public static TileType SelectedTileType { get; private set; } = 0;
-	static VBoxContainer UpgradeMenu; 
 	
+	private static VBoxContainer _upgradeMenu; 
 	private OptionButton  _tileSelectionButton;
-	private Button UpgradeButton;
-	private Label UpgradeText;
-	private Label PriceText;
-	private IUpgradable HeldItem;
-	private AnimationPlayer AnimPlayer;
-	private Wallet Wallet = ResourceLoader.Load<Wallet>("res://Assets/Resources/Wallet.tres");
-
+	private Button _upgradeButton;
+	private Label _upgradeText;
+	private Label _priceText;
+	private IUpgradable _heldItem;
+	private AnimationPlayer _animPlayer;
 
 	public override void _Ready()
 	{
-		_tileSelectionButton = (OptionButton)GetNode("TopContainer/TileSelectionButton");
-		UpgradeButton = (Button)GetNode("UpgradeMenu/NinePatchRect/Button");
-		UpgradeMenu = (VBoxContainer)GetNode("UpgradeMenu");
-		UpgradeText = (Label)GetNode("UpgradeMenu/NinePatchRect/Label");
-		PriceText = (Label)GetNode("UpgradeMenu/NinePatchRect/PriceTag");
-		UpgradeMenu.Visible = false;
-		AnimPlayer = (AnimationPlayer)GetNode("UpgradeMenu/AnimationPlayer");
+		_tileSelectionButton = (OptionButton)GetNode("TopMenu/TileSelectionButton");
+		_upgradeButton = (Button)GetNode("UpgradeMenu/NinePatchRect/Button");
+		_upgradeMenu = (VBoxContainer)GetNode("UpgradeMenu");
+		_upgradeText = (Label)GetNode("UpgradeMenu/NinePatchRect/Label");
+		_priceText = (Label)GetNode("UpgradeMenu/NinePatchRect/PriceTag");
+		_upgradeMenu.Visible = false;
+		_animPlayer = (AnimationPlayer)GetNode("UpgradeMenu/AnimationPlayer");
 		Wallet.MoneyChanged += OnWalletMoneyChanged;
 	}
 
@@ -43,31 +42,35 @@ public partial class GameMenu : CanvasLayer
 	
 	public void UpgradeItemScreen<T>(T item) where T : IUpgradable{
 		if (item.SufficientFunds())
-		{
-			PriceText.AddThemeColorOverride("font_color", new Color("00ff00"));
-
-		} else PriceText.AddThemeColorOverride("font_color", new Color("ff0000"));
-		PriceText.Text = item.GetPrice();
-		if(!UpgradeMenu.Visible) AnimPlayer.Play("OpenUpgradeMenu");
-		HeldItem = item;
-		UpgradeText.Text = item.UpgradeText();
+			_priceText.AddThemeColorOverride("font_color", new Color("00ff00"));
+		else 
+			_priceText.AddThemeColorOverride("font_color", new Color("ff0000"));
+		
+		_priceText.Text = item.GetPrice();
+		
+		if(!_upgradeMenu.Visible) 
+			_animPlayer.Play("OpenUpgradeMenu");
+		
+		_heldItem = item;
+		_upgradeText.Text = item.UpgradeText();
 	}
 
 	private void OnWalletMoneyChanged()
 	{
-		if(UpgradeMenu.Visible) UpgradeItemScreen(HeldItem);
-
+		if(_upgradeMenu.Visible) 
+			UpgradeItemScreen(_heldItem);
 	}
 
 	private void UpgradeButtonPressed()
 	{
-		if(HeldItem.SufficientFunds()) {
-			HeldItem.Upgrade();
-			UpgradeItemScreen(HeldItem);
+		if(_heldItem.SufficientFunds()) 
+		{
+			_heldItem.Upgrade();
+			UpgradeItemScreen(_heldItem);
 		}
 	}
 	
 	private void CloseUpgradePressed(){
-		AnimPlayer.Play("CloseUpgradeMenu");
+		_animPlayer.Play("CloseUpgradeMenu");
 	}
 }

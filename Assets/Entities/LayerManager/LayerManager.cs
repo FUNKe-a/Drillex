@@ -48,8 +48,6 @@ public partial class LayerManager : Node2D
 		_action = "Idle";
 
 		_gameMenu = (GameMenu)GetNode("../GameMenu");
-
-
 	}
 
 	public override void _Process(double delta)
@@ -57,12 +55,13 @@ public partial class LayerManager : Node2D
 		switch (_action)
 		{
 			case "Place" :
-				if(GameMenu.SelectedTileType != TileType.NotSelected){
-					AddTile(GameMenu.SelectedTileType);
-				}else UpgradeTile();
+				AddTile(GameMenu.SelectedTileType);
 				break;
 			case "Delete" :
 				RemoveTile();
+				break;
+			case "Upgrade" :
+				UpgradeTile();
 				break;
 			case "Idle" :
 				return;
@@ -78,6 +77,10 @@ public partial class LayerManager : Node2D
 		if (@event.IsActionPressed("Delete"))
 			_action = "Delete";
 		if (@event.IsActionReleased("Delete"))
+			_action = "Idle";
+		if (@event.IsActionPressed("Upgrade"))
+			_action = "Upgrade";
+		if (@event.IsActionReleased("Upgrade"))
 			_action = "Idle";
 	}
 
@@ -108,11 +111,8 @@ public partial class LayerManager : Node2D
 				case TileType.Upgrader :
 					break;
 				case TileType.NotSelected:
-					GD.Print("xd");
 					break;
-
 			}
-		GD.Print("upgrading xd");
 	}
 
 	public void AddTile(TileType tileType)
@@ -121,7 +121,8 @@ public partial class LayerManager : Node2D
 		
 		if (mapPosition.X < XBoundary && mapPosition.X >= 0 && 
 			mapPosition.Y < YBoundary && mapPosition.Y >= 0 && 
-			!_occupiedPositions[mapPosition.X, mapPosition.Y].First)
+			!_occupiedPositions[mapPosition.X, mapPosition.Y].First && 
+			tileType is not TileType.NotSelected)
 		{
 			switch (tileType)
 			{
