@@ -125,6 +125,8 @@ public partial class LayerManager : Node2D
 			mapPosition.Y < YBoundary && mapPosition.Y >= 0 && 
 			!_occupiedPositions[mapPosition.X, mapPosition.Y].First)
 		{
+			bool isTileBought = false;
+			
 			switch (tileType)
 			{
 				case TileType.Conveyor :
@@ -132,6 +134,7 @@ public partial class LayerManager : Node2D
 					{
 						_conveyorLayer.AddConveyor(mapPosition, _rotationID);
 						_occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Conveyor;
+						isTileBought = true;
 					}
 					break;
 				case TileType.Dropper :
@@ -139,6 +142,7 @@ public partial class LayerManager : Node2D
 					{
 						_dropperLayer.AddDropper(mapPosition, _rotationID);
 						_occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Dropper;
+						isTileBought = true;
 					}
 					break;
 				case TileType.Furnace :
@@ -147,6 +151,7 @@ public partial class LayerManager : Node2D
 						_conveyorLayer.AddConveyor(mapPosition, 0, true);
 						_furnaceLayer.AddFurnace(mapPosition);
 						_occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Furnace;
+						isTileBought = true;
 					}
 					break;
 				case TileType.Upgrader :
@@ -155,12 +160,14 @@ public partial class LayerManager : Node2D
 						_conveyorLayer.AddConveyor(mapPosition, _rotationID);
 						_upgraderLayer.AddUpgrader(mapPosition, _rotationID);
 						_occupiedPositions[mapPosition.X, mapPosition.Y].Second = TileType.Upgrader;
+						isTileBought = true;
 					}
 					break;
 				default :
 					return;
 			}
-			_occupiedPositions[mapPosition.X, mapPosition.Y].First = true;
+			if (isTileBought) 
+				_occupiedPositions[mapPosition.X, mapPosition.Y].First = true;
 		}
 	}
 
