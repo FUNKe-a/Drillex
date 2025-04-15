@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://dfq2mw3hbmp8h"]
+[gd_scene load_steps=9 format=4 uid="uid://dfq2mw3hbmp8h"]
 
 [ext_resource type="Script" uid="uid://cgvmhu0bh2yo1" path="res://Assets/Entities/LayerManager/LayerManager.cs" id="1_m7a52"]
 [ext_resource type="PackedScene" uid="uid://bmgdx2rbgunof" path="res://Assets/Entities/Conveyor/Conveyor.tscn" id="1_tqric"]
@@ -7,9 +7,13 @@
 [ext_resource type="PackedScene" uid="uid://dxbnybjhhyto6" path="res://Assets/Entities/Material/Material.tscn" id="3_wpoxt"]
 [ext_resource type="PackedScene" uid="uid://db2dw6qpllits" path="res://Assets/Entities/Furnace/Furnace.tscn" id="6_r74lc"]
 [ext_resource type="PackedScene" uid="uid://d1cktl8dxs61a" path="res://Assets/Entities/Upgrader/Upgrader.tscn" id="7_nvtq3"]
+[ext_resource type="PackedScene" uid="uid://dfyy7bo6gxuao" path="res://Assets/Entities/Background/background.tscn" id="8_5qqqv"]
 
 [node name="LayerManager" type="Node2D"]
 script = ExtResource("1_m7a52")
+
+[node name="Background" parent="." instance=ExtResource("8_5qqqv")]
+tile_map_data = PackedByteArray("AAAEAAUAAAAAAAAAAAAMAAwAAAAAAAAAAAAXAA0AAAAAAAAAAAAWAAYAAAAAAAAAAAAKAAMAAAAAAAAAAAARAAYAAAAAAAAAAAA=")
 
 [node name="Conveyor" parent="." instance=ExtResource("1_tqric")]
 Speed = 40.0

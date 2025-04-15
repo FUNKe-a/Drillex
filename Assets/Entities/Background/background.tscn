@@ -1,6 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://dfyy7bo6gxuao"]
+[gd_scene load_steps=5 format=3 uid="uid://dfyy7bo6gxuao"]
 
+[ext_resource type="Texture2D" uid="uid://ewu8vhx7mqan" path="res://Assets/Entities/Background/Textures/BackgroundTiles.png" id="1_81cav"]
 [ext_resource type="Script" uid="uid://3kbh4w8nndy4" path="res://Assets/Entities/Background/Background.cs" id="1_tjv68"]
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_rrjeo"]
+texture = ExtResource("1_81cav")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/custom_data_0 = true
+1:0/0 = 0
+
+[sub_resource type="TileSet" id="TileSet_djxuj"]
+tile_size = Vector2i(32, 32)
+custom_data_layer_0/name = "Mineable"
+custom_data_layer_0/type = 1
+sources/0 = SubResource("TileSetAtlasSource_rrjeo")
+
 [node name="Background" type="TileMapLayer"]
+tile_set = SubResource("TileSet_djxuj")
 script = ExtResource("1_tjv68")

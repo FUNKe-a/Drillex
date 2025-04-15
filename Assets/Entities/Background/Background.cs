@@ -1,29 +1,36 @@
 using Godot;
-using System;
+using System.Linq;
 using drillex.Common.Scripts;
 
 public partial class Background : TileMapLayer
 {
-    [Signal]
-    public delegate void BackgroundMatrixSetEventHandler();
-
-    bool initialized;
-    
-    private int _xBoundary;
-    private int _yBoundary;
-
-    public void Initialize(int xBoundary, int yBoundary)
+    public BackgroundTile[,] CreateBackgroundMatrix(int xBoundary, int yBoundary)
     {
-        _xBoundary = xBoundary;
-        _yBoundary = yBoundary;
-        initialized = true;
-        CreateBackgroundMatrix();
-    }
+        BackgroundTile[,] backgroundMatrix = new BackgroundTile[xBoundary, yBoundary];
 
-    public void CreateBackgroundMatrix()
-    {
-        if (!initialized) return;
-
-        BackgroundTile[,] backgroundMatrix = new BackgroundTile[_xBoundary, _yBoundary];
+        for (int i = 0; i < xBoundary; i++)
+            for (int j = 0; j < yBoundary; j++)
+                backgroundMatrix[i, j] = new BackgroundTile();
+        
+        GD.Print(backgroundMatrix);
+        
+        for (int i = 0; i < xBoundary; i++)
+        {
+            for (int j = 0; j < yBoundary; j++)
+            {
+                TileData data = GetCellTileData(new Vector2I(i, j));
+                if (data is null)
+                {
+                    backgroundMatrix[i, j].IsMineable = false;
+                }
+                else if (data.HasCustomData("Mineable"))
+                {
+                    backgroundMatrix[i, j].IsMineable =
+                        GetCellTileData(new Vector2I(i, j)).GetCustomData("Mineable").AsBool();
+                }
+            }
+        }
+        
+        return backgroundMatrix;
     }
 }

@@ -29,7 +29,7 @@ public partial class Dropper : TileMapLayer
 			var holder = kvp.Value;
 			
 			holder.TimeElapsed += (float)d;
-			if (!holder.IsBlocked)
+			if (!holder.IsBlocked && holder.CanMine)
 			{
 				if (holder.TimeElapsed >= holder.Delay)
 				{
@@ -59,11 +59,12 @@ public partial class Dropper : TileMapLayer
 				holder.IsBlocked = _droppers.ContainsKey(holder.SpawnPosition);
 	}
 
-	public void AddDropper(Vector2I mapPosition, int rotationID)
+	public void AddDropper(Vector2I mapPosition, int rotationID, bool canMine)
 	{
 		SetCell(mapPosition, 0, new Vector2I(0, 0), rotationID);
 		AddDropperToHolder(mapPosition);
 		UpdateNeighborCellBlockState(mapPosition);
+		_droppers[mapPosition].CanMine = canMine;
 	}
 
 	public void RemoveDropper(Vector2I mapPosition)

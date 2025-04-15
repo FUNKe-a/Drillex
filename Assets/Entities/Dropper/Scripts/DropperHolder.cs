@@ -9,6 +9,7 @@ namespace drillex.Assets.Entities.Dropper
 		public float Delay;
 		public float TimeElapsed;
 		public bool IsBlocked;
+		public bool CanMine;
 		public int Level;
 		public ulong UpgradePrice;
 		private Wallet Wallet = ResourceLoader.Load<Wallet>("res://Assets/Resources/Wallet.tres");

@@ -26,14 +26,16 @@ public partial class LayerManager : Node2D
 	string _action;
 
 	private GameMenu _gameMenu;
-	
+
 	public override void _Ready()
 	{
 		if (XBoundary == 0)
 			XBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.X / 32f);
 		if (YBoundary == 0)
 			YBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.Y / 32f);
-		
+
+		_occupiedPositions = GetNode<Background>("Background").CreateBackgroundMatrix(XBoundary, YBoundary);
+
 		_conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
 		_dropperLayer = GetNode<Dropper.Dropper>("Dropper");
 		_furnaceLayer = GetNode<Furnace.Furnace>("Furnace");
@@ -94,7 +96,7 @@ public partial class LayerManager : Node2D
 		if (item is not TileType.NotSelected &&
 			mapPosition.X < XBoundary && mapPosition.X >= 0 &&
 			mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
-			!_occupiedPositions[mapPosition.X, mapPosition.Y].IsOccupied) {
+			_occupiedPositions[mapPosition.X, mapPosition.Y].IsOccupied) {
 			switch (item)
 			{
 				case TileType.Conveyor:
@@ -134,7 +136,10 @@ public partial class LayerManager : Node2D
 				case TileType.Dropper :
 					if (BuyTile(60))
 					{
-						_dropperLayer.AddDropper(mapPosition, _rotationID);
+						_dropperLayer.AddDropper(
+							mapPosition, 
+							_rotationID, 
+							_occupiedPositions[mapPosition.X, mapPosition.Y].IsMineable);
 						_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.Dropper;
 						isTileBought = true;
 					}

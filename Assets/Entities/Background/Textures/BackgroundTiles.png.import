@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx1bsiw5xe8js"
-path="res://.godot/imported/upgradeback.png-fdcfd0c0784bf304af84a913a544feab.ctex"
+uid="uid://ewu8vhx7mqan"
+path="res://.godot/imported/BackgroundTiles.png-c99758fe1b44c0a08c7874e4e384df4d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UIs/GameMenu/Textures/upgradeback.png"
-dest_files=["res://.godot/imported/upgradeback.png-fdcfd0c0784bf304af84a913a544feab.ctex"]
+source_file="res://Assets/Entities/Background/Textures/BackgroundTiles.png"
+dest_files=["res://.godot/imported/BackgroundTiles.png-c99758fe1b44c0a08c7874e4e384df4d.ctex"]
 
 [params]
 
