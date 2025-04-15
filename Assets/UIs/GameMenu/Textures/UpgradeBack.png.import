@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bx1bsiw5xe8js"
-path="res://.godot/imported/upgradeback.png-fdcfd0c0784bf304af84a913a544feab.ctex"
+path="res://.godot/imported/UpgradeBack.png-686ecb21f1d166112379f06b6d0d809b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UIs/GameMenu/Textures/upgradeback.png"
-dest_files=["res://.godot/imported/upgradeback.png-fdcfd0c0784bf304af84a913a544feab.ctex"]
+source_file="res://Assets/UIs/GameMenu/Textures/UpgradeBack.png"
+dest_files=["res://.godot/imported/UpgradeBack.png-686ecb21f1d166112379f06b6d0d809b.ctex"]
 
 [params]
 
