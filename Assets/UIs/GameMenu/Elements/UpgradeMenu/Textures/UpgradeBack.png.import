@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://q0bb7ij48l2k"
-path="res://.godot/imported/DirectionArrow.png-c934863021d32cab0f5c0e32f640b4bb.ctex"
+uid="uid://bx1bsiw5xe8js"
+path="res://.godot/imported/UpgradeBack.png-6b34b2a2381a721454ff82de0fd7cc74.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UIs/GameMenu/DirectionArrow.png"
-dest_files=["res://.godot/imported/DirectionArrow.png-c934863021d32cab0f5c0e32f640b4bb.ctex"]
+source_file="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/Textures/UpgradeBack.png"
+dest_files=["res://.godot/imported/UpgradeBack.png-6b34b2a2381a721454ff82de0fd7cc74.ctex"]
 
 [params]
 

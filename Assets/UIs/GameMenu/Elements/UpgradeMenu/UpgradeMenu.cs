@@ -17,10 +17,10 @@ public partial class UpgradeMenu : VBoxContainer
 
 	public override void _Ready()
 	{
-		_upgradeButton = (Button)GetNode("NinePatchRect/Button");
+		_upgradeButton = (Button)GetNode("TextureRect/Button");
 		_upgradeMenu = (VBoxContainer)GetNode(".");
-		_upgradeText = (Label)GetNode("NinePatchRect/Label");
-		_priceText = (Label)GetNode("NinePatchRect/PriceTag");
+		_upgradeText = (Label)GetNode("TextureRect/Label");
+		_priceText = (Label)GetNode("TextureRect/PriceTag");
 		_upgradeMenu.Visible = false;
 		_animPlayer = (AnimationPlayer)GetNode("AnimationPlayer");
 		Wallet.MoneyChanged += OnWalletMoneyChanged;

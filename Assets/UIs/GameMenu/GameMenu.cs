@@ -19,9 +19,9 @@ public partial class GameMenu : CanvasLayer
 	public override void _Ready()
 	{
 		_upgradeMenu = (UpgradeMenu)GetNode("UpgradeMenu");
-		_tileButtonContainer = (VBoxContainer)GetNode("TileShopPanel/ScrollContainer/TileButtonContainer");
-		_tileShopPanel = GetNode<Panel>("TileShopPanel");
-		_openShopButton = (Button)GetNode("TopMenu/OpenShopButton");
+		_tileButtonContainer = (VBoxContainer)GetNode("ShopPanel/ScrollContainer/TileButtonContainer");
+		_tileShopPanel = GetNode<Panel>("ShopPanel");
+		_openShopButton = (Button)GetNode("Toolbar/OpenShopButton");
 		_openShopButton.Pressed += OnOpenShopButtonPressed;
 		
 		

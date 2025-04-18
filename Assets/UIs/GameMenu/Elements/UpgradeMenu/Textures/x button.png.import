@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx1bsiw5xe8js"
-path="res://.godot/imported/UpgradeBack.png-686ecb21f1d166112379f06b6d0d809b.ctex"
+uid="uid://iv5cgjjinywg"
+path="res://.godot/imported/x button.png-9009a2c0b038fa5feafaad4d282c2ff1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UIs/GameMenu/Textures/UpgradeBack.png"
-dest_files=["res://.godot/imported/UpgradeBack.png-686ecb21f1d166112379f06b6d0d809b.ctex"]
+source_file="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/Textures/x button.png"
+dest_files=["res://.godot/imported/x button.png-9009a2c0b038fa5feafaad4d282c2ff1.ctex"]
 
 [params]
 
