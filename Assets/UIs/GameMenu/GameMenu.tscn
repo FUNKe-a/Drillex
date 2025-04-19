@@ -7,7 +7,7 @@
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
-MainMenuScene = "uid://72x0n8fx0bai"
+LocationUponPress = "uid://72x0n8fx0bai"
 
 [node name="Toolbar" parent="." instance=ExtResource("2_sooxj")]
 

@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://ckr0dbq7iofaa"]
 
+[ext_resource type="Script" uid="uid://c4kxtgkg4yoy1" path="res://Assets/UIs/GameMenu/Elements/Toolbar/Toolbar.cs" id="1_5awmb"]
 [ext_resource type="Texture2D" uid="uid://q0bb7ij48l2k" path="res://Assets/UIs/GameMenu/Elements/Toolbar/Textures/DirectionArrow.png" id="1_knxhm"]
 [ext_resource type="Script" uid="uid://y38rmk8bfhwo" path="res://Assets/UIs/GameMenu/Elements/Toolbar/Scripts/DirectionArrow.cs" id="2_njdb4"]
 [ext_resource type="Script" uid="uid://c6fipeiy0xdyg" path="res://Assets/UIs/GameMenu/Elements/Toolbar/Scripts/MoneyLabel.cs" id="3_p1ue5"]
 [ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="4_5awmb"]
-[ext_resource type="Script" uid="uid://tvopf21ya6bv" path="res://Assets/UIs/GameMenu/Elements/Toolbar/Scripts/MainMenuButton.cs" id="5_njdb4"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_58dmn"]
 
@@ -17,6 +17,7 @@ offset_right = -30.0
 offset_bottom = 8.0
 grow_horizontal = 2
 size_flags_horizontal = 3
+script = ExtResource("1_5awmb")
 
 [node name="OpenShopButton" type="Button" parent="."]
 layout_mode = 2
@@ -47,5 +48,3 @@ WalletResource = ExtResource("4_5awmb")
 layout_mode = 2
 size_flags_horizontal = 10
 text = "Main menu"
-script = ExtResource("5_njdb4")
-LocationUponPress = "uid://72x0n8fx0bai"
