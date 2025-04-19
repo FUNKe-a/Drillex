@@ -26,6 +26,7 @@ public partial class LayerManager : Node2D
 	string _action;
 
 	private GameMenu _gameMenu;
+	private TileType _selectedTileType;
 
 	public override void _Ready()
 	{
@@ -36,14 +37,15 @@ public partial class LayerManager : Node2D
 
 		_occupiedPositions = GetNode<Background>("Background").CreateBackgroundMatrix(XBoundary, YBoundary);
 
+		_gameMenu = GetNode<GameMenu>("../GameMenu");
 		_conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
 		_dropperLayer = GetNode<Dropper.Dropper>("Dropper");
 		_furnaceLayer = GetNode<Furnace.Furnace>("Furnace");
 		_upgraderLayer = GetNode<Upgrader.Upgrader>("Upgrade");
 		_rotationID = 0;
 		_action = "Idle";
-
-		_gameMenu = (GameMenu)GetNode("../GameMenu");
+		
+		_gameMenu.ConnectToTileButtonSelection(UpdateSelectedTileType);
 	}
 
 	public override void _Process(double delta)
@@ -51,7 +53,7 @@ public partial class LayerManager : Node2D
 		switch (_action)
 		{
 			case "Place" :
-				AddTile(GameMenu.SelectedTileType);
+				AddTile(_selectedTileType);
 				break;
 			case "Delete" :
 				RemoveTile();
@@ -227,4 +229,7 @@ public partial class LayerManager : Node2D
 		}
 		return false;
 	}
+
+	private void UpdateSelectedTileType(TileType tileType) =>
+		_selectedTileType = tileType;
 }

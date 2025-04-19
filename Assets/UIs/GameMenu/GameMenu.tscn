@@ -7,9 +7,9 @@
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
-LocationUponPress = "uid://72x0n8fx0bai"
 
 [node name="Toolbar" parent="." instance=ExtResource("2_sooxj")]
+offset_bottom = 41.0
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("6_w5phq")]
 

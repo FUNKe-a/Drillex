@@ -8,6 +8,7 @@
 [node name="TestingStage" type="Node2D"]
 
 [node name="GameMenu" parent="." instance=ExtResource("2_h3622")]
+LocationUponMainMenuButtonPress = "uid://72x0n8fx0bai"
 
 [node name="LayerManager" parent="." instance=ExtResource("2_3kaay")]
 XBoundary = 32

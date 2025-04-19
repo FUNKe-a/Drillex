@@ -7,7 +7,6 @@ public partial class ShopPanel : Panel
 	private bool _isShopOpen;
 	private Panel _tileShopPanel;
 	private VBoxContainer _tileButtonContainer;
-	public static TileType SelectedTileType { get; private set; } = 0;
 	
 	//temp
 	private readonly Dictionary<TileType, int> _tilePrices = new()
@@ -50,11 +49,15 @@ public partial class ShopPanel : Panel
     	if (_isShopOpen) HideTileSelectionMenu();
     	else ShowTileSelectionMenu();
     }
-	
-	
-	private void OnTileButtonPressed(TileType tileType)
+
+	public void UpdateAllTileButtonEvents(Action<TileType> func)
 	{
-		SelectedTileType = tileType;
+		foreach (var node in _tileButtonContainer.GetChildren())
+		{
+			var button = (Button)node;
+			TileType value = (TileType)Enum.Parse(typeof(TileType), node.Name);
+			button.Pressed += () => func(value);
+		}
 	}
 		
 	private void ShowTileSelectionMenu()
