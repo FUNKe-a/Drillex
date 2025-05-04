@@ -4,20 +4,34 @@ using System;
 [GlobalClass]
 public partial class Wallet : Resource
 {
-	[Signal]
-	public delegate void MoneyChangedEventHandler();
+    [Signal]
+    public delegate void MoneyChangedEventHandler();
 
-	private ulong _money;
+    [Export]
+    public ulong Money { get; private set; }
+	
+    public bool HasEnough(ulong cost) => Money >= cost;
 
-	[Export]
-	public ulong Money
-	{
-		get => _money;
-		set
-		{
-			if (_money == value) return;
-			_money = value;
-			EmitSignal(SignalName.MoneyChanged);
-		}
-	}
+    public bool TrySpend(ulong cost)
+    {
+        if (Money >= cost)
+        {
+            Money -= cost;
+            EmitSignal(SignalName.MoneyChanged);
+            return true;
+        }
+        return false;
+    }
+
+    public void AddMoney(ulong amount)
+    {
+        Money += amount;
+        EmitSignal(SignalName.MoneyChanged);
+    }
+
+    public void ResetMoney()
+    {
+        Money = 200;
+        EmitSignalMoneyChanged();
+    }
 }

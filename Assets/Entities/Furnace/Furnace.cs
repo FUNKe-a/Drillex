@@ -29,7 +29,7 @@ public partial class Furnace : TileMapLayer
 			if (_furnaces.Contains(material.Position))
 			{
 				material.QueueFree();
-				_wallet.Money += material.MonetaryValue;
+				_wallet.AddMoney(material.MonetaryValue);
 			}
 		}
 	}

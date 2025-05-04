@@ -12,8 +12,6 @@ public partial class Background : TileMapLayer
             for (int j = 0; j < yBoundary; j++)
                 backgroundMatrix[i, j] = new BackgroundTile();
         
-        GD.Print(backgroundMatrix);
-        
         for (int i = 0; i < xBoundary; i++)
         {
             for (int j = 0; j < yBoundary; j++)

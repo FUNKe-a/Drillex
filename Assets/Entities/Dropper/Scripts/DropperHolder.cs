@@ -48,12 +48,12 @@ namespace drillex.Assets.Entities.Dropper
 				switch (Level)
 				{
 					case 2:
-						Wallet.Money -= 200;
+						Wallet.TrySpend(200);
 						Delay = 2.0f;
 						UpgradePrice = 1000;
 						break;
 					case 3:
-						Wallet.Money -= 1000;
+						Wallet.TrySpend(1000);
 						Delay = 1.0f;
 						UpgradePrice = 0;
 						break;

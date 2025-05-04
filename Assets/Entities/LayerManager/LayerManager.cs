@@ -46,6 +46,7 @@ public partial class LayerManager : Node2D
 		_action = "Idle";
 		
 		_gameMenu.ConnectToTileButtonSelection(UpdateSelectedTileType);
+		WalletResource.ResetMoney();
 	}
 
 	public override void _Process(double delta)
@@ -128,7 +129,7 @@ public partial class LayerManager : Node2D
 			switch (tileType)
 			{
 				case TileType.Conveyor :
-					if (BuyTile(20))
+					if (WalletResource.TrySpend(20))
 					{
 						_conveyorLayer.AddConveyor(mapPosition, _rotationID);
 						_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.Conveyor;
@@ -136,7 +137,7 @@ public partial class LayerManager : Node2D
 					}
 					break;
 				case TileType.Dropper :
-					if (BuyTile(60))
+					if (WalletResource.TrySpend(60))
 					{
 						_dropperLayer.AddDropper(
 							mapPosition, 
@@ -147,7 +148,7 @@ public partial class LayerManager : Node2D
 					}
 					break;
 				case TileType.Furnace :
-					if (BuyTile(60))
+					if (WalletResource.TrySpend(60))
 					{
 						_conveyorLayer.AddConveyor(mapPosition, 0, true);
 						_furnaceLayer.AddFurnace(mapPosition);
@@ -156,7 +157,7 @@ public partial class LayerManager : Node2D
 					}
 					break;
 				case TileType.Upgrader :
-					if (BuyTile(50))
+					if (WalletResource.TrySpend(50))
 					{
 						_conveyorLayer.AddConveyor(mapPosition, _rotationID);
 						_upgraderLayer.AddUpgrader(mapPosition, _rotationID);
@@ -184,21 +185,21 @@ public partial class LayerManager : Node2D
 			{
 				case TileType.Conveyor:
 					_conveyorLayer.RemoveConveyor(mapPosition);
-					WalletResource.Money += 10;
+					WalletResource.AddMoney(10);
 					break;
 				case TileType.Dropper:
 					_dropperLayer.RemoveDropper(mapPosition);
-					WalletResource.Money += 30;
+					WalletResource.AddMoney(30);
 					break;
 				case TileType.Furnace:
 					_furnaceLayer.RemoveFurnace(mapPosition);
 					_conveyorLayer.RemoveConveyor(mapPosition);
-					WalletResource.Money += 30;
+					WalletResource.AddMoney(30);
 					break;
 				case TileType.Upgrader :
 					_upgraderLayer.RemoveUpgrader(mapPosition);
 					_conveyorLayer.RemoveConveyor(mapPosition);
-					WalletResource.Money += 20;
+					WalletResource.AddMoney(20);
 					break;
 			}
 			_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.NotSelected;
@@ -218,16 +219,6 @@ public partial class LayerManager : Node2D
 		}
 
 		return returnID;
-	}
-
-	private bool BuyTile(ulong price)
-	{
-		if (price <= WalletResource.Money)
-		{
-			WalletResource.Money -= price;
-			return true;
-		}
-		return false;
 	}
 
 	private void UpdateSelectedTileType(TileType tileType) =>
