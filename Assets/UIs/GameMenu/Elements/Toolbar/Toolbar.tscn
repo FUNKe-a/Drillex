@@ -32,7 +32,7 @@ label_settings = SubResource("LabelSettings_58dmn")
 
 [node name="DirectionArrow" type="TextureRect" parent="."]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 0
 texture = ExtResource("1_knxhm")
 expand_mode = 3
 stretch_mode = 3
@@ -40,11 +40,11 @@ script = ExtResource("2_njdb4")
 
 [node name="MoneyLabel" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 6
+size_flags_horizontal = 10
 script = ExtResource("3_p1ue5")
 WalletResource = ExtResource("4_5awmb")
 
 [node name="MainMenuButton" type="Button" parent="."]
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 text = "Main menu"

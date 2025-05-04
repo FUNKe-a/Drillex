@@ -7,7 +7,9 @@ public partial class Wallet : Resource
     [Signal]
     public delegate void MoneyChangedEventHandler();
 
-    [Export]
+    [Export] 
+    public ulong StartingMoney;
+    
     public ulong Money { get; private set; }
 	
     public bool HasEnough(ulong cost) => Money >= cost;
@@ -31,7 +33,7 @@ public partial class Wallet : Resource
 
     public void ResetMoney()
     {
-        Money = 200;
+        Money = StartingMoney;
         EmitSignalMoneyChanged();
     }
 }
