@@ -1,26 +1,14 @@
 [gd_scene load_steps=5 format=3 uid="uid://d1cktl8dxs61a"]
 
-[ext_resource type="Texture2D" uid="uid://b65nxgsssjbmg" path="res://Assets/Entities/Upgrader/Textures/Upgrader.png" id="1_c3jga"]
 [ext_resource type="Script" uid="uid://qery2doy4my2" path="res://Assets/Entities/Upgrader/Upgrader.cs" id="1_p7oqv"]
+[ext_resource type="PackedScene" uid="uid://cif83n7if2jxe" path="res://Assets/Entities/Upgrader/Scenes/UpgradeArea/UpgradeArea.tscn" id="2_2ddxe"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c3jga"]
-texture = ExtResource("1_c3jga")
-texture_region_size = Vector2i(32, 32)
-0:0/next_alternative_id = 4
-0:0/animation_columns = 4
-0:0/animation_speed = 10.0
-0:0/animation_frame_0/duration = 1.0
-0:0/animation_frame_1/duration = 1.0
-0:0/animation_frame_2/duration = 1.0
-0:0/animation_frame_3/duration = 1.0
-0:0/0 = 0
-0:0/1 = 1
-0:0/2 = 2
-0:0/3 = 3
+[sub_resource type="TileSetScenesCollectionSource" id="TileSetScenesCollectionSource_c3jga"]
+scenes/0/scene = ExtResource("2_2ddxe")
 
 [sub_resource type="TileSet" id="TileSet_p7oqv"]
 tile_size = Vector2i(32, 32)
-sources/0 = SubResource("TileSetAtlasSource_c3jga")
+sources/0 = SubResource("TileSetScenesCollectionSource_c3jga")
 
 [node name="Upgrader" type="TileMapLayer"]
 tile_set = SubResource("TileSet_p7oqv")

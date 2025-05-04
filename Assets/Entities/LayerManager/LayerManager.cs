@@ -160,7 +160,7 @@ public partial class LayerManager : Node2D
 					if (WalletResource.TrySpend(50))
 					{
 						_conveyorLayer.AddConveyor(mapPosition, _rotationID);
-						_upgraderLayer.AddUpgrader(mapPosition, _rotationID);
+						_upgraderLayer.AddUpgrader(mapPosition);
 						_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.Upgrader;
 						isTileBought = true;
 					}

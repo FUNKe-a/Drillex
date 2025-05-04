@@ -76,6 +76,7 @@ Upgrade={
 
 2d_physics/layer_1="Material"
 2d_physics/layer_2="Furnaces"
+2d_physics/layer_5="Upgrader"
 
 [rendering]
 

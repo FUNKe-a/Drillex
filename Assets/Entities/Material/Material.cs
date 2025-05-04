@@ -1,6 +1,6 @@
 using Godot;
 
-public partial class Material : Sprite2D
+public partial class Material : Area2D
 {
     private ulong _monetaryValue;
     
@@ -17,10 +17,5 @@ public partial class Material : Sprite2D
     {
         Multiplier = 1.0f;
         Position = Position.Snapped(32f);
-    }
-
-    public override void _PhysicsProcess(double delta)
-    {
-
     }
 }

@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://cif83n7if2jxe"]
+
+[ext_resource type="Script" uid="uid://c4y7fy62mhi0g" path="res://Assets/Entities/Upgrader/Scenes/UpgradeArea/UpgradeArea.cs" id="1_kv5kg"]
+[ext_resource type="Texture2D" uid="uid://b65nxgsssjbmg" path="res://Assets/Entities/Upgrader/Textures/Upgrader.png" id="2_jy3ws"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0dq64"]
+atlas = ExtResource("2_jy3ws")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_soj3i"]
+size = Vector2(32, 32)
+
+[node name="UpgradeArea" type="Area2D"]
+collision_layer = 16
+script = ExtResource("1_kv5kg")
+IncreaseMultiplier = 0.1
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_0dq64")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_soj3i")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

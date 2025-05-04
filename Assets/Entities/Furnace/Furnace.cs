@@ -29,6 +29,7 @@ public partial class Furnace : TileMapLayer
 			if (_furnaces.Contains(material.Position))
 			{
 				material.QueueFree();
+				GD.Print(material.Multiplier);
 				_wallet.AddMoney(material.MonetaryValue);
 			}
 		}
