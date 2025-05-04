@@ -7,7 +7,7 @@
 size = Vector2(14, 14)
 
 [node name="Material" type="Area2D"]
-collision_mask = 16
+collision_mask = 18
 script = ExtResource("1_jgqht")
 MonetaryValue = 50
 

@@ -1,0 +1,25 @@
+[gd_scene load_steps=6 format=3 uid="uid://boilgy8fhflj2"]
+
+[ext_resource type="Texture2D" uid="uid://gcqpb3mgegh0" path="res://Assets/Entities/Furnace/Textures/FurnaceSheet.png" id="1_7raxu"]
+[ext_resource type="Script" uid="uid://dgb3ciu2awh0g" path="res://Assets/Entities/Furnace/Scenes/FurnaceArea/FurnaceArea.cs" id="1_x56eu"]
+[ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="2_w6lg3"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x56eu"]
+atlas = ExtResource("1_7raxu")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w6lg3"]
+size = Vector2(32, 32)
+
+[node name="FurnaceArea" type="Area2D"]
+collision_layer = 2
+script = ExtResource("1_x56eu")
+Wallet = ExtResource("2_w6lg3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = SubResource("AtlasTexture_x56eu")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_w6lg3")
+
+[connection signal="area_entered" from="." to="." method="OnAreaEntered"]

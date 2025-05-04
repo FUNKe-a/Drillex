@@ -17,7 +17,7 @@ public partial class UpgradeArea : Area2D
             ulong oreId = mat.GetInstanceId();
             
             if (_upgradeCounts.TryAdd(oreId, 0))
-                mat.TreeExited += () => OnOreExited(oreId);
+                mat.TreeExited += () => OnMaterialExited(oreId);
             
             if (_upgradeCounts[oreId] < 2) { 
                 mat.Multiplier += IncreaseMultiplier;
@@ -26,6 +26,6 @@ public partial class UpgradeArea : Area2D
         }
     }
     
-    private void OnOreExited(ulong oreId) =>
+    private void OnMaterialExited(ulong oreId) =>
         _upgradeCounts.Remove(oreId);
 }
