@@ -119,6 +119,7 @@ public partial class LayerManager : Node2D
 				case TileType.Furnace:
 					break;
 				case TileType.Upgrader:
+					selectedBuilding = _upgraderLayer.GetUpgrader(mapPosition);
 					break;
 			}
 			

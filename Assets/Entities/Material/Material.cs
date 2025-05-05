@@ -3,6 +3,7 @@ using Godot;
 public partial class Material : Area2D
 {
     private ulong _monetaryValue;
+    public int UpgradeCount { get; set; }
     
     [Export]
     public ulong MonetaryValue
@@ -15,6 +16,7 @@ public partial class Material : Area2D
     
     public override void _Ready()
     {
+        UpgradeCount = 0;
         Multiplier = 1.0f;
         Position = Position.Snapped(32f);
     }
