@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://72x0n8fx0bai"]
+
+[ext_resource type="Script" uid="uid://dekxgqldeolfg" path="res://Assets/UIs/MainMenu/MainMenu.cs" id="1_cpc4w"]
+
+[node name="MainMenuUI" type="CanvasLayer"]
+
+[node name="MainMenu" type="VBoxContainer" parent="."]
+custom_minimum_size = Vector2(300, 300)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -250.0
+offset_top = -150.0
+offset_right = 250.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 30
+script = ExtResource("1_cpc4w")
+PlayScene = "res://Stages/PlayStages/TestingStage/TestingStage.tscn"
+SettingsScene = "res://Stages/Menu/MainSettingsMenu/MainSettingsMenu.tscn"
+
+[node name="Play" type="Button" parent="MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Play"
+
+[node name="Settings" type="Button" parent="MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Settings
+"
+
+[node name="Exit" type="Button" parent="MainMenu"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "Exit"
+
+[connection signal="button_up" from="MainMenu/Play" to="MainMenu" method="OnPlayButtonUp"]
+[connection signal="button_up" from="MainMenu/Settings" to="MainMenu" method="OnSettingsButtonUp"]
+[connection signal="button_up" from="MainMenu/Exit" to="MainMenu" method="OnExitButtonUp"]
