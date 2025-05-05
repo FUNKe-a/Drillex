@@ -234,10 +234,11 @@ public partial class LayerManager : Node2D
 
 	private void UpdateGameMenuBehaviour(IUpgradable building)
 	{
+		var upgradeMenu = _gameMenu.GetUpgradeMenu();
+		
 		if (_cachedUpgradeBuilding is null || 
 		    (building is not null && !_cachedUpgradeBuilding.Equals(building)))
 		{
-			var upgradeMenu = _gameMenu.GetUpgradeMenu();
 			WalletResource.MoneyChanged -= _cachedUmMoneyCheck;
 			_cachedUpgradeBuilding = building;
 			_cachedUmMoneyCheck = () =>
@@ -251,9 +252,8 @@ public partial class LayerManager : Node2D
 			WalletResource.MoneyChanged += _cachedUmMoneyCheck;
 			
 			upgradeMenu.UpdateMenuData(building);
-			
-			upgradeMenu.ConnectToUpgradeButtonPressed(
-				() =>
+
+			upgradeMenu.ConnectToUpgradeButtonPressed(() =>
 				{
 					if (WalletResource.TrySpend(building.UpgradePrice))
 					{
@@ -263,9 +263,10 @@ public partial class LayerManager : Node2D
 					}
 				}
 			);
-			
-			upgradeMenu.ShowUpgradeMenu();
 		}	
+		
+		if (!upgradeMenu.Visible)
+			upgradeMenu.ShowUpgradeMenu();
 	}
 
 	private void UpdateSelectedTileType(TileType tileType) =>

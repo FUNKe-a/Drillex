@@ -36,9 +36,6 @@ public partial class UpgradeMenu : VBoxContainer
 	private void CloseUpgradePressed() =>
 		_animPlayer.Play("CloseUpgradeMenu");
 
-	public void ShowUpgradeMenu()
-	{
-		if (!Visible)
+	public void ShowUpgradeMenu() =>
 			_animPlayer.Play("OpenUpgradeMenu");
-	}
 }
