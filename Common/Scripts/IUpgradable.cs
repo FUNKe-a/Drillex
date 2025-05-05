@@ -8,10 +8,10 @@ namespace drillex.Common.Scripts
 {
     public interface IUpgradable
     {
+        public ulong UpgradePrice { get; }
+        
         void Upgrade();
-
         string UpgradeText();
-        bool SufficientFunds();
-        string GetPrice();
+        string GetPriceText();
     }
 }

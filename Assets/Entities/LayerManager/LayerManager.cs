@@ -27,9 +27,15 @@ public partial class LayerManager : Node2D
 
 	private GameMenu _gameMenu;
 	private TileType _selectedTileType;
+	
+	#region cachedUpgradeItems
+	private IUpgradable _cachedUpgradeBuilding;
+	private Action _cachedUmMoneyCheck;
+	#endregion
 
 	public override void _Ready()
 	{
+		_cachedUmMoneyCheck = null;
 		if (XBoundary == 0)
 			XBoundary = (int)Math.Ceiling(GetViewport().GetVisibleRect().Size.X / 32f);
 		if (YBoundary == 0)
@@ -99,19 +105,24 @@ public partial class LayerManager : Node2D
 		if (item is not TileType.NotSelected &&
 			mapPosition.X < XBoundary && mapPosition.X >= 0 &&
 			mapPosition.Y < YBoundary && mapPosition.Y >= 0 &&
-			_occupiedPositions[mapPosition.X, mapPosition.Y].IsOccupied) {
+			_occupiedPositions[mapPosition.X, mapPosition.Y].IsOccupied)
+		{
+			IUpgradable selectedBuilding = null;
+			
 			switch (item)
 			{
 				case TileType.Conveyor:
 					break;
 				case TileType.Dropper:
-					_gameMenu.UpgradeItemScreen(_dropperLayer.GetDropper(mapPosition));
+					selectedBuilding = _dropperLayer.GetDropper(mapPosition);
 					break;
 				case TileType.Furnace:
 					break;
 				case TileType.Upgrader:
 					break;
 			}
+			
+			UpdateGameMenuBehaviour(selectedBuilding);
 		}
 	}
 
@@ -219,6 +230,42 @@ public partial class LayerManager : Node2D
 		}
 
 		return returnID;
+	}
+
+	private void UpdateGameMenuBehaviour(IUpgradable building)
+	{
+		if (_cachedUpgradeBuilding is null || 
+		    (building is not null && !_cachedUpgradeBuilding.Equals(building)))
+		{
+			var upgradeMenu = _gameMenu.GetUpgradeMenu();
+			WalletResource.MoneyChanged -= _cachedUmMoneyCheck;
+			_cachedUpgradeBuilding = building;
+			_cachedUmMoneyCheck = () =>
+			{
+				upgradeMenu.ChangePriceFontColor(
+					WalletResource.HasEnough(building.UpgradePrice)
+						? new Color("00ff00")
+						: new Color("ff0000"));
+			};
+			_cachedUmMoneyCheck();
+			WalletResource.MoneyChanged += _cachedUmMoneyCheck;
+			
+			upgradeMenu.UpdateMenuData(building);
+			
+			upgradeMenu.ConnectToUpgradeButtonPressed(
+				() =>
+				{
+					if (WalletResource.TrySpend(building.UpgradePrice))
+					{
+						building.Upgrade();
+						upgradeMenu.UpdateMenuData(building);
+						_cachedUmMoneyCheck();
+					}
+				}
+			);
+			
+			upgradeMenu.ShowUpgradeMenu();
+		}	
 	}
 
 	private void UpdateSelectedTileType(TileType tileType) =>

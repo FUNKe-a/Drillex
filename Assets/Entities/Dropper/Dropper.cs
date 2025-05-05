@@ -74,11 +74,6 @@ public partial class Dropper : TileMapLayer
 		UpdateNeighborCellBlockState(mapPosition);
 	}
 
-	public void UpgradeDropper(Vector2I mapPosition)
-	{
-		_droppers[mapPosition].Upgrade();
-	}
-
 	private void DropMaterial(Vector2I mapLocation)
 	{
 		if (MaterialScene == null || _materialHolder == null)

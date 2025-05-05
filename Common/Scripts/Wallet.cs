@@ -4,8 +4,7 @@ using System;
 [GlobalClass]
 public partial class Wallet : Resource
 {
-    [Signal]
-    public delegate void MoneyChangedEventHandler();
+    public Action MoneyChanged;
 
     [Export] 
     public ulong StartingMoney;
@@ -19,7 +18,7 @@ public partial class Wallet : Resource
         if (Money >= cost)
         {
             Money -= cost;
-            EmitSignal(SignalName.MoneyChanged);
+            MoneyChanged?.Invoke();
             return true;
         }
         return false;
@@ -28,12 +27,12 @@ public partial class Wallet : Resource
     public void AddMoney(ulong amount)
     {
         Money += amount;
-        EmitSignal(SignalName.MoneyChanged);
+        MoneyChanged?.Invoke();
     }
 
     public void ResetMoney()
     {
         Money = StartingMoney;
-        EmitSignalMoneyChanged();
+        MoneyChanged?.Invoke();
     }
 }

@@ -5,14 +5,20 @@ namespace drillex.Assets.Entities.Dropper
 {	
 	public partial class DropperHolder : RefCounted, IUpgradable
 	{
+		private ulong _upgradePrice;
+
+		public ulong UpgradePrice
+		{
+			get => _upgradePrice; 
+			private set => _upgradePrice = value;
+		}
+		
 		public Vector2I SpawnPosition;
 		public float Delay;
 		public float TimeElapsed;
 		public bool IsBlocked;
 		public bool CanMine;
 		public int Level;
-		public ulong UpgradePrice;
-		private Wallet Wallet = ResourceLoader.Load<Wallet>("res://Assets/Resources/Wallet.tres");
 
 		public DropperHolder(Vector2I spawnPosition, float delay, bool isBlocked)
 		{
@@ -32,7 +38,7 @@ namespace drillex.Assets.Entities.Dropper
 			IsBlocked = false;
 		}
 
-		public string GetPrice()
+		public string GetPriceText()
 		{
 			if (UpgradePrice == 0)
 				return ("level MAX");
@@ -48,12 +54,10 @@ namespace drillex.Assets.Entities.Dropper
 				switch (Level)
 				{
 					case 2:
-						Wallet.TrySpend(200);
 						Delay = 2.0f;
 						UpgradePrice = 1000;
 						break;
 					case 3:
-						Wallet.TrySpend(1000);
 						Delay = 1.0f;
 						UpgradePrice = 0;
 						break;
@@ -64,12 +68,6 @@ namespace drillex.Assets.Entities.Dropper
 		public string UpgradeText()
 		{
 			return String.Format("Type: {0}\nSpeed: {1}\n Level: {2}", "Dropper", (100/Delay).ToString(), Level.ToString());
-		}
-
-		public bool SufficientFunds()
-		{
-			if (Wallet.Money >= UpgradePrice) return true;
-			return false;
 		}
 	}
 }
