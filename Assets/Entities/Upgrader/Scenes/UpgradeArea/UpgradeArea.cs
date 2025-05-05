@@ -3,7 +3,8 @@ using System.Collections.Generic;
 
 public partial class UpgradeArea : Area2D
 {
-    [Export] public float IncreaseMultiplier { get; set; }
+    [Export] public float IncreaseMultiplier { get; private set; }
+    [Export] public int PassAmount { get; private set; }
     
     private Dictionary<ulong, int> _upgradeCounts;
 
@@ -19,7 +20,7 @@ public partial class UpgradeArea : Area2D
             if (_upgradeCounts.TryAdd(oreId, 0))
                 mat.TreeExited += () => OnMaterialExited(oreId);
             
-            if (_upgradeCounts[oreId] < 2) { 
+            if (_upgradeCounts[oreId] < PassAmount) { 
                 mat.Multiplier += IncreaseMultiplier;
                 _upgradeCounts[oreId]++;
             }
