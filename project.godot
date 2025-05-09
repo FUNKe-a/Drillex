@@ -34,6 +34,10 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="drillex"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
+
 [input]
 
 Rotate={
