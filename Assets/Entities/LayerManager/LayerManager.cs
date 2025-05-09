@@ -256,9 +256,9 @@ public partial class LayerManager : Node2D
 
 			upgradeMenu.ConnectToUpgradeButtonPressed(() =>
 				{
-					if (WalletResource.TrySpend(building.UpgradePrice))
+					if (WalletResource.TrySpend(building.UpgradePrice) && 
+					    building.Upgrade())
 					{
-						building.Upgrade();
 						upgradeMenu.UpdateMenuData(building);
 						_cachedUmMoneyCheck();
 					}

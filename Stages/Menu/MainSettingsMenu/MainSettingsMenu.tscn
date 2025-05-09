@@ -17,7 +17,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 70
 script = ExtResource("1_jvl74")
-MainMenuScene = "res://Stages/Menu/MainMenu/MainMenu.tscn"
+MainMenuScene = "uid://48ty5w50jdko"
 
 [node name="ResolutionButton" type="OptionButton" parent="."]
 layout_mode = 2

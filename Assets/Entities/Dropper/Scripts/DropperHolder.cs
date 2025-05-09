@@ -45,7 +45,7 @@ namespace drillex.Assets.Entities.Dropper
 			return String.Format("Price: {0}\u20bf", UpgradePrice);
 		}
 
-		public void Upgrade()
+		public bool Upgrade()
 		{
 			if (Level < 3)
 			{
@@ -61,7 +61,10 @@ namespace drillex.Assets.Entities.Dropper
 						UpgradePrice = 0;
 						break;
 				}
+
+				return true;
 			}
+			return false;
 		}
 
 		public string UpgradeText()

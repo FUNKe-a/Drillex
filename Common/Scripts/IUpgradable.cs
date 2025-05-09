@@ -10,7 +10,7 @@ namespace drillex.Common.Scripts
     {
         public ulong UpgradePrice { get; }
         
-        void Upgrade();
+        bool Upgrade();
         string UpgradeText();
         string GetPriceText();
     }

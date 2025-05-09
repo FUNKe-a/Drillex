@@ -18,7 +18,7 @@ public partial class UpgradeArea : Area2D, IUpgradable
         private set => _upgradePrice = value;
     }
 
-    public void Upgrade()
+    public bool Upgrade()
     {
         if (_level < 3)
         {
@@ -34,7 +34,10 @@ public partial class UpgradeArea : Area2D, IUpgradable
                     UpgradePrice = 0;
                     break;
             }
+
+            return true;
         }
+        return false;
     }
 
     public string UpgradeText() =>

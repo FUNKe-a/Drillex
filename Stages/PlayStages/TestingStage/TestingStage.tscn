@@ -84,7 +84,7 @@ tile_map_data = PackedByteArray("AAAGAAQAAQABAAAAAAAEAAQAAQACAAEAAAAEAAUAAQACAAE
 tile_set = SubResource("TileSet_bc0is")
 
 [node name="GameMenu" parent="." instance=ExtResource("2_h3622")]
-LocationUponMainMenuButtonPress = "uid://72x0n8fx0bai"
+LocationUponMainMenuButtonPress = "uid://48ty5w50jdko"
 
 [node name="LayerManager" parent="." instance=ExtResource("2_3kaay")]
 XBoundary = 32
