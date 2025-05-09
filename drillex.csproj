@@ -1,11 +1,16 @@
 <Project Sdk="Godot.NET.Sdk/4.4.1">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
+    <LangVersion>11.0</LangVersion>
+    <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
   <ItemGroup>
     <Content Include="Stages\Menu\MainMenu\MainMenu.tscn" />
     <Content Include="Stages\PlayStages\.gitkeep" />
     <Content Include="Stages\PlayStages\TestingStage\TestingStage.tscn" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
+    <PackageReference Include="gdUnit4.api" Version="4.3.1" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="2.0.0" />
   </ItemGroup>
 </Project>
