@@ -38,6 +38,11 @@ project/assembly_name="drillex"
 
 enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
+[gdunit4]
+
+settings/test/test_lookup_folder="UnitTests"
+settings/test/test_suite_naming_convention=2
+
 [input]
 
 Rotate={
