@@ -122,8 +122,8 @@ public partial class LayerManager : Node2D
 					selectedBuilding = _upgraderLayer.GetUpgrader(mapPosition);
 					break;
 			}
-			
-			UpdateGameMenuBehaviour(selectedBuilding);
+			if (selectedBuilding is not null)
+				UpdateGameMenuBehaviour(selectedBuilding);
 		}
 	}
 
