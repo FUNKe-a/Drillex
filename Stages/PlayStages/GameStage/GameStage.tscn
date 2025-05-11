@@ -1,15 +1,15 @@
 [gd_scene load_steps=14 format=4 uid="uid://b8qsmh37swmbc"]
 
-[ext_resource type="Texture2D" uid="uid://dl0wdxfe1xhtv" path="res://Common/Textures/OrangeBackground.png" id="1_0eump"]
-[ext_resource type="Texture2D" uid="uid://da8ehaykcsmg" path="res://Common/Textures/BeigeBackground.png" id="1_cdr0b"]
-[ext_resource type="PackedScene" uid="uid://dfq2mw3hbmp8h" path="res://Assets/Entities/LayerManager/LayerManager.tscn" id="2_3kaay"]
-[ext_resource type="PackedScene" uid="uid://b86hxsqegyxqm" path="res://Assets/UIs/GameMenu/GameMenu.tscn" id="2_h3622"]
-[ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="3_egnq0"]
-[ext_resource type="PackedScene" uid="uid://b2vha32nwg7wj" path="res://Assets/Entities/MoveableCamera/MoveableCamera.tscn" id="3_h3622"]
-[ext_resource type="Texture2D" uid="uid://bjlj14d3f0ud3" path="res://Common/Textures/material_tile-set.png" id="3_s04kn"]
+[ext_resource type="Texture2D" uid="uid://da8ehaykcsmg" path="res://Common/Textures/BeigeBackground.png" id="1_ol81i"]
+[ext_resource type="Texture2D" uid="uid://dl0wdxfe1xhtv" path="res://Common/Textures/OrangeBackground.png" id="2_4q1k5"]
+[ext_resource type="Texture2D" uid="uid://bjlj14d3f0ud3" path="res://Common/Textures/material_tile-set.png" id="3_66341"]
+[ext_resource type="PackedScene" uid="uid://b86hxsqegyxqm" path="res://Assets/UIs/GameMenu/GameMenu.tscn" id="4_rf0iy"]
+[ext_resource type="PackedScene" uid="uid://dfq2mw3hbmp8h" path="res://Assets/Entities/LayerManager/LayerManager.tscn" id="5_bhgdr"]
+[ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="6_jbnxs"]
+[ext_resource type="PackedScene" uid="uid://b2vha32nwg7wj" path="res://Assets/Entities/MoveableCamera/MoveableCamera.tscn" id="7_xhkf7"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_s04kn"]
-texture = ExtResource("1_cdr0b")
+texture = ExtResource("1_ol81i")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
@@ -30,7 +30,7 @@ tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_s04kn")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_cdr0b"]
-texture = ExtResource("1_0eump")
+texture = ExtResource("2_4q1k5")
 texture_region_size = Vector2i(32, 32)
 1:1/0 = 0
 0:1/0 = 0
@@ -54,7 +54,7 @@ tile_size = Vector2i(32, 32)
 sources/0 = SubResource("TileSetAtlasSource_cdr0b")
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_y07pe"]
-texture = ExtResource("3_s04kn")
+texture = ExtResource("3_66341")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
 1:0/0 = 0
@@ -67,7 +67,7 @@ texture_region_size = Vector2i(32, 32)
 tile_size = Vector2i(32, 32)
 sources/1 = SubResource("TileSetAtlasSource_y07pe")
 
-[node name="TestingStage" type="Node2D"]
+[node name="GameStage" type="Node2D"]
 
 [node name="Background" type="Node2D" parent="."]
 
@@ -83,13 +83,14 @@ tile_set = SubResource("TileSet_s04kn")
 tile_map_data = PackedByteArray("AAAGAAQAAQABAAAAAAAEAAQAAQACAAEAAAAEAAUAAQACAAEAAAAFAAUAAQACAAEAAAAFAAMAAQACAAEAAAAFAAYAAQAAAAEAAAAEAAYAAQABAAAAAFAEAAMAAQABAAEAADADAAQAAQABAAEAADADAAUAAQABAAEAAFAGAAMAAQABAAEAAGAFAAIAAQAAAAEAADATAAgAAQACAAAAAAASAAgAAQACAAAAAGASAAkAAQACAAEAAAASAAoAAQAAAAEAAAAUAAkAAQAAAAEAAGATAAoAAQABAAAAAFARAAkAAQAAAAEAAFARAAoAAQABAAEAAFACAA0AAQACAAEAAAADAA0AAQACAAEAAAAEAA0AAQACAAEAAAAEAA4AAQACAAEAAAAEAAwAAQACAAAAAAACAAwAAQACAAAAAGAFAA4AAQABAAEAAAAFAA0AAQABAAEAAGAEAAsAAQABAAAAAGADAAsAAQAAAAEAADABAA0AAQAAAAEAAFABAA4AAQAAAAEAAFACAA4AAQACAAEAAAAEAA8AAQAAAAEAAAADAA8AAQABAAEAAAACAA8AAQABAAEAAFAaAAwAAQACAAEAAAAbAA0AAQACAAEAAAAbAAwAAQACAAAAAAAaAA0AAQACAAEAAAAaAA4AAQAAAAEAAAAbAA4AAQAAAAEAAAAZAA0AAQABAAEAAFAZAAwAAQABAAEAADAaAAsAAQABAAAAAGAgAAsAAQACAAEAAAAgAAwAAQACAAEAAAAhAAwAAQACAAEAAAAhAA0AAQACAAEAAAAhAA4AAQACAAEAAAAgAA0AAQACAAAAADAhAAoAAQABAAEAAGAgAAoAAQABAAEAADAfAAwAAQAAAAEAAFAfAAsAAQABAAAAADAgAA4AAQABAAEAAFAiAAwAAQABAAAAAAAiAAsAAQAAAAEAAGAiAA0AAQAAAAEAAGAiAA4AAQAAAAEAAGAQABYAAQACAAEAAAAQABcAAQACAAEAAAARABcAAQACAAEAAAASABcAAQACAAEAAAASABYAAQACAAEAAAASABUAAQACAAEAAAARABYAAQACAAEAAAARABUAAQACAAAAAGAPABYAAQAAAAEAAFAQABgAAQAAAAEAAAARABgAAQAAAAEAAAATABgAAQABAAEAAAATABcAAQABAAAAAAATABYAAQABAAAAAAASABgAAQABAAEAAFASABQAAQABAAAAAGANABUAAQABAAAAAGANABcAAQAAAAEAAAAZABoAAQAAAAEAAAAaABkAAQABAAAAAAAaABoAAQABAAEAAAAQAB0AAQACAAAAAAAQAB4AAQACAAEAAAAPAB0AAQACAAEAAAAPABwAAQABAAAAAGAPAB8AAQAAAAEAAAAOAB4AAQABAAAAADAOAB0AAQABAAEAADAQAB8AAQABAAAAAFARAB4AAQAAAAEAAGADAB0AAQACAAEAAAACAB0AAQACAAEAAAACAB4AAQACAAEAAAADAB4AAQACAAEAAAAEABkAAQACAAEAAAADABkAAQACAAEAAAADABoAAQACAAEAAAADABsAAQACAAEAAAAEABsAAQACAAEAAAAEABoAAQACAAEAAAAFABkAAQACAAEAAAAFABoAAQACAAAAAFAFABsAAQAAAAEAAGAGABkAAQAAAAEAAGADABgAAQAAAAEAADACABoAAQAAAAEAAFACABkAAQAAAAEAAFACABsAAQAAAAEAAFAEABgAAQABAAEAAGAFABgAAQABAAEAADAGABgAAQABAAEAAGADABwAAQAAAAEAAAAEABwAAQAAAAEAAAA3ABQAAQACAAEAAAA2ABQAAQACAAEAAAA2ABUAAQACAAEAAAA2ABYAAQACAAEAAAA3ABYAAQACAAEAAAA3ABcAAQAAAAEAAAA2ABcAAQAAAAEAAAA1ABYAAQAAAAEAAFA1ABUAAQAAAAEAAFA1ABQAAQAAAAEAAFA3ABUAAQABAAAAAAA3ABMAAQACAAAAAAA2ABMAAQACAAAAAGAvABYAAQACAAEAAAAvABcAAQACAAEAAAAvABgAAQACAAEAAAAvABkAAQACAAEAAAAwABkAAQACAAEAAAAwABgAAQACAAEAAAAwABcAAQACAAEAAAAwABYAAQACAAEAAAAxABYAAQABAAAAAAAxABkAAQAAAAEAAGAxABcAAQABAAAAAAAxABgAAQABAAAAAAAuABgAAQAAAAEAAFAuABcAAQAAAAEAAFAvABUAAQACAAAAAGAwABUAAQACAAAAAAAuABYAAQAAAAEAAFAuABUAAQABAAEAADAvABoAAQABAAEAAFAwABoAAQABAAEAAAAuABkAAQAAAAEAAFAxAAQAAQACAAEAAAAxAAUAAQACAAEAAAAwAAUAAQACAAEAAAAvAAUAAQACAAEAAAAuAAUAAQACAAEAAAAtAAYAAQACAAEAAAA5AAgAAQACAAEAAAA4AAgAAQACAAEAAAA4AAkAAQACAAEAAAA3AAkAAQACAAEAAAA2AAkAAQACAAEAAAA1AAkAAQACAAEAAAA0AAkAAQACAAEAAAA0AAoAAQACAAEAAAAzAAoAAQACAAEAAAAuAAoAAQACAAEAAAAvAAoAAQACAAEAAAAwAAoAAQACAAEAAAAwAAsAAQACAAEAAAAxAAsAAQACAAEAAAAvAAsAAQACAAAAADAuAAYAAQACAAAAAFAtAAUAAQACAAAAAGAtAAcAAQABAAEAAAAwAAYAAQABAAEAAAAvAAYAAQABAAEAAFAyAAUAAQABAAAAAAAwAAQAAQACAAAAAGAuAAQAAQABAAAAAGAvAAQAAQABAAAAAGA2AAgAAQABAAAAAGA1AAgAAQABAAAAAGA1AAoAAQACAAAAAFA2AAoAAQABAAAAAFA3AAgAAQACAAAAAGA5AAkAAQACAAAAAFAzAAkAAQACAAAAAGA3AAoAAQABAAEAAAA0AAsAAQAAAAEAAAAyAAoAAQAAAAEAAFAzAAsAAQABAAAAAFA=")
 tile_set = SubResource("TileSet_bc0is")
 
-[node name="GameMenu" parent="." instance=ExtResource("2_h3622")]
+[node name="GameMenu" parent="." node_paths=PackedStringArray("LayerManager") instance=ExtResource("4_rf0iy")]
 LocationUponMainMenuButtonPress = "uid://48ty5w50jdko"
+LayerManager = NodePath("../LayerManager")
 
-[node name="LayerManager" parent="." instance=ExtResource("2_3kaay")]
+[node name="LayerManager" parent="." instance=ExtResource("5_bhgdr")]
 XBoundary = 32
 YBoundary = 32
-WalletResource = ExtResource("3_egnq0")
+WalletResource = ExtResource("6_jbnxs")
 
-[node name="MoveableCamera" parent="." instance=ExtResource("3_h3622")]
+[node name="MoveableCamera" parent="." instance=ExtResource("7_xhkf7")]
 ZoomSpeed = 40.0

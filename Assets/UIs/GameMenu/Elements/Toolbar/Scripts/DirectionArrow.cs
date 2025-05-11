@@ -4,16 +4,17 @@ using drillex.Assets.Entities.LayerManager;
 
 public partial class DirectionArrow : TextureRect
 {
-    private LayerManager LayerManager;
+    public LayerManager LayerManager {get; set;}
     private Image _image;
-    public override void _Ready()
+    public override async void _Ready()
     {
+        await ToSignal(Owner.Owner, "ready");
         _image = Texture.GetImage();
-        LayerManager = (LayerManager)GetNode("/root/TestingStage/LayerManager");
         LayerManager.RotationChanged += OnRotationChanged;
             
         Rotation = 0;
     }
+    
     private void OnRotationChanged(int rotationID)
     {
         Image temp = new Image();

@@ -3,7 +3,7 @@ using Godot;
 public partial class Material : Area2D
 {
     private ulong _monetaryValue;
-    public int UpgradeCount { get; set; }
+    public uint UpgradeCount { get; set; }
     
     [Export]
     public ulong MonetaryValue
@@ -11,8 +11,12 @@ public partial class Material : Area2D
         get => (ulong)Mathf.Ceil(_monetaryValue * Multiplier);
         set => _monetaryValue = value;
     }
-    
-    public float Multiplier { get; set; }
+
+    public float Multiplier
+    {
+        get;
+        set => field = value >= 0 ? value : field;
+    }
     
     public override void _Ready()
     {

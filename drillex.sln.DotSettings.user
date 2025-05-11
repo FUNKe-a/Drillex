@@ -1,20 +1,9 @@
 ﻿<wpf:ResourceDictionary xml:space="preserve" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:s="clr-namespace:System;assembly=mscorlib" xmlns:ss="urn:shemas-jetbrains-com:settings-storage-xaml" xmlns:wpf="http://schemas.microsoft.com/winfx/2006/xaml/presentation">
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ADictionary_00602_002Ecs_002Fl_003AC_0021_003FUsers_003FRober_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F08f0ea1144634eedbe3a87b9762ef1dd4bd200_003Fb2_003Fced138d4_003FDictionary_00602_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003Adrillex_002EAssets_002EEntities_002ELayerManager_002ELayerManager_005FScriptMethods_002Egenerated_002Ecs_002Fl_003AC_0021_003FUsers_003FRober_003FAppData_003FRoaming_003FJetBrains_003FRider2024_002E3_003Fresharper_002Dhost_003FSourcesCache_003Feea09fe54535abeffbaafcd9af4c8db519a18db_003Fdrillex_002EAssets_002EEntities_002ELayerManager_002ELayerManager_005FScriptMethods_002Egenerated_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=1737bf83_002Db8f5_002D4356_002D9347_002D7bc94fca9e78/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" IsActive="True" Name="Success" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;VsTest::E679D3D4-D257-4DF0-A170-4191185370D9::net8.0::executor://gdunit4.testadapter/#Examples.Example.Success&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	<s:String x:Key="/Default/CodeInspection/ExcludedFiles/FilesAndFoldersToSkip2/=7020124F_002D9FFC_002D4AC3_002D8F3D_002DAAB8E0240759_002Ff_003ARequireGodotRuntimeAttribute_002Ecs_002Fl_003AC_0021_003FUsers_003FRober_003FAppData_003FRoaming_003FJetBrains_003FRider2025_002E1_003Fresharper_002Dhost_003FDecompilerCache_003Fdecompiler_003F77c7d0bc0fda439b9568a1910873fe8751c00_003Fc9_003F88110a74_003FRequireGodotRuntimeAttribute_002Ecs/@EntryIndexedValue">ForceIncluded</s:String>
 	
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=ac8bb369_002D0f12_002D4386_002D9634_002D815ec7b298f7/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Success #2" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;VsTest::E679D3D4-D257-4DF0-A170-4191185370D9::net8.0::executor://gdunit4.testadapter/#Examples.Example.Success&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
-	<s:String x:Key="/Default/Environment/UnitTesting/UnitTestSessionStore/Sessions/=bce58e9d_002D5c7c_002D4f36_002D9193_002Dec0d75e45bbe/@EntryIndexedValue">&lt;SessionState ContinuousTestingMode="0" Name="Example" xmlns="urn:schemas-jetbrains-com:jetbrains-ut-session"&gt;&#xD;
-  &lt;TestAncestor&gt;&#xD;
-    &lt;TestId&gt;VsTest::E679D3D4-D257-4DF0-A170-4191185370D9::net8.0::executor://gdunit4.testadapter/#Examples.Example&lt;/TestId&gt;&#xD;
-  &lt;/TestAncestor&gt;&#xD;
-&lt;/SessionState&gt;</s:String>
+	
+	
+	
 	</wpf:ResourceDictionary>

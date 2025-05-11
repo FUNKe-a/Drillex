@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://ddbh8kwtpiybn"]
+
+[ext_resource type="PackedScene" uid="uid://b86hxsqegyxqm" path="res://Assets/UIs/GameMenu/GameMenu.tscn" id="1_n4ir6"]
+[ext_resource type="PackedScene" uid="uid://dfq2mw3hbmp8h" path="res://Assets/Entities/LayerManager/LayerManager.tscn" id="2_b1jf4"]
+[ext_resource type="Resource" uid="uid://d4ka0bc8u1pwr" path="res://Assets/Resources/Wallet.tres" id="3_85egw"]
+
+[node name="TestingScene" type="Node2D"]
+
+[node name="GameMenu" parent="." node_paths=PackedStringArray("LayerManager") instance=ExtResource("1_n4ir6")]
+LocationUponMainMenuButtonPress = "uid://48ty5w50jdko"
+LayerManager = NodePath("../LayerManager")
+
+[node name="LayerManager" parent="." instance=ExtResource("2_b1jf4")]
+WalletResource = ExtResource("3_85egw")
