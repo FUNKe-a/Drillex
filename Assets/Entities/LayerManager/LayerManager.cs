@@ -270,6 +270,12 @@ public partial class LayerManager : Node2D
 			upgradeMenu.ShowUpgradeMenu();
 	}
 
+	public override void _ExitTree()
+	{
+		if (_cachedUmMoneyCheck is not null)
+			WalletResource.MoneyChanged -= _cachedUmMoneyCheck;
+	}
+
 	private void UpdateSelectedTileType(TileType tileType) =>
 		_selectedTileType = tileType;
 }
