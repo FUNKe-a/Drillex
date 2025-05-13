@@ -1,5 +1,4 @@
 using Godot;
-
 namespace MaterialUnitTests;
 
 using GdUnit4;
@@ -26,7 +25,7 @@ public class MaterialUnitTest
     }
 
     [TestCase]
-    public void MonetaryValue_WithMultiplier_AppliesCorrectly()
+    public void MonetaryValue_WithMultiplier_ValueGetsMultiplied()
     {
         _testMaterial.MonetaryValue = 20;
         _testMaterial.Multiplier = 2;

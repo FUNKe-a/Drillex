@@ -42,6 +42,8 @@ enabled=PackedStringArray("res://addons/gdUnit4/plugin.cfg")
 
 settings/test/test_lookup_folder="UnitTests"
 settings/test/test_suite_naming_convention=2
+settings/test/test_discovery=true
+ui/toolbar/run_overall=true
 
 [input]
 
