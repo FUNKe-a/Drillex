@@ -5,7 +5,6 @@ using GdUnit4;
 using static GdUnit4.Assertions;
 
 [TestSuite]
-[RequireGodotRuntime]
 public class MaterialUnitTest
 {
     private Material _testMaterial;
@@ -24,13 +23,14 @@ public class MaterialUnitTest
         _testMaterial.Position = Vector2.Zero;
     }
 
-    [TestCase]
-    public void MonetaryValue_WithMultiplier_ValueGetsMultiplied()
+    [TestCase(20, 2, 40)]
+    [TestCase(30, 2, 60)]
+    public void MonetaryValue_WithMultiplier_ValueGetsMultiplied(int monetaryValue, float multiplier, int expected)
     {
-        _testMaterial.MonetaryValue = 20;
-        _testMaterial.Multiplier = 2;
+        _testMaterial.MonetaryValue = (ulong)monetaryValue;
+        _testMaterial.Multiplier = multiplier;
         
-        AssertInt((int)_testMaterial.MonetaryValue).IsEqual(40);
+        AssertInt((int)_testMaterial.MonetaryValue).IsEqual(expected);
     }
 
     [TestCase]

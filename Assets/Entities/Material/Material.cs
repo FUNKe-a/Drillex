@@ -3,6 +3,7 @@ using Godot;
 public partial class Material : Area2D
 {
     private ulong _monetaryValue;
+    private float _multiplier;
     public uint UpgradeCount { get; set; }
     
     [Export]
@@ -14,8 +15,8 @@ public partial class Material : Area2D
 
     public float Multiplier
     {
-        get;
-        set => field = value >= 0 ? value : field;
+        get => _multiplier;
+        set => _multiplier = value >= 0 ? value : _multiplier;
     }
     
     public override void _Ready()

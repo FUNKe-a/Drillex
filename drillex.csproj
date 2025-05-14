@@ -1,7 +1,7 @@
 <Project Sdk="Godot.NET.Sdk/4.4.1">
   <PropertyGroup>
     <TargetFramework>net8.0</TargetFramework>
-    <LangVersion>preview</LangVersion>
+    <LangVersion>11</LangVersion>
     <CopyLocalLockFileAssemblies>true</CopyLocalLockFileAssemblies>
     <EnableDynamicLoading>true</EnableDynamicLoading>
   </PropertyGroup>
@@ -10,11 +10,7 @@
     <Content Include="Stages\PlayStages\.gitkeep" />
     <Content Include="Stages\PlayStages\TestingStage\TestingStage.tscn" />
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.9.0" />
-    <PackageReference Include="gdUnit4.api" Version="4.4.0-rc*" />
-    <PackageReference Include="gdUnit4.test.adapter" Version="2.1.0-rc*" />
-    <PackageReference Include="gdUnit4.analyzers" Version="1.0.0-rc*">
-    <PrivateAssets>all</PrivateAssets>
-    <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="gdUnit4.api" Version="4.3.*" />
+    <PackageReference Include="gdUnit4.test.adapter" Version="2.0.0" />
   </ItemGroup>
 </Project>
