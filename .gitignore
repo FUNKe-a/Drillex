@@ -17,3 +17,5 @@ mono_crash.*.json
 # ide specific
 .idea/
 .vs/
+
+drillex.sln.DotSettings.user
