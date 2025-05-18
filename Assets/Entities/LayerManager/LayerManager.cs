@@ -266,7 +266,7 @@ public partial class LayerManager : Node2D
 			);
 		}	
 		
-		if (!upgradeMenu.Visible)
+		if (!upgradeMenu.IsShopOpen)
 			upgradeMenu.ShowUpgradeMenu();
 	}
 

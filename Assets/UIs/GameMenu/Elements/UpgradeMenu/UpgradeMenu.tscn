@@ -1,100 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://tcw74q24ttgg"]
+[gd_scene load_steps=5 format=3 uid="uid://tcw74q24ttgg"]
 
 [ext_resource type="Script" uid="uid://kic2qsmli103" path="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/UpgradeMenu.cs" id="1_1sum4"]
 [ext_resource type="Texture2D" uid="uid://bx1bsiw5xe8js" path="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/Textures/UpgradeBack.png" id="3_jg54d"]
 [ext_resource type="Texture2D" uid="uid://iv5cgjjinywg" path="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/Textures/x button.png" id="4_8k0nb"]
 
 [sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_apqww"]
-
-[sub_resource type="Animation" id="Animation_miyuk"]
-resource_name = "CloseUpgradeMenu"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UpgradeMenu:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0.1),
-"transitions": PackedFloat32Array(2.37841),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UpgradeMenu:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(760, 120), Vector2(960, 120)]
-}
-
-[sub_resource type="Animation" id="Animation_kkpti"]
-resource_name = "OpenUpgradeMenu"
-length = 0.1
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UpgradeMenu:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UpgradeMenu:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(960, 120), Vector2(760, 120)]
-}
-
-[sub_resource type="Animation" id="Animation_apqww"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("UpgradeMenu:visible")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("UpgradeMenu:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(960, 120)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cr5rp"]
-_data = {
-&"CloseUpgradeMenu": SubResource("Animation_miyuk"),
-&"OpenUpgradeMenu": SubResource("Animation_kkpti"),
-&"RESET": SubResource("Animation_apqww")
-}
 
 [node name="UpgradeMenu" type="VBoxContainer"]
 material = SubResource("CanvasItemMaterial_apqww")
@@ -104,8 +14,9 @@ anchor_left = 1.0
 anchor_top = 0.5
 anchor_right = 1.0
 anchor_bottom = 0.5
+offset_left = 32.0
 offset_top = -150.0
-offset_right = 200.0
+offset_right = 232.0
 offset_bottom = 150.0
 grow_horizontal = 0
 grow_vertical = 2
@@ -170,12 +81,6 @@ grow_horizontal = 0
 scale = Vector2(0.44, 0.44)
 pivot_offset = Vector2(60, 0)
 icon = ExtResource("4_8k0nb")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-root_node = NodePath("../..")
-libraries = {
-&"": SubResource("AnimationLibrary_cr5rp")
-}
 
 [connection signal="pressed" from="TextureRect/Button" to="." method="UpgradeButtonPressed"]
 [connection signal="pressed" from="TextureRect/CloseUpgrade" to="." method="CloseUpgradePressed"]

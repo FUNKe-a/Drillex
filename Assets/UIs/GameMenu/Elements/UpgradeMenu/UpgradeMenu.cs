@@ -1,6 +1,7 @@
 using drillex.Common.Scripts;
 using Godot;
 using System;
+using System.Reflection;
 
 
 public partial class UpgradeMenu : VBoxContainer
@@ -10,15 +11,18 @@ public partial class UpgradeMenu : VBoxContainer
 	private Label _upgradeText;
 	private Label _priceText;
 	private AnimationPlayer _animPlayer;
-	
+	private Vector2 _startingPosition;
+
+	public bool IsShopOpen { get; private set; }
+
 	public override void _Ready()
 	{
 		_upgradeButton = GetNode<Button>("TextureRect/Button");
 		_upgradeMenu = GetNode<VBoxContainer>(".");
 		_upgradeText = GetNode<Label>("TextureRect/Label");
 		_priceText = GetNode<Label>("TextureRect/PriceTag");
-		_upgradeMenu.Visible = false;
-		_animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		_startingPosition = Position;
+		//_animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	public void UpdateMenuData<T>(T item) where T : IUpgradable
@@ -33,9 +37,25 @@ public partial class UpgradeMenu : VBoxContainer
 	public void ConnectToUpgradeButtonPressed(Action uponButtonPress) =>
 		GetNode<Button>("TextureRect/Button").Pressed += uponButtonPress;
 
-	private void CloseUpgradePressed() =>
-		_animPlayer.Play("CloseUpgradeMenu");
+	private void CloseUpgradePressed()
+	{
+		var tween = CreateTween();
+		Vector2 end = _startingPosition;
 
-	public void ShowUpgradeMenu() =>
-			_animPlayer.Play("OpenUpgradeMenu");
+		tween.TweenProperty(this, "position", end, 0.5f)
+			.SetEase(Tween.EaseType.In)
+			.SetTrans(Tween.TransitionType.Quad);
+		IsShopOpen = false;
+	}
+
+	public void ShowUpgradeMenu()
+	{
+		var tween = CreateTween();
+		Vector2 end = _startingPosition - new Vector2(Size.X + 64, 0);
+
+		tween.TweenProperty(this, "position", end, 0.5f)
+			.SetEase(Tween.EaseType.Out)
+			.SetTrans(Tween.TransitionType.Quad);
+		IsShopOpen = true;
+	}
 }
