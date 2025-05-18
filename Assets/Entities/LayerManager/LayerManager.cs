@@ -238,9 +238,6 @@ public partial class LayerManager : Node2D
 	{
 		var upgradeMenu = _gameMenu.GetUpgradeMenu();
 		
-		if (_cachedUpgradeBuilding is not null)
-			GD.Print(_cachedUpgradeBuilding.Equals(building));
-		
 		if (_cachedUpgradeBuilding is null || 
 		    !_cachedUpgradeBuilding.Equals(building))
 		{
