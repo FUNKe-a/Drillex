@@ -32,7 +32,7 @@ public partial class UpgradeMenu : VBoxContainer
 		_priceText.AddThemeColorOverride("font_color", color);
 
 	public void ConnectToUpgradeButtonPressed(Action uponButtonPress) =>
-		GetNode<Button>("TextureRect/Button").Pressed += uponButtonPress;
+		GetNode<UpgradeButton>("TextureRect/Button").ConnectToUpgradeButtonPressed(uponButtonPress);
 
 	private void CloseUpgradePressed()
 	{

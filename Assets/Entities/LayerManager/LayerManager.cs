@@ -122,6 +122,7 @@ public partial class LayerManager : Node2D
 					selectedBuilding = _upgraderLayer.GetUpgrader(mapPosition);
 					break;
 			}
+			
 			if (selectedBuilding is not null)
 				UpdateGameMenuBehaviour(selectedBuilding);
 		}
@@ -237,11 +238,15 @@ public partial class LayerManager : Node2D
 	{
 		var upgradeMenu = _gameMenu.GetUpgradeMenu();
 		
+		if (_cachedUpgradeBuilding is not null)
+			GD.Print(_cachedUpgradeBuilding.Equals(building));
+		
 		if (_cachedUpgradeBuilding is null || 
-		    (building is not null && !_cachedUpgradeBuilding.Equals(building)))
+		    !_cachedUpgradeBuilding.Equals(building))
 		{
 			WalletResource.MoneyChanged -= _cachedUmMoneyCheck;
 			_cachedUpgradeBuilding = building;
+			
 			_cachedUmMoneyCheck = () =>
 			{
 				upgradeMenu.ChangePriceFontColor(
@@ -249,11 +254,11 @@ public partial class LayerManager : Node2D
 						? new Color("00ff00")
 						: new Color("ff0000"));
 			};
+			
 			_cachedUmMoneyCheck();
 			WalletResource.MoneyChanged += _cachedUmMoneyCheck;
 			
 			upgradeMenu.UpdateMenuData(building);
-
 			upgradeMenu.ConnectToUpgradeButtonPressed(() =>
 				{
 					if (WalletResource.TrySpend(building.UpgradePrice) && 
