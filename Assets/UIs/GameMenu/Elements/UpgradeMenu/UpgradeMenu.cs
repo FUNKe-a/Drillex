@@ -6,7 +6,6 @@ using System.Reflection;
 
 public partial class UpgradeMenu : VBoxContainer
 {
-	private static VBoxContainer _upgradeMenu;
 	private Button _upgradeButton;
 	private Label _upgradeText;
 	private Label _priceText;
@@ -18,11 +17,9 @@ public partial class UpgradeMenu : VBoxContainer
 	public override void _Ready()
 	{
 		_upgradeButton = GetNode<Button>("TextureRect/Button");
-		_upgradeMenu = GetNode<VBoxContainer>(".");
 		_upgradeText = GetNode<Label>("TextureRect/Label");
 		_priceText = GetNode<Label>("TextureRect/PriceTag");
 		_startingPosition = Position;
-		//_animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
 	}
 
 	public void UpdateMenuData<T>(T item) where T : IUpgradable
@@ -51,7 +48,7 @@ public partial class UpgradeMenu : VBoxContainer
 	public void ShowUpgradeMenu()
 	{
 		var tween = CreateTween();
-		Vector2 end = _startingPosition - new Vector2(Size.X + 64, 0);
+		Vector2 end = _startingPosition - new Vector2(Size.X + 48, 0);
 
 		tween.TweenProperty(this, "position", end, 0.5f)
 			.SetEase(Tween.EaseType.Out)

@@ -7,6 +7,7 @@ public partial class ShopPanel : Panel
 	private bool _isShopOpen;
 	private Panel _tileShopPanel;
 	private VBoxContainer _tileButtonContainer;
+	private Vector2 _startingPosition;
 	
 	//temp
 	private readonly Dictionary<TileType, int> _tilePrices = new()
@@ -41,6 +42,8 @@ public partial class ShopPanel : Panel
 			else GD.PrintErr($"Icon not found for tile type: {tileType}");
 
 			_tileButtonContainer.AddChild(tileButton);
+
+			_startingPosition = Position;
 		}
 	}
 	
@@ -63,10 +66,8 @@ public partial class ShopPanel : Panel
 	private void ShowTileSelectionMenu()
 	{
 		var tween = CreateTween();
-		Vector2 start = new Vector2(-Size.X, Position.Y);
-		Vector2 end = new Vector2(20, Position.Y);
+		Vector2 end = _startingPosition + new Vector2(Size.X + 48, 0);
 
-		Position = start;
 		tween.TweenProperty(this, "position", end, 0.5f)
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Quad);
@@ -76,9 +77,9 @@ public partial class ShopPanel : Panel
 	private void HideTileSelectionMenu()
 	{
 		var tween = CreateTween();
-		Vector2 offscreen = new Vector2(-Size.X, Position.Y);
+		Vector2 end = _startingPosition;
 
-		tween.TweenProperty(this, "position", offscreen, 0.5f)
+		tween.TweenProperty(this, "position", end, 0.5f)
 			.SetEase(Tween.EaseType.In)
 			.SetTrans(Tween.TransitionType.Quad);
 		_isShopOpen = false;
