@@ -34,6 +34,10 @@ window/stretch/scale_mode="integer"
 
 project/assembly_name="drillex"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/AsepriteWizard/plugin.cfg")
+
 [input]
 
 Rotate={

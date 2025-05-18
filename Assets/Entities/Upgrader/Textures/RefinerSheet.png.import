@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b65nxgsssjbmg"
-path="res://.godot/imported/Upgrader.png-7bbdb2741f4769dbce7b0ca7776fc48e.ctex"
+uid="uid://dyecwamt2nr6t"
+path="res://.godot/imported/RefinerSheet.png-c17273b4bb6492b96e831dafe61a5775.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Entities/Upgrader/Textures/Upgrader.png"
-dest_files=["res://.godot/imported/Upgrader.png-7bbdb2741f4769dbce7b0ca7776fc48e.ctex"]
+source_file="res://Assets/Entities/Upgrader/Textures/RefinerSheet.png"
+dest_files=["res://.godot/imported/RefinerSheet.png-c17273b4bb6492b96e831dafe61a5775.ctex"]
 
 [params]
 

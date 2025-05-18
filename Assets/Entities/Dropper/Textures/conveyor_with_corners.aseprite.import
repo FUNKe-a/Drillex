@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://bxbeqe8y5sshr"
+path="res://.godot/imported/conveyor_with_corners.aseprite-eddc9ddf4eabf03a0d3f1ce564e5a064.res"
+
+[deps]
+
+source_file="res://Assets/Entities/Dropper/Textures/conveyor_with_corners.aseprite"
+dest_files=["res://.godot/imported/conveyor_with_corners.aseprite-eddc9ddf4eabf03a0d3f1ce564e5a064.res"]
+
+[params]
+
