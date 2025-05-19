@@ -12,9 +12,9 @@ func _process(_delta):
 	pass
 	
 func _unhandled_input(event: InputEvent):
-	if event.is_action_pressed("Camera_pan"):
+	if event.is_action_pressed("CameraPan"):
 		mouse_held = true
-	if event.is_action_released("Camera_pan"):
+	if event.is_action_released("CameraPan"):
 		mouse_held = false
 
 func Pan():
