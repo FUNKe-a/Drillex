@@ -4,7 +4,7 @@ using System;
 using System.Reflection;
 
 
-public partial class UpgradeMenu : VBoxContainer
+public partial class UpgradeMenu : Panel
 {
 	private Button _upgradeButton;
 	private Label _upgradeText;
@@ -16,9 +16,9 @@ public partial class UpgradeMenu : VBoxContainer
 
 	public override void _Ready()
 	{
-		_upgradeButton = GetNode<Button>("TextureRect/Button");
-		_upgradeText = GetNode<Label>("TextureRect/Label");
-		_priceText = GetNode<Label>("TextureRect/PriceTag");
+		_upgradeButton = GetNode<Button>("Button");
+		_upgradeText = GetNode<Label>("Label");
+		_priceText = GetNode<Label>("PriceTag");
 		_startingPosition = Position;
 	}
 
@@ -32,7 +32,7 @@ public partial class UpgradeMenu : VBoxContainer
 		_priceText.AddThemeColorOverride("font_color", color);
 
 	public void ConnectToUpgradeButtonPressed(Action uponButtonPress) =>
-		GetNode<UpgradeButton>("TextureRect/Button").ConnectToUpgradeButtonPressed(uponButtonPress);
+		GetNode<UpgradeButton>("Button").ConnectToUpgradeButtonPressed(uponButtonPress);
 
 	private void CloseUpgradePressed()
 	{

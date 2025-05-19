@@ -69,7 +69,7 @@ namespace drillex.Assets.Entities.Dropper
 
 		public string UpgradeText()
 		{
-			return String.Format("Type: {0}\nSpeed: {1}\n Level: {2}", "Dropper", (100/Delay).ToString(), Level.ToString());
+			return String.Format("Type: {0}\nSpeed: {1}\nLevel: {2}", "Dropper", (100/Delay).ToString(), Level.ToString());
 		}
 	}
 }
