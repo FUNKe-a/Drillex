@@ -1,7 +1,6 @@
-[gd_scene load_steps=4 format=3 uid="uid://ioxn6unmhir"]
+[gd_scene load_steps=3 format=3 uid="uid://ioxn6unmhir"]
 
 [ext_resource type="Script" uid="uid://cjeui0llj6ixx" path="res://Assets/UIs/GameMenu/Elements/ShopPanel/ShopPanel.cs" id="1_7qdnm"]
-[ext_resource type="Theme" uid="uid://cq61ir8gdheh6" path="res://Assets/UIs/GameMenu/Theme/GameMenuTheme.tres" id="1_a7c3a"]
 
 [sub_resource type="Theme" id="Theme_miyuk"]
 
@@ -13,7 +12,6 @@ offset_bottom = 399.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 mouse_force_pass_scroll_events = false
-theme = ExtResource("1_a7c3a")
 script = ExtResource("1_7qdnm")
 
 [node name="ScrollContainer" type="ScrollContainer" parent="."]
