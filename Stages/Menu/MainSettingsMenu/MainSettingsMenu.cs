@@ -9,10 +9,10 @@ public partial class MainSettingsMenu : VBoxContainer
     {
         switch (GetWindow().Size)
         {
-            case (960, 540) :
+            case (960, 544) :
                 GetNode<OptionButton>("ResolutionButton").Selected = 0;
                 break;
-            case (1920, 1080) :
+            case (1920, 1088) :
                 GetNode<OptionButton>("ResolutionButton").Selected = 1;
                 break;
         }
@@ -30,5 +30,11 @@ public partial class MainSettingsMenu : VBoxContainer
                 break;
         }
     }
-    private void OnBackButtonUp() => GetTree().ChangeSceneToFile(MainMenuScene);
+    public Action OnClosed;
+    
+    public void OnBackButtonUp()
+    {
+        OnClosed?.Invoke();
+        QueueFree();
+    }
 }

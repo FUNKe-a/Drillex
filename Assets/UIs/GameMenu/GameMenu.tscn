@@ -8,6 +8,7 @@
 
 [node name="GameMenu" type="CanvasLayer"]
 script = ExtResource("1_ejhe8")
+LocationUponMainMenuButtonPress = "uid://drd023wf3n4dd"
 
 [node name="Toolbar" parent="." instance=ExtResource("2_sooxj")]
 offset_bottom = 41.0

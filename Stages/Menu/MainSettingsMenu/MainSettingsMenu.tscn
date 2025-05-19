@@ -16,6 +16,7 @@ offset_bottom = 66.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 70
+alignment = 1
 script = ExtResource("1_jvl74")
 MainMenuScene = "uid://48ty5w50jdko"
 

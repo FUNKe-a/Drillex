@@ -239,7 +239,7 @@ public partial class LayerManager : Node2D
 		var upgradeMenu = _gameMenu.GetUpgradeMenu();
 		
 		if (_cachedUpgradeBuilding is null || 
-		    !_cachedUpgradeBuilding.Equals(building))
+			!_cachedUpgradeBuilding.Equals(building))
 		{
 			WalletResource.MoneyChanged -= _cachedUmMoneyCheck;
 			_cachedUpgradeBuilding = building;
@@ -259,7 +259,7 @@ public partial class LayerManager : Node2D
 			upgradeMenu.ConnectToUpgradeButtonPressed(() =>
 				{
 					if (WalletResource.TrySpend(building.UpgradePrice) && 
-					    building.Upgrade())
+						building.Upgrade())
 					{
 						upgradeMenu.UpdateMenuData(building);
 						_cachedUmMoneyCheck();
