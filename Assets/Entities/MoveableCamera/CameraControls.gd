@@ -1,9 +1,6 @@
 extends Camera2D
 @export var MaxPanX:= Vector2(0, 300);
 @export var MaxPanY:= Vector2(0, 300);
-@export var minZoom:= Vector2(0.5, 0.5)
-@export var maxZoom:= Vector2(2, 2)
-@export var ZoomSpeed: float
 
 var mouse_held: bool
 

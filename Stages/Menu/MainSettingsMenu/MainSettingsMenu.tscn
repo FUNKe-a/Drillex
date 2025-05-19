@@ -25,9 +25,9 @@ size_flags_vertical = 4
 alignment = 1
 selected = 1
 item_count = 2
-popup/item_0/text = "960x540"
+popup/item_0/text = "960x544"
 popup/item_0/id = 0
-popup/item_1/text = "1920x1080"
+popup/item_1/text = "1920x1088"
 popup/item_1/id = 1
 
 [node name="BackButton" type="Button" parent="."]
