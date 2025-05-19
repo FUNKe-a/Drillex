@@ -18,7 +18,7 @@ tile_map_data = PackedByteArray("AAADAA4AAAAAAAAAAAADAAwAAAAAAAAAAAAQAAoAAAAAAAA
 [node name="Conveyor" parent="." instance=ExtResource("1_tqric")]
 Speed = 40.0
 
-[node name="Dropper" parent="." instance=ExtResource("2_wpoxt")]
+[node name="MiningRig" parent="." instance=ExtResource("2_wpoxt")]
 MaterialScene = ExtResource("3_wpoxt")
 
 [node name="Furnace" parent="." instance=ExtResource("6_r74lc")]

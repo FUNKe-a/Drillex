@@ -61,7 +61,7 @@ public partial class UpgradeArea : Area2D, IUpgradable
     }
 
     public string UpgradeText() =>
-        $"Type: Upgrader\nUpgrade ceiling: {UpgradeCeiling}\nLevel: {_level}";
+        $"Type: Refiner\nUpgrade ceiling: {UpgradeCeiling}\nLevel: {_level}";
 
     public string GetPriceText() =>
         _level == 3 ? "level MAX" : $"Price: ${UpgradePrice}";

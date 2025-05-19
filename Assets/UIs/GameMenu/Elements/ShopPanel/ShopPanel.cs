@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public partial class ShopPanel : Panel
 {
@@ -13,9 +14,9 @@ public partial class ShopPanel : Panel
 	private readonly Dictionary<TileType, int> _tilePrices = new()
 	{
 		{ TileType.Conveyor, 20 },
-		{ TileType.Dropper, 60 },
+		{ TileType.MiningRig, 60 },
 		{ TileType.Furnace, 60 },
-		{ TileType.Upgrader, 50 },
+		{ TileType.Refiner, 50 },
 	};
 	
 	public override void _Ready()
@@ -30,7 +31,8 @@ public partial class ShopPanel : Panel
 
 			int price = _tilePrices.GetValueOrDefault(tileType, 0);
 
-			tileButton.Text = $"{tileType} (${price})";
+			var name = SplitCamelCase(tileType.ToString());
+			tileButton.Text = $"{name} (${price})";
 			tileButton.Name = tileType.ToString();
 
 			string iconPath = $"res://Assets/Icons/{tileType}.png";
@@ -45,7 +47,18 @@ public partial class ShopPanel : Panel
 			_startingPosition = Position;
 		}
 	}
-	
+
+	private string SplitCamelCase(string input)
+	{
+		string separatedString = Regex.Replace(input, "([a-z])([A-Z])", "$1 $2");
+		string[] words = separatedString.Split(' ');
+
+		for (int i = 1; i < words.Length; i++)
+			words[i] = words[i].ToLower();
+		
+		return string.Join(" ", words);
+	}
+
 	public void OnOpenShopButtonPressed()
     {
     	if (_isShopOpen) HideTileSelectionMenu();

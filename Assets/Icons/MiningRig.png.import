@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://d2yxgx55qg3hc"
-path="res://.godot/imported/Dropper.png-37f856827ccae98ce2a6b79996aa8b57.ctex"
+path="res://.godot/imported/MiningRig.png-50d012b4f3d46378a854d605573abd19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/Icons/Dropper.png"
-dest_files=["res://.godot/imported/Dropper.png-37f856827ccae98ce2a6b79996aa8b57.ctex"]
+source_file="res://Assets/Icons/MiningRig.png"
+dest_files=["res://.godot/imported/MiningRig.png-50d012b4f3d46378a854d605573abd19.ctex"]
 
 [params]
 
