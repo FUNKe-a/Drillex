@@ -1,7 +1,16 @@
-[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cq61ir8gdheh6"]
+[gd_resource type="Theme" load_steps=3 format=3 uid="uid://cq61ir8gdheh6"]
 
 [ext_resource type="FontFile" uid="uid://hrth8e586jn2" path="res://Common/Fonts/BasicPupWhite.fnt" id="1_jsohq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsohq"]
+bg_color = Color(0, 0.6, 0.31, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
 
 [resource]
 default_font = ExtResource("1_jsohq")
 default_font_size = 18
+Button/colors/font_hover_color = Color(0.9108, 0.8415, 0.99, 1)
+Button/styles/hover = SubResource("StyleBoxFlat_jsohq")

@@ -92,3 +92,5 @@ YBoundary = 32
 WalletResource = ExtResource("3_egnq0")
 
 [node name="MoveableCamera" parent="." instance=ExtResource("3_h3622")]
+MaxPanX = Vector2(0, 320)
+MaxPanY = Vector2(0, 320)

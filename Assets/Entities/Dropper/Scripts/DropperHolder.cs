@@ -42,7 +42,7 @@ namespace drillex.Assets.Entities.Dropper
 		{
 			if (UpgradePrice == 0)
 				return ("level MAX");
-			return String.Format("Price: {0}\u20bf", UpgradePrice);
+			return String.Format("Price: ${0}", UpgradePrice);
 		}
 
 		public bool Upgrade()

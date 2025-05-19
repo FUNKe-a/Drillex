@@ -28,7 +28,7 @@ public partial class ShopPanel : Panel
 
 			Button tileButton = new Button();
 
-			int price = _tilePrices.TryGetValue(tileType, out int value) ? value : 0;
+			int price = _tilePrices.GetValueOrDefault(tileType, 0);
 
 			tileButton.Text = $"{tileType} (${price})";
 			tileButton.Name = tileType.ToString();
@@ -42,7 +42,6 @@ public partial class ShopPanel : Panel
 			else GD.PrintErr($"Icon not found for tile type: {tileType}");
 
 			_tileButtonContainer.AddChild(tileButton);
-
 			_startingPosition = Position;
 		}
 	}

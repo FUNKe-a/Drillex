@@ -17,4 +17,3 @@ theme = ExtResource("3_leoxd")
 theme = ExtResource("3_leoxd")
 
 [node name="ShopPanel" parent="." instance=ExtResource("4_hlpfk")]
-theme = ExtResource("3_leoxd")
