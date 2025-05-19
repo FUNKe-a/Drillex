@@ -17,12 +17,8 @@ public partial class MainMenu : VBoxContainer
 		MainSettingsMenu instance = (MainSettingsMenu)optionsScene.Instantiate();
 
 		if (instance != null)
-		{
-			instance.OnClosed = () =>
-			{
-				box.Visible = true;
-			};
-		}
+			instance.TreeExited += () => box.Visible = true;
+		
 		CanvasLayer root = GetNode<CanvasLayer>("..");
 		root.AddChild(instance, true);
 		GD.Print(instance.Visible);

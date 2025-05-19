@@ -4,15 +4,16 @@ using System;
 public partial class MainSettingsMenu : VBoxContainer
 {
 	[Export(PropertyHint.File, "*.tscn")] public string MainMenuScene;
+	[Export(PropertyHint.File, "*.tscn")] public string KeybindMenuScene;
 
 	public override void _Ready()
 	{
 		switch (GetWindow().Size)
 		{
-			case (960, 540) :
+			case (960, 544) :
 				GetNode<OptionButton>("ResolutionButton").Selected = 0;
 				break;
-			case (1920, 1080) :
+			case (1920, 1088) :
 				GetNode<OptionButton>("ResolutionButton").Selected = 1;
 				break;
 		}
@@ -30,12 +31,16 @@ public partial class MainSettingsMenu : VBoxContainer
                 break;
         }
     }
-    
-    public Action OnClosed;
-    
-    public void OnBackButtonUp()
-    {
-        OnClosed?.Invoke();
+
+    private void OnBackButtonUp() =>
         QueueFree();
+
+    private void OnKeybindMenuButtonUp()
+    {
+	    var scene = GD.Load<PackedScene>(KeybindMenuScene);
+	    Visible = false;
+	    var instance = scene.Instantiate<KeybindSettingsMenu>();
+	    instance.TreeExited += () => Visible = true;
+	    AddSibling(instance);
     }
 }

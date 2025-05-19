@@ -29,7 +29,7 @@ text = "Buildings"
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
-text = "Rotation (R)"
+text = "Rotation"
 label_settings = SubResource("LabelSettings_58dmn")
 
 [node name="DirectionArrow" type="TextureRect" parent="."]

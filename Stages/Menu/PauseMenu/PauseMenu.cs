@@ -4,6 +4,7 @@ using System;
 public partial class PauseMenu : Control
 {
 	[Export(PropertyHint.File, "*.tscn")] public string MainMenuScene;
+	
 	public override void _Ready(){
 		SetProcessMode(ProcessModeEnum.WhenPaused);
 
@@ -27,29 +28,24 @@ public partial class PauseMenu : Control
 
 	private void OnRestartButtonPressed()
 	{
-		GetTree().Paused=false;
+		GetTree().Paused = false;
 		GetTree().ReloadCurrentScene();
 	}
 	private void OnSettingsButtonPressed()
 	{
 		VBoxContainer box = GetNode<VBoxContainer>("VBoxContainer");
-		box.Visible=false;
+		box.Visible = false;
 		var optionsScene = GD.Load<PackedScene>("res://Stages/Menu/MainSettingsMenu/MainSettingsMenu.tscn");
 		var instance = optionsScene.Instantiate();
 
 		if (instance is MainSettingsMenu settingsMenu)
-		{
-			settingsMenu.OnClosed = () =>
-			{
-				box.Visible = true;
-			};
-		}
+			settingsMenu.TreeExited += () => box.Visible = true;
 
 		AddChild(instance, true);
 	}
 
 	private void OnMainMenuButtonPressed(){
-		GetTree().Paused=false;
+		GetTree().Paused = false;
 		GetTree().ChangeSceneToFile(MainMenuScene);
 	}
 }

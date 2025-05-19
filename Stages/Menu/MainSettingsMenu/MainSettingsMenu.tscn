@@ -19,6 +19,7 @@ theme_override_constants/separation = 70
 alignment = 1
 script = ExtResource("1_jvl74")
 MainMenuScene = "uid://48ty5w50jdko"
+KeybindMenuScene = "uid://ckmlg2gxidcro"
 
 [node name="ResolutionButton" type="OptionButton" parent="."]
 layout_mode = 2
@@ -31,9 +32,15 @@ popup/item_0/id = 0
 popup/item_1/text = "1920x1088"
 popup/item_1/id = 1
 
+[node name="KeyBindMenuButton" type="Button" parent="."]
+layout_mode = 2
+text = "Keybing settings
+"
+
 [node name="BackButton" type="Button" parent="."]
 layout_mode = 2
 text = "Back"
 
 [connection signal="item_selected" from="ResolutionButton" to="." method="OnResolutionButtonItemSelected"]
+[connection signal="button_up" from="KeyBindMenuButton" to="." method="OnKeybindMenuButtonUp"]
 [connection signal="button_up" from="BackButton" to="." method="OnBackButtonUp"]
