@@ -30,7 +30,7 @@ public partial class ShopPanel : Panel
 
 			int price = _tilePrices.TryGetValue(tileType, out int value) ? value : 0;
 
-			tileButton.Text = $"{tileType} (${price}\u20bf)";
+			tileButton.Text = $"{tileType} (${price})";
 			tileButton.Name = tileType.ToString();
 
 			string iconPath = $"res://Assets/Icons/{tileType}.png";

@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b86hxsqegyxqm"]
+[gd_scene load_steps=6 format=3 uid="uid://b86hxsqegyxqm"]
 
 [ext_resource type="Script" uid="uid://bfhjitoti0weu" path="res://Assets/UIs/GameMenu/GameMenu.cs" id="1_ejhe8"]
 [ext_resource type="PackedScene" uid="uid://ckr0dbq7iofaa" path="res://Assets/UIs/GameMenu/Elements/Toolbar/Toolbar.tscn" id="2_sooxj"]
+[ext_resource type="Theme" uid="uid://cq61ir8gdheh6" path="res://Assets/UIs/GameMenu/Theme/GameMenuTheme.tres" id="3_leoxd"]
 [ext_resource type="PackedScene" uid="uid://ioxn6unmhir" path="res://Assets/UIs/GameMenu/Elements/ShopPanel/ShopPanel.tscn" id="4_hlpfk"]
 [ext_resource type="PackedScene" uid="uid://tcw74q24ttgg" path="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/UpgradeMenu.tscn" id="6_w5phq"]
 
@@ -10,7 +11,10 @@ script = ExtResource("1_ejhe8")
 
 [node name="Toolbar" parent="." instance=ExtResource("2_sooxj")]
 offset_bottom = 41.0
+theme = ExtResource("3_leoxd")
 
 [node name="UpgradeMenu" parent="." instance=ExtResource("6_w5phq")]
+theme = ExtResource("3_leoxd")
 
 [node name="ShopPanel" parent="." instance=ExtResource("4_hlpfk")]
+theme = ExtResource("3_leoxd")

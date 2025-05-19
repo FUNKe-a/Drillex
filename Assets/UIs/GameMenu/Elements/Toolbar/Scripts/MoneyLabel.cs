@@ -16,7 +16,7 @@ public partial class MoneyLabel : Label
 	
 	private void OnMoneyChanged()
 	{
-		Text = $"Money: {WalletResource.Money}₿";
+		Text = $"Money: ${WalletResource.Money}";
 	}
 
 	public override void _ExitTree()
