@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bx1bsiw5xe8js"
-path="res://.godot/imported/UpgradeBack.png-6b34b2a2381a721454ff82de0fd7cc74.ctex"
+uid="uid://dmy6vo33ukea1"
+path="res://.godot/imported/ExitSprite.png-7e03282fb43c8faf73acea82ae35b152.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/Textures/UpgradeBack.png"
-dest_files=["res://.godot/imported/UpgradeBack.png-6b34b2a2381a721454ff82de0fd7cc74.ctex"]
+source_file="res://Assets/UIs/GameMenu/Elements/UpgradeMenu/Textures/ExitSprite.png"
+dest_files=["res://.godot/imported/ExitSprite.png-7e03282fb43c8faf73acea82ae35b152.ctex"]
 
 [params]
 
