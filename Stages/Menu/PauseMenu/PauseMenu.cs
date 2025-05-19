@@ -7,10 +7,10 @@ public partial class PauseMenu : Control
 	public override void _Ready(){
 		SetProcessMode(ProcessModeEnum.WhenPaused);
 
-		var resumeButton = GetNode<Button>("Container/VBoxContainer/ResumeButton");
-		var restartButton = GetNode<Button>("Container/VBoxContainer/RestartButton");
-		var settingsButton = GetNode<Button>("Container/VBoxContainer/SettingsButton");
-		var mainMenuButton = GetNode<Button>("Container/VBoxContainer/MainMenuButton");
+		var resumeButton = GetNode<Button>("VBoxContainer/ResumeButton");
+		var restartButton = GetNode<Button>("VBoxContainer/RestartButton");
+		var settingsButton = GetNode<Button>("VBoxContainer/SettingsButton");
+		var mainMenuButton = GetNode<Button>("VBoxContainer/MainMenuButton");
 
 		resumeButton.Pressed += OnResumeButtonPressed;
 		restartButton.Pressed += OnRestartButtonPressed;
@@ -32,13 +32,12 @@ public partial class PauseMenu : Control
 	}
 	private void OnSettingsButtonPressed()
 	{
-		VBoxContainer box = GetNode<VBoxContainer>("Container/VBoxContainer");
+		VBoxContainer box = GetNode<VBoxContainer>("VBoxContainer");
 		box.Visible=false;
 		var optionsScene = GD.Load<PackedScene>("res://Stages/Menu/MainSettingsMenu/MainSettingsMenu.tscn");
 		var instance = optionsScene.Instantiate();
 
-		var settingsMenu = instance as MainSettingsMenu;
-		if (settingsMenu != null)
+		if (instance is MainSettingsMenu settingsMenu)
 		{
 			settingsMenu.OnClosed = () =>
 			{
