@@ -13,6 +13,7 @@ public partial class UpgradeArea : Area2D, IUpgradable
     private AnimatedSprite2D _sprite;
 
     private ulong _upgradePrice;
+    private string _animation;
 
     public ulong UpgradePrice
     {
@@ -31,6 +32,7 @@ public partial class UpgradeArea : Area2D, IUpgradable
             if (_sprite.GetAnimation() != "Idle")
                 _sprite.Play("Idle");
         };
+        _animation = "Refine1";
     }
 
     public bool Upgrade()
@@ -43,10 +45,12 @@ public partial class UpgradeArea : Area2D, IUpgradable
                 case 2:
                     UpgradeCeiling += 1;
                     UpgradePrice = 1000;
+                    _animation = "Refine2";
                     break;
                 case 3:
                     UpgradeCeiling += 1;
                     UpgradePrice = 0;
+                    _animation = "Refine3";
                     break;
             }
 
@@ -66,7 +70,7 @@ public partial class UpgradeArea : Area2D, IUpgradable
     {
         if (body is Material mat)
         {
-            _sprite.Play("Refine");
+            _sprite.Play(_animation);
             ulong oreId = mat.GetInstanceId();
 
             if (_upgradeCounts.TryAdd(oreId, 0))
