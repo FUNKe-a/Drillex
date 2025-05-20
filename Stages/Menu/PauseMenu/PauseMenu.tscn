@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://drd023wf3n4dd"]
+
+[ext_resource type="Shader" uid="uid://1khdeeqfpxww" path="res://Stages/Menu/PauseMenu/BlurShader.gdshader" id="1_hacsi"]
+[ext_resource type="Script" uid="uid://bgca7708qgbjs" path="res://Stages/Menu/PauseMenu/PauseMenu.cs" id="1_i4pyx"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_i4pyx"]
+shader = ExtResource("1_hacsi")
+shader_parameter/amount = 2.0
+shader_parameter/darken_amount = 0.6
+
+[node name="PauseMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i4pyx")
+MainMenuScene = "uid://48ty5w50jdko"
+
+[node name="ColorRect" type="ColorRect" parent="."]
+material = SubResource("ShaderMaterial_i4pyx")
+custom_minimum_size = Vector2(960, 544)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -480.0
+offset_top = -270.0
+offset_right = 480.0
+offset_bottom = 270.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -100.0
+offset_right = 100.0
+offset_bottom = 100.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 6
+size_flags_vertical = 4
+theme_override_constants/separation = 20
+
+[node name="ResumeButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Resume"
+
+[node name="RestartButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Restart"
+
+[node name="SettingsButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Settings"
+
+[node name="MainMenuButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+text = "Main Menu"

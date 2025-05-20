@@ -1,0 +1,14 @@
+[remap]
+
+importer="aseprite_wizard.plugin.noop"
+type="PackedDataContainer"
+uid="uid://b4jrjyvnihyuu"
+path="res://.godot/imported/material.aseprite-15d08ff20855269caa6ae2f35fbaa325.res"
+
+[deps]
+
+source_file="res://Common/Textures/material.aseprite"
+dest_files=["res://.godot/imported/material.aseprite-15d08ff20855269caa6ae2f35fbaa325.res"]
+
+[params]
+

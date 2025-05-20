@@ -1,20 +1,22 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 
 public partial class ShopPanel : Panel
 {
 	private bool _isShopOpen;
 	private Panel _tileShopPanel;
 	private VBoxContainer _tileButtonContainer;
+	private Vector2 _startingPosition;
 	
 	//temp
 	private readonly Dictionary<TileType, int> _tilePrices = new()
 	{
 		{ TileType.Conveyor, 20 },
-		{ TileType.Dropper, 60 },
+		{ TileType.MiningRig, 60 },
 		{ TileType.Furnace, 60 },
-		{ TileType.Upgrader, 50 },
+		{ TileType.Refiner, 50 },
 	};
 	
 	public override void _Ready()
@@ -27,9 +29,10 @@ public partial class ShopPanel : Panel
 
 			Button tileButton = new Button();
 
-			int price = _tilePrices.TryGetValue(tileType, out int value) ? value : 0;
+			int price = _tilePrices.GetValueOrDefault(tileType, 0);
 
-			tileButton.Text = $"{tileType} (${price}\u20bf)";
+			var name = SplitCamelCase(tileType.ToString());
+			tileButton.Text = $"{name} (${price})";
 			tileButton.Name = tileType.ToString();
 
 			string iconPath = $"res://Assets/Icons/{tileType}.png";
@@ -41,9 +44,21 @@ public partial class ShopPanel : Panel
 			else GD.PrintErr($"Icon not found for tile type: {tileType}");
 
 			_tileButtonContainer.AddChild(tileButton);
+			_startingPosition = Position;
 		}
 	}
-	
+
+	private string SplitCamelCase(string input)
+	{
+		string separatedString = Regex.Replace(input, "([a-z])([A-Z])", "$1 $2");
+		string[] words = separatedString.Split(' ');
+
+		for (int i = 1; i < words.Length; i++)
+			words[i] = words[i].ToLower();
+		
+		return string.Join(" ", words);
+	}
+
 	public void OnOpenShopButtonPressed()
     {
     	if (_isShopOpen) HideTileSelectionMenu();
@@ -63,10 +78,8 @@ public partial class ShopPanel : Panel
 	private void ShowTileSelectionMenu()
 	{
 		var tween = CreateTween();
-		Vector2 start = new Vector2(-Size.X, Position.Y);
-		Vector2 end = new Vector2(20, Position.Y);
+		Vector2 end = _startingPosition + new Vector2(Size.X + 48, 0);
 
-		Position = start;
 		tween.TweenProperty(this, "position", end, 0.5f)
 			.SetEase(Tween.EaseType.Out)
 			.SetTrans(Tween.TransitionType.Quad);
@@ -76,9 +89,9 @@ public partial class ShopPanel : Panel
 	private void HideTileSelectionMenu()
 	{
 		var tween = CreateTween();
-		Vector2 offscreen = new Vector2(-Size.X, Position.Y);
+		Vector2 end = _startingPosition;
 
-		tween.TweenProperty(this, "position", offscreen, 0.5f)
+		tween.TweenProperty(this, "position", end, 0.5f)
 			.SetEase(Tween.EaseType.In)
 			.SetTrans(Tween.TransitionType.Quad);
 		_isShopOpen = false;

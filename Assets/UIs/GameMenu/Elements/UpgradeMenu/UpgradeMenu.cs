@@ -1,24 +1,25 @@
 using drillex.Common.Scripts;
 using Godot;
 using System;
+using System.Reflection;
 
 
-public partial class UpgradeMenu : VBoxContainer
+public partial class UpgradeMenu : Panel
 {
-	private static VBoxContainer _upgradeMenu;
 	private Button _upgradeButton;
 	private Label _upgradeText;
 	private Label _priceText;
 	private AnimationPlayer _animPlayer;
-	
+	private Vector2 _startingPosition;
+
+	public bool IsShopOpen { get; private set; }
+
 	public override void _Ready()
 	{
-		_upgradeButton = GetNode<Button>("TextureRect/Button");
-		_upgradeMenu = GetNode<VBoxContainer>(".");
-		_upgradeText = GetNode<Label>("TextureRect/Label");
-		_priceText = GetNode<Label>("TextureRect/PriceTag");
-		_upgradeMenu.Visible = false;
-		_animPlayer = GetNode<AnimationPlayer>("AnimationPlayer");
+		_upgradeButton = GetNode<Button>("Button");
+		_upgradeText = GetNode<Label>("Label");
+		_priceText = GetNode<Label>("PriceTag");
+		_startingPosition = Position;
 	}
 
 	public void UpdateMenuData<T>(T item) where T : IUpgradable
@@ -31,11 +32,27 @@ public partial class UpgradeMenu : VBoxContainer
 		_priceText.AddThemeColorOverride("font_color", color);
 
 	public void ConnectToUpgradeButtonPressed(Action uponButtonPress) =>
-		GetNode<Button>("TextureRect/Button").Pressed += uponButtonPress;
+		GetNode<UpgradeButton>("Button").ConnectToUpgradeButtonPressed(uponButtonPress);
 
-	private void CloseUpgradePressed() =>
-		_animPlayer.Play("CloseUpgradeMenu");
+	private void CloseUpgradePressed()
+	{
+		var tween = CreateTween();
+		Vector2 end = _startingPosition;
 
-	public void ShowUpgradeMenu() =>
-			_animPlayer.Play("OpenUpgradeMenu");
+		tween.TweenProperty(this, "position", end, 0.5f)
+			.SetEase(Tween.EaseType.In)
+			.SetTrans(Tween.TransitionType.Quad);
+		IsShopOpen = false;
+	}
+
+	public void ShowUpgradeMenu()
+	{
+		var tween = CreateTween();
+		Vector2 end = _startingPosition - new Vector2(Size.X + 48, 0);
+
+		tween.TweenProperty(this, "position", end, 0.5f)
+			.SetEase(Tween.EaseType.Out)
+			.SetTrans(Tween.TransitionType.Quad);
+		IsShopOpen = true;
+	}
 }

@@ -1,0 +1,51 @@
+[gd_resource type="Theme" load_steps=7 format=3 uid="uid://cq61ir8gdheh6"]
+
+[ext_resource type="FontFile" uid="uid://rttp4p88xapn" path="res://Common/Fonts/BasicPupWhite.fnt" id="1_jsohq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jsohq"]
+bg_color = Color(0.5092, 0.76, 0.55518, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4pxpi"]
+bg_color = Color(0.657932, 0.709867, 0.595538, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6vfkg"]
+bg_color = Color(0.482353, 0.533333, 0.419608, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_k441s"]
+bg_color = Color(0.482353, 0.533333, 0.419608, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+shadow_color = Color(0, 0, 0, 0.458824)
+shadow_size = 3
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hciwl"]
+bg_color = Color(0.36, 0.3072, 0.216, 0.905882)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[resource]
+default_font = ExtResource("1_jsohq")
+default_font_size = 18
+Button/styles/focus = SubResource("StyleBoxFlat_jsohq")
+Button/styles/hover = SubResource("StyleBoxFlat_4pxpi")
+Button/styles/normal = SubResource("StyleBoxFlat_6vfkg")
+Button/styles/pressed = SubResource("StyleBoxFlat_k441s")
+Panel/styles/panel = SubResource("StyleBoxFlat_hciwl")

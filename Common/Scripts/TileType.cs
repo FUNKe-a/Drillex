@@ -2,7 +2,7 @@ public enum TileType
 {
 	NotSelected,
 	Conveyor,
-	Dropper,
+	MiningRig,
 	Furnace,
-	Upgrader
+	Refiner
 }

@@ -16,23 +16,26 @@ offset_top = 10.0
 offset_right = -30.0
 offset_bottom = 8.0
 grow_horizontal = 2
-size_flags_horizontal = 3
 script = ExtResource("1_5awmb")
 
 [node name="OpenShopButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
-size_flags_horizontal = 0
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 1.5
+focus_mode = 0
 text = "Buildings"
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
-size_flags_horizontal = 4
-text = "Rotation (R)"
+size_flags_horizontal = 0
+text = "Rotation"
 label_settings = SubResource("LabelSettings_58dmn")
 
 [node name="DirectionArrow" type="TextureRect" parent="."]
 layout_mode = 2
 size_flags_horizontal = 0
+size_flags_stretch_ratio = 0.0
 texture = ExtResource("1_knxhm")
 expand_mode = 3
 stretch_mode = 3
@@ -45,6 +48,9 @@ script = ExtResource("3_p1ue5")
 WalletResource = ExtResource("4_5awmb")
 
 [node name="MainMenuButton" type="Button" parent="."]
+custom_minimum_size = Vector2(150, 30)
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 1.5
+focus_mode = 0
 text = "Main menu"

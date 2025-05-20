@@ -42,7 +42,7 @@ namespace drillex.Assets.Entities.Dropper
 		{
 			if (UpgradePrice == 0)
 				return ("level MAX");
-			return String.Format("Price: {0}\u20bf", UpgradePrice);
+			return String.Format("Price: ${0}", UpgradePrice);
 		}
 
 		public bool Upgrade()
@@ -69,7 +69,7 @@ namespace drillex.Assets.Entities.Dropper
 
 		public string UpgradeText()
 		{
-			return String.Format("Type: {0}\nSpeed: {1}\n Level: {2}", "Dropper", (100/Delay).ToString(), Level.ToString());
+			return String.Format("Type: {0}\nSpeed: {1}\nLevel: {2}", "Mining rig", (100/Delay).ToString(), Level.ToString());
 		}
 	}
 }

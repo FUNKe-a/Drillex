@@ -45,7 +45,7 @@ public partial class LayerManager : Node2D
 
 		_gameMenu = GetNode<GameMenu>("../GameMenu");
 		_conveyorLayer = GetNode<Conveyor.Conveyor>("Conveyor");
-		_dropperLayer = GetNode<Dropper.Dropper>("Dropper");
+		_dropperLayer = GetNode<Dropper.Dropper>("MiningRig");
 		_furnaceLayer = GetNode<Furnace.Furnace>("Furnace");
 		_upgraderLayer = GetNode<Upgrader.Upgrader>("Upgrade");
 		_rotationID = 0;
@@ -113,17 +113,18 @@ public partial class LayerManager : Node2D
 			{
 				case TileType.Conveyor:
 					break;
-				case TileType.Dropper:
+				case TileType.MiningRig:
 					selectedBuilding = _dropperLayer.GetDropper(mapPosition);
 					break;
 				case TileType.Furnace:
 					break;
-				case TileType.Upgrader:
+				case TileType.Refiner:
 					selectedBuilding = _upgraderLayer.GetUpgrader(mapPosition);
 					break;
 			}
 			
-			UpdateGameMenuBehaviour(selectedBuilding);
+			if (selectedBuilding is not null)
+				UpdateGameMenuBehaviour(selectedBuilding);
 		}
 	}
 
@@ -148,14 +149,14 @@ public partial class LayerManager : Node2D
 						isTileBought = true;
 					}
 					break;
-				case TileType.Dropper :
+				case TileType.MiningRig :
 					if (WalletResource.TrySpend(60))
 					{
 						_dropperLayer.AddDropper(
 							mapPosition, 
 							_rotationID, 
 							_occupiedPositions[mapPosition.X, mapPosition.Y].IsMineable);
-						_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.Dropper;
+						_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.MiningRig;
 						isTileBought = true;
 					}
 					break;
@@ -168,12 +169,12 @@ public partial class LayerManager : Node2D
 						isTileBought = true;
 					}
 					break;
-				case TileType.Upgrader :
+				case TileType.Refiner :
 					if (WalletResource.TrySpend(50))
 					{
 						_conveyorLayer.AddConveyor(mapPosition, _rotationID);
 						_upgraderLayer.AddUpgrader(mapPosition);
-						_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.Upgrader;
+						_occupiedPositions[mapPosition.X, mapPosition.Y].TileType = TileType.Refiner;
 						isTileBought = true;
 					}
 					break;
@@ -199,7 +200,7 @@ public partial class LayerManager : Node2D
 					_conveyorLayer.RemoveConveyor(mapPosition);
 					WalletResource.AddMoney(10);
 					break;
-				case TileType.Dropper:
+				case TileType.MiningRig:
 					_dropperLayer.RemoveDropper(mapPosition);
 					WalletResource.AddMoney(30);
 					break;
@@ -208,7 +209,7 @@ public partial class LayerManager : Node2D
 					_conveyorLayer.RemoveConveyor(mapPosition);
 					WalletResource.AddMoney(30);
 					break;
-				case TileType.Upgrader :
+				case TileType.Refiner :
 					_upgraderLayer.RemoveUpgrader(mapPosition);
 					_conveyorLayer.RemoveConveyor(mapPosition);
 					WalletResource.AddMoney(20);
@@ -238,10 +239,11 @@ public partial class LayerManager : Node2D
 		var upgradeMenu = _gameMenu.GetUpgradeMenu();
 		
 		if (_cachedUpgradeBuilding is null || 
-		    (building is not null && !_cachedUpgradeBuilding.Equals(building)))
+			!_cachedUpgradeBuilding.Equals(building))
 		{
 			WalletResource.MoneyChanged -= _cachedUmMoneyCheck;
 			_cachedUpgradeBuilding = building;
+			
 			_cachedUmMoneyCheck = () =>
 			{
 				upgradeMenu.ChangePriceFontColor(
@@ -249,15 +251,15 @@ public partial class LayerManager : Node2D
 						? new Color("00ff00")
 						: new Color("ff0000"));
 			};
+			
 			_cachedUmMoneyCheck();
 			WalletResource.MoneyChanged += _cachedUmMoneyCheck;
 			
 			upgradeMenu.UpdateMenuData(building);
-
 			upgradeMenu.ConnectToUpgradeButtonPressed(() =>
 				{
 					if (WalletResource.TrySpend(building.UpgradePrice) && 
-					    building.Upgrade())
+						building.Upgrade())
 					{
 						upgradeMenu.UpdateMenuData(building);
 						_cachedUmMoneyCheck();
@@ -266,8 +268,14 @@ public partial class LayerManager : Node2D
 			);
 		}	
 		
-		if (!upgradeMenu.Visible)
+		if (!upgradeMenu.IsShopOpen)
 			upgradeMenu.ShowUpgradeMenu();
+	}
+
+	public override void _ExitTree()
+	{
+		if (_cachedUmMoneyCheck is not null)
+			WalletResource.MoneyChanged -= _cachedUmMoneyCheck;
 	}
 
 	private void UpdateSelectedTileType(TileType tileType) =>
