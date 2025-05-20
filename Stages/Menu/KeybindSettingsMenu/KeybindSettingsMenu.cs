@@ -17,6 +17,7 @@ public partial class KeybindSettingsMenu : VBoxContainer
         "Place",
         "Delete",
         "Upgrade",
+        "CameraPan"
     };
 
     private static readonly Dictionary<string, List<InputEvent>> _defaultEvents = new();
