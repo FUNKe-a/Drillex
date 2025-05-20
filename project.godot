@@ -14,6 +14,7 @@ config/name="drillex"
 run/main_scene="uid://48ty5w50jdko"
 config/features=PackedStringArray("4.4", "C#", "Mobile")
 config/icon="res://icon.svg"
+config/windows_native_icon="res://Common/Textures/Icon/drillex.ico"
 
 [audio]
 
