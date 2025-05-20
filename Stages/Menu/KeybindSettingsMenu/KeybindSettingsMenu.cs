@@ -10,7 +10,10 @@ public partial class KeybindSettingsMenu : VBoxContainer
     private bool   _capturing      = false;
     private string _pendingAction  = "";
     private Button _pendingButton  = null;
-
+    
+    private Timer _cooldownTimer;
+    private bool _isOnCooldown;
+    
     private static readonly string[] _actions =
     {
         "Rotate",
@@ -26,6 +29,11 @@ public partial class KeybindSettingsMenu : VBoxContainer
 
     public override void _Ready()
     {
+        _cooldownTimer = new Timer();
+        AddChild(_cooldownTimer);
+        _cooldownTimer.WaitTime = 1.5;
+        _cooldownTimer.Timeout += () => _isOnCooldown = !_isOnCooldown;
+            
         _grid = GetNode<GridContainer>("Panel/GridContainer");
 
         if (_defaultEvents.Count == 0)
@@ -43,7 +51,11 @@ public partial class KeybindSettingsMenu : VBoxContainer
             var label  = new Label  { Text = action };
             var button = new Button { Text = FirstEventText(action) };
 
-            button.Pressed += () => BeginCapture(action, button);
+            button.Pressed += () =>
+            {
+                if (!_isOnCooldown) 
+                    BeginCapture(action, button);
+            };
 
             _grid.AddChild(label);
             _grid.AddChild(button);
@@ -62,10 +74,23 @@ public partial class KeybindSettingsMenu : VBoxContainer
 
     public override void _Input(InputEvent ev)
     {
+        if (_isOnCooldown) return;
         if (!_capturing) return;
 
         if (ev is InputEventMouseMotion || ev is InputEventJoypadMotion) return;
         if (!ev.IsPressed()) return;
+
+        if (IsEventAlreadyBound(ev, _pendingAction))
+        {
+            _pendingButton.Text = $"{ev.AsText()} already bound!";
+            _capturing          = false;
+            _pendingAction      = "";
+            _pendingButton      = null;
+
+            _isOnCooldown = true;
+            _cooldownTimer.Start();
+            return;
+        }
 
         InputMap.ActionEraseEvents(_pendingAction);
         InputMap.ActionAddEvent   (_pendingAction, ev);
@@ -74,6 +99,17 @@ public partial class KeybindSettingsMenu : VBoxContainer
         _capturing          = false;
         _pendingAction      = "";
         _pendingButton      = null;
+    }
+
+    private static bool IsEventAlreadyBound(InputEvent ev, string currentAction)
+    {
+        foreach (var action in _actions)
+        {
+            if (action == currentAction) continue;
+            if (InputMap.ActionHasEvent(action, ev))
+                return true;
+        }
+        return false;
     }
 
     private static string FirstEventText(string action)
